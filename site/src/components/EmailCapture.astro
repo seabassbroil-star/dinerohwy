@@ -1,0 +1,122 @@
+---
+import { getLangFromUrl, useT } from "../i18n/ui";
+import Icon from "./Icon.astro";
+
+interface Props {
+  variant?: "hero" | "footer" | "inline" | "demo";
+  magnet?: string;
+  source?: string;
+  heading?: string;
+  sub?: string;
+  buttonLabel?: string;
+  collectBusiness?: boolean;
+}
+
+const lang = getLangFromUrl(Astro.url);
+const t = useT(lang);
+const {
+  variant = "inline",
+  magnet = "report-card",
+  source = Astro.url.pathname,
+  heading,
+  sub,
+  buttonLabel,
+  collectBusiness = false,
+} = Astro.props;
+
+const showText = variant !== "footer";
+---
+
+<form class:list={["capture", `capture--${variant}`]} action="/api/subscribe" method="post" data-capture>
+  {showText && (heading ?? t("email.heading")) && (
+    <div class="capture-copy">
+      <h3 class="capture-heading">{heading ?? t("email.heading")}</h3>
+      <p class="capture-sub">{sub ?? t("email.sub")}</p>
+    </div>
+  )}
+
+  <input type="hidden" name="magnet" value={magnet} />
+  <input type="hidden" name="source" value={source} />
+  <input type="hidden" name="lang" value={lang} />
+
+  <div class="capture-row">
+    {collectBusiness && (
+      <input class="field" type="text" name="business" placeholder="Business name" autocomplete="organization" />
+    )}
+    <input
+      class="field"
+      type="email"
+      name="email"
+      required
+      placeholder={t("cta.email_placeholder")}
+      autocomplete="email"
+      aria-label="Email address"
+    />
+    <button class="btn btn-primary" type="submit">
+      {buttonLabel ?? t("email.button")}
+      <Icon name="arrow-right" size={18} />
+    </button>
+  </div>
+
+  <p class="capture-status" role="status" aria-live="polite" hidden></p>
+</form>
+
+<script>
+  document.querySelectorAll<HTMLFormElement>("form[data-capture]").forEach((form) => {
+    const status = form.querySelector<HTMLElement>(".capture-status");
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const btn = form.querySelector<HTMLButtonElement>("button[type=submit]");
+      if (btn) btn.disabled = true;
+      try {
+        const res = await fetch(form.action, {
+          method: "POST",
+          headers: { Accept: "application/json" },
+          body: new FormData(form),
+        });
+        const ok = res.ok;
+        if (status) {
+          status.hidden = false;
+          status.textContent = ok
+            ? form.dataset.success || "Check your inbox — it's on its way."
+            : "Something went wrong. Please try again.";
+          status.classList.toggle("is-ok", ok);
+          status.classList.toggle("is-err", !ok);
+        }
+        if (ok) form.reset();
+      } catch {
+        if (status) {
+          status.hidden = false;
+          status.textContent = "Network error. Please try again.";
+          status.classList.add("is-err");
+        }
+      } finally {
+        if (btn) btn.disabled = false;
+      }
+    });
+  });
+</script>
+
+<style>
+  .capture { display: grid; gap: 0.9rem; width: 100%; }
+  .capture-copy { text-align: inherit; }
+  .capture-heading { font-size: var(--step-1); margin-bottom: 0.25rem; }
+  .capture-sub { color: var(--cream-muted); margin: 0; font-size: var(--step-0); }
+
+  .capture-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+  .capture-row .field { flex: 1 1 220px; }
+  .capture-row .btn { flex: 0 0 auto; }
+
+  .capture--hero { max-width: 560px; }
+  .capture--hero .capture-row { background: rgba(6, 27, 20, 0.4); padding: 0.4rem; border-radius: var(--radius-md); border: 1px solid var(--line); }
+
+  .capture--footer .capture-row { max-width: 460px; }
+
+  .capture-status { margin: 0; font-size: var(--step--1); font-weight: 700; }
+  .capture-status.is-ok { color: #7fd6a6; }
+  .capture-status.is-err { color: var(--rust-light); }
+</style>

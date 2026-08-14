@@ -1,0 +1,27 @@
+---
+// Fixed, decorative highway/route background. Renders behind all content.
+interface Props {
+  routes?: boolean;
+  grid?: boolean;
+}
+const { routes = true, grid = true } = Astro.props;
+---
+
+{grid && <div class="motif-grid" aria-hidden="true"></div>}
+
+{
+  routes && (
+    <div class="motif-routes" aria-hidden="true">
+      <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+        {/* long directional routes sweeping up-right — sense of travel/momentum */}
+        <path class="route-solid" d="M-40 720 C 360 690, 620 540, 900 470 S 1380 300, 1520 250" />
+        <path class="route-line" d="M-40 800 C 400 760, 680 610, 980 540 S 1420 360, 1520 320" />
+        <path class="route-line" d="M-40 300 C 300 280, 560 210, 860 190 S 1300 120, 1520 110" />
+        {/* waypoint nodes on the primary route */}
+        <path class="waypoint" d="M900 470 l 9 9 -9 9 -9 -9 Z" />
+        <path class="waypoint" d="M360 655 l 7 7 -7 7 -7 -7 Z" />
+        <path class="waypoint" d="M1320 300 l 7 7 -7 7 -7 -7 Z" />
+      </svg>
+    </div>
+  )
+}

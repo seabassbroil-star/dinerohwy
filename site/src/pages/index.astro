@@ -1,0 +1,139 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import EmailCapture from "../components/EmailCapture.astro";
+import PainStrip from "../components/PainStrip.astro";
+import SolutionCard from "../components/SolutionCard.astro";
+import StatStrip from "../components/StatStrip.astro";
+import Icon from "../components/Icon.astro";
+
+const pains = [
+  { icon: "assistant", title: "Missed calls after hours", body: "Customers call when you're busy or closed. No answer means they call the next name on the list." },
+  { icon: "quote", title: "Quotes that take days", body: "By the time you get back with a price, they've already booked someone faster." },
+  { icon: "email", title: "Past customers forgotten", body: "The people who already paid you once never hear from you again. That's money left on the table." },
+] as const;
+
+const solutions = [
+  { href: "/showcase", icon: "website", title: "Showcase Sites", blurb: "Fast, real websites that sell — not brochures. See live examples.", status: "live" },
+  { href: "/review-app", icon: "review", title: "Review App", blurb: "Screenshot any page, drop notes, ship the fix. The cockpit we build with.", status: "live" },
+  { href: "/image-quote", icon: "quote", title: "Instant Quotes", blurb: "A customer uploads a photo and gets a price in minutes. Try it yourself.", status: "live" },
+  { href: "/seo-assistant", icon: "seo", title: "SEO Assistant", blurb: "Find the easiest thing to rank for, ship it, and watch what moves.", status: "coming-soon" },
+  { href: "/intel-assistant", icon: "intel", title: "Intel Assistant", blurb: "An AI that knows your business and answers customers day and night.", status: "coming-soon" },
+  { href: "/book", icon: "book", title: "Agentic AI, for kids", blurb: "Learn how these tools work — explained simply, with a live demo per idea.", status: "live" },
+] as const;
+
+const stats = [
+  { value: "3 min", label: "avg quote delivery" },
+  { value: "24/7", label: "AI assistant" },
+  { value: "100%", label: "of leads followed up" },
+];
+---
+
+<BaseLayout>
+  <!-- HERO -->
+  <section class="hero section">
+    <div class="motif-glow" aria-hidden="true"></div>
+    <div class="container hero-inner">
+      <span class="eyebrow">internet + dinero</span>
+      <h1>Never miss a lead again.</h1>
+      <p class="lede">
+        Dinero Hwy builds the software that turns your website into a machine —
+        it answers customers, sends quotes, and follows up while you run the shop.
+        <strong>We build the internet part. You collect the dinero.</strong>
+      </p>
+
+      <EmailCapture
+        variant="hero"
+        magnet="report-card"
+        source="home-hero"
+        collectBusiness={true}
+        heading=""
+        sub=""
+      />
+      <p class="hero-fineprint">Free Website &amp; Google Report Card — your business graded, plus 3 fixes. No pitch.</p>
+
+      <div class="hero-stats">
+        <StatStrip items={stats} />
+      </div>
+    </div>
+  </section>
+
+  <!-- PAINS -->
+  <section class="section container">
+    <span class="eyebrow">Sound familiar?</span>
+    <h2>Three ways local businesses quietly lose money.</h2>
+    <div class="stack">
+      <PainStrip items={pains} />
+    </div>
+  </section>
+
+  <!-- SOLUTIONS -->
+  <section id="tools" class="section container">
+    <span class="eyebrow">The toolbox</span>
+    <h2>Every tool we sell runs live on this site.</h2>
+    <p class="lede">Don't take our word for it — try them. That's the whole pitch.</p>
+    <div class="solutions-grid">
+      {solutions.map((s) => <SolutionCard {...s} />)}
+    </div>
+  </section>
+
+  <!-- PROOF -->
+  <section class="section container proof">
+    <div class="proof-card card">
+      <div>
+        <span class="eyebrow">Real software, not templates</span>
+        <h2>Built in the open.</h2>
+        <p class="lede">
+          This whole site — the quote demo, the review app, the email engine —
+          is real code running on Cloudflare. Inspect it, fork it, or just watch it work.
+        </p>
+        <div class="proof-actions">
+          <a class="btn btn-ghost" href="/work">
+            <Icon name="code" size={18} /> See the work
+          </a>
+          <a class="btn btn-ghost" href="https://github.com" target="_blank" rel="noopener">
+            <Icon name="code" size={18} /> View the code
+          </a>
+        </div>
+      </div>
+      <div class="proof-route" aria-hidden="true">
+        <div class="route-bar"></div>
+        <span class="star-badge" style="width:44px;height:44px"></span>
+        <div class="route-bar"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="section container final-cta">
+    <h2>Get your free Report Card.</h2>
+    <p class="lede">Enter your email and we'll grade your website and Google presence — with 3 specific fixes you can make this week.</p>
+    <EmailCapture variant="inline" magnet="report-card" source="home-footer-cta" collectBusiness={true} heading="" sub="" />
+  </section>
+</BaseLayout>
+
+<style>
+  .hero { position: relative; padding-top: var(--space-2xl); overflow: hidden; }
+  .hero-inner { display: grid; justify-items: start; gap: 1rem; max-width: 780px; }
+  .hero h1 { margin: 0.2rem 0; }
+  .hero-fineprint { color: var(--cream-muted); font-size: var(--step--1); margin: 0.25rem 0 0; }
+  .hero-stats { margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--line); width: 100%; }
+  .hero-stats :global(.stats) { justify-content: flex-start; }
+
+  .solutions-grid {
+    margin-top: var(--space-md);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md);
+  }
+  @media (max-width: 900px) { .solutions-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px) { .solutions-grid { grid-template-columns: 1fr; } }
+
+  .proof-card { display: grid; grid-template-columns: 1.5fr 1fr; gap: var(--space-lg); align-items: center; }
+  .proof-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.25rem; }
+  .proof-route { display: grid; justify-items: center; gap: 1rem; }
+  @media (max-width: 760px) { .proof-card { grid-template-columns: 1fr; } .proof-route { display: none; } }
+
+  .final-cta { max-width: 640px; text-align: center; }
+  .final-cta :global(.capture) { justify-items: center; }
+  .final-cta :global(.capture-row) { justify-content: center; }
+</style>

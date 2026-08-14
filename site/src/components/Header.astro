@@ -1,0 +1,134 @@
+---
+import { getLangFromUrl, useT, localizedPath } from "../i18n/ui";
+import LangSwitch from "./LangSwitch.astro";
+import Icon from "./Icon.astro";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useT(lang);
+const p = (path: string) => localizedPath(path, lang);
+
+const tools = [
+  { href: p("/showcase"), icon: "website", label: t("nav.showcase") },
+  { href: p("/review-app"), icon: "review", label: "Review App" },
+  { href: p("/image-quote"), icon: "quote", label: "Instant Quotes" },
+  { href: p("/seo-assistant"), icon: "seo", label: "SEO Assistant" },
+  { href: p("/intel-assistant"), icon: "intel", label: "Intel Assistant" },
+] as const;
+---
+
+<header class="site-header">
+  <div class="container bar">
+    <a class="brand" href={p("/")} aria-label="Dinero Hwy home">
+      <img src="/assets/dinerohwy-logo-primary.svg?v=2" alt="Dinero Hwy" width="590" height="270" />
+    </a>
+
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden />
+    <label for="nav-toggle" class="nav-burger" aria-label="Toggle menu">
+      <Icon name="menu" size={22} />
+    </label>
+
+    <nav class="nav" aria-label="Primary">
+      <details class="tools-menu">
+        <summary>{t("nav.tools")}</summary>
+        <div class="tools-panel">
+          {tools.map((item) => (
+            <a href={item.href}>
+              <Icon name={item.icon} size={18} />
+              <span>{item.label}</span>
+            </a>
+          ))}
+        </div>
+      </details>
+      <a href={p("/book")}>{t("nav.book")}</a>
+      <a href={p("/work")}>{t("nav.work")}</a>
+      <a href={p("/free")}>{t("nav.free")}</a>
+      <a href={p("/about")}>{t("nav.about")}</a>
+      <div class="nav-actions">
+        <LangSwitch />
+        <a class="btn btn-primary" href={p("/free")}>{t("cta.primary")}</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    backdrop-filter: blur(10px);
+    background: rgba(6, 27, 20, 0.72);
+    border-bottom: 1px solid var(--line);
+  }
+  .bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+    padding-block: 0.7rem;
+  }
+  .brand img { width: clamp(150px, 20vw, 190px); height: auto; display: block; }
+
+  .nav { display: flex; align-items: center; gap: var(--space-md); }
+  .nav > a { font-weight: 750; font-size: var(--step--1); letter-spacing: 0.01em; }
+  .nav-actions { display: flex; align-items: center; gap: 0.75rem; }
+
+  .tools-menu { position: relative; }
+  .tools-menu summary {
+    list-style: none;
+    cursor: pointer;
+    font-weight: 750;
+    font-size: var(--step--1);
+  }
+  .tools-menu summary::-webkit-details-marker { display: none; }
+  .tools-panel {
+    position: absolute;
+    top: calc(100% + 0.75rem);
+    left: -0.5rem;
+    display: grid;
+    gap: 0.15rem;
+    min-width: 230px;
+    padding: 0.5rem;
+    background: var(--forest-800);
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+  }
+  .tools-panel a {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.55rem 0.65rem;
+    border-radius: var(--radius-sm);
+    font-size: var(--step--1);
+    font-weight: 700;
+    color: var(--cream);
+  }
+  .tools-panel a:hover { background: rgba(244, 238, 220, 0.07); color: var(--cream); }
+  .tools-panel :global(svg) { color: var(--rust-light); }
+
+  .nav-toggle, .nav-burger { display: none; }
+
+  @media (max-width: 860px) {
+    .nav-burger {
+      display: inline-flex;
+      color: var(--cream);
+      cursor: pointer;
+      padding: 0.4rem;
+    }
+    .nav {
+      position: absolute;
+      inset: 100% 0 auto 0;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.4rem;
+      padding: var(--space-md);
+      background: var(--forest-900);
+      border-bottom: 1px solid var(--line-strong);
+      display: none;
+    }
+    .nav-toggle:checked ~ .nav { display: flex; }
+    .nav-actions { flex-direction: column; align-items: stretch; }
+    .tools-panel { position: static; box-shadow: none; }
+  }
+</style>

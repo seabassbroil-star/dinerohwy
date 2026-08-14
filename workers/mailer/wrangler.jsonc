@@ -1,0 +1,28 @@
+{
+  "$schema": "../../site/node_modules/wrangler/config-schema.json",
+  "name": "dinerohwy-mailer",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-08-14",
+  "compatibility_flags": ["nodejs_compat"],
+
+  // Runs daily at 14:00 UTC (~9am Houston). Sends any follow-up emails that
+  // have come due and advances each lead to the next step.
+  "triggers": { "crons": ["0 14 * * *"] },
+
+  // Same leads DB as the Pages site — paste the SAME database_id used in
+  // site/wrangler.jsonc.
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "dinerohwy-leads",
+      "database_id": "PLACEHOLDER-run-wrangler-d1-create"
+    }
+  ],
+
+  "vars": {
+    "SITE_URL": "https://dinerohwy.com",
+    "RESEND_FROM": "Dinero Hwy <hello@dinerohwy.com>"
+  },
+  "observability": { "enabled": true }
+  // Secret: wrangler secret put RESEND_API_KEY   (run inside workers/mailer)
+}

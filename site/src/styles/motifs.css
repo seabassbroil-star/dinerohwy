@@ -1,0 +1,97 @@
+/* Dinero Hwy — background & directional motifs (the "highway" system).
+   Desktop-forward: lines, routes, and waypoints create flow and direction.
+   Density and motion are reduced on small screens and for reduced-motion. */
+
+/* Fixed 42px grid overlay (from the original page's body::before). */
+.motif-grid {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  content: "";
+  pointer-events: none;
+  opacity: 0.24;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.014) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: linear-gradient(to bottom, black, transparent 92%);
+}
+
+/* Desktop directional "route" lines that sweep across the page behind content. */
+.motif-routes {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  color: var(--rust);
+  opacity: 0.5;
+}
+.motif-routes svg { width: 100%; height: 100%; display: block; }
+.motif-routes .route-line {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-dasharray: 2 10;
+  stroke-linecap: round;
+  opacity: 0.5;
+}
+.motif-routes .route-solid {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  opacity: 0.32;
+}
+.motif-routes .waypoint {
+  fill: var(--rust);
+  stroke: var(--cream);
+  stroke-width: 1.5;
+}
+
+/* Rust route bar with a diamond waypoint node (from the original .route). */
+.route-bar {
+  position: relative;
+  width: min(390px, 68vw);
+  height: 4px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, var(--rust) 18%, var(--rust) 82%, transparent);
+}
+.route-bar::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  content: "";
+  transform: translate(-50%, -50%) rotate(45deg);
+  background: var(--rust);
+  border: 3px solid var(--forest-900);
+  box-shadow: 0 0 0 2px var(--cream);
+}
+
+/* Five-point star badge, reused as an inline shape (from .status-star). */
+.star-badge {
+  display: grid;
+  place-items: center;
+  color: var(--rust);
+  background: var(--cream);
+  clip-path: polygon(50% 0, 61% 35%, 98% 35%, 68% 57%, 79% 94%, 50% 72%, 21% 94%, 32% 57%, 2% 35%, 39% 35%);
+}
+
+/* Soft radial glow accent used behind hero content. */
+.motif-glow {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(circle at 50% 40%, rgba(75, 119, 92, 0.42), transparent 60%);
+  filter: blur(6px);
+}
+
+@media (max-width: 700px) {
+  .motif-routes { opacity: 0.28; }
+  .motif-grid { opacity: 0.16; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motif-routes .route-line { stroke-dasharray: none; }
+}

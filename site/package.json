@@ -1,0 +1,29 @@
+{
+  "name": "dinerohwy",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro build && wrangler pages dev ./dist",
+    "deploy": "astro build && wrangler pages deploy ./dist --project-name dinerohwy",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/cloudflare": "^12.6.0",
+    "@astrojs/mdx": "^4.3.0",
+    "@astrojs/react": "^4.3.0",
+    "@nanostores/react": "^0.8.4",
+    "astro": "^5.13.0",
+    "nanostores": "^0.11.4",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20260814.1",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "wrangler": "^4.123.0"
+  }
+}

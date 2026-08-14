@@ -1,0 +1,21 @@
+---
+import { getLangFromUrl, useT, alternatePath } from "../i18n/ui";
+const lang = getLangFromUrl(Astro.url);
+const t = useT(lang);
+const href = alternatePath(Astro.url, lang);
+---
+<a class="lang-switch" href={href} hreflang={lang === "en" ? "es" : "en"} rel="alternate">
+  {t("lang.switch")}
+</a>
+<style>
+  .lang-switch {
+    font-size: var(--step--1);
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    color: var(--cream-muted);
+    padding: 0.35rem 0.6rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+  }
+  .lang-switch:hover { color: var(--cream); border-color: var(--line-strong); }
+</style>

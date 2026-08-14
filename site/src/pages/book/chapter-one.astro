@@ -1,0 +1,86 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import DemoFrame from "../../components/DemoFrame.astro";
+import Icon from "../../components/Icon.astro";
+---
+
+<BaseLayout title="Chapter 1: What is an agent? — Dinero Hwy" description="A plain-English, demo-first intro to agentic AI: look, think, do.">
+  <article class="section container chapter">
+    <a class="back" href="/book"><Icon name="arrow-right" size={16} /> All chapters</a>
+    <span class="eyebrow">Chapter One</span>
+    <h1>What is an agent?</h1>
+    <p class="lede">Imagine a really good helper. You tell it what you want, and it figures out the steps by itself. That's an agent. It does three things, over and over: <strong>look</strong>, <strong>think</strong>, <strong>do</strong>.</p>
+
+    <section class="section-block">
+      <h2>1. It looks 👀</h2>
+      <p>First the agent looks at what's around — a message from you, a page on a website, a photo. Looking is how it figures out <em>what's going on right now</em>.</p>
+    </section>
+
+    <section class="section-block">
+      <h2>2. It thinks 🤔</h2>
+      <p>Then it thinks: "What should I do about this?" It makes a little plan. If the plan needs more information, it goes back and looks again.</p>
+    </section>
+
+    <section class="section-block">
+      <h2>3. It does 🖐️</h2>
+      <p>Finally it <em>does</em> something — sends a reply, saves a note, gives you a price. Then it looks again to see if that worked. Look, think, do. That loop is the whole trick.</p>
+    </section>
+
+    <section class="section-block">
+      <h2>Try the loop yourself</h2>
+      <p>Press the button and watch a tiny agent run its loop to answer a customer.</p>
+      <DemoFrame title="The agent loop" status="live" caption="A toy agent — but it's the exact same look → think → do loop the real tools use.">
+        <div class="loop-demo" id="loop-demo">
+          <div class="loop-steps">
+            <div class="loop-step" data-step="look"><span class="loop-badge">👀 Look</span><p>—</p></div>
+            <div class="loop-step" data-step="think"><span class="loop-badge">🤔 Think</span><p>—</p></div>
+            <div class="loop-step" data-step="do"><span class="loop-badge">🖐️ Do</span><p>—</p></div>
+          </div>
+          <button class="btn btn-primary" id="loop-run" type="button">Run the agent <Icon name="arrow-right" size={16} /></button>
+        </div>
+      </DemoFrame>
+    </section>
+  </article>
+</BaseLayout>
+
+<script>
+  const scenarios = [
+    { look: 'A customer texts: "Are you open right now?"', think: "It's 8pm. My hours say I close at 9pm. So: yes, open.", do: 'Reply: "Yes! We’re open until 9pm tonight. Come on by 👋"' },
+    { look: 'A customer sends a photo of a cracked driveway.', think: "That looks like about 400 sq ft of concrete repair. I can estimate a price.", do: 'Reply with an instant quote: "Roughly $1,800–$2,200 — want to book a visit?"' },
+    { look: 'A past customer hasn’t been back in 3 months.', think: "They bought once and went quiet. A friendly nudge might bring them back.", do: 'Send an email: "We miss you! Here’s 10% off your next visit."' },
+  ];
+  let i = 0;
+  const demo = document.getElementById("loop-demo");
+  const btn = document.getElementById("loop-run");
+  const steps = ["look", "think", "do"];
+  btn?.addEventListener("click", () => {
+    const s = scenarios[i % scenarios.length];
+    i++;
+    steps.forEach((k) => {
+      const el = demo?.querySelector(`[data-step="${k}"] p`);
+      if (el) el.textContent = "…";
+    });
+    steps.forEach((k, idx) => {
+      setTimeout(() => {
+        const box = demo?.querySelector(`[data-step="${k}"]`);
+        const el = box?.querySelector("p");
+        if (el) el.textContent = (s as Record<string, string>)[k];
+        box?.classList.add("is-active");
+        setTimeout(() => box?.classList.remove("is-active"), 700);
+      }, idx * 750);
+    });
+  });
+</script>
+
+<style>
+  .chapter { max-width: 760px; }
+  .back { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--cream-muted); font-weight: 700; font-size: var(--step--1); margin-bottom: 1rem; }
+  .back :global(svg) { transform: rotate(180deg); }
+  .section-block { margin-top: var(--space-xl); }
+  .loop-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin-bottom: 1.25rem; }
+  .loop-step { padding: 1rem; border: 1px solid var(--line); border-radius: var(--radius-md); background: rgba(6,27,20,.4); transition: border-color .3s, background .3s; min-height: 130px; }
+  .loop-step.is-active { border-color: var(--rust); background: rgba(199,90,49,.1); }
+  .loop-badge { font-weight: 800; font-size: var(--step--1); }
+  .loop-step p { margin: 0.5rem 0 0; color: var(--cream-muted); font-size: var(--step--1); }
+  @media (max-width: 640px) { .loop-steps { grid-template-columns: 1fr; } }
+</style>

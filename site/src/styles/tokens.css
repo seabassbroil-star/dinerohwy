@@ -1,0 +1,65 @@
+/* Dinero Hwy — design tokens.
+   The street-sign / highway identity: forest greens, cream lettering, rust star.
+   Lifted from the original coming-soon page and extended into a full scale.
+   The same token system is meant to re-skin client demo sites (dogfooding). */
+
+:root {
+  /* Forest ramp (dark → light) */
+  --forest-950: #061b14; /* near-black base */
+  --forest-900: #0b2d22; /* theme-color */
+  --forest-800: #103b2d;
+  --forest-700: #1b4635; /* base sign green */
+  --forest-600: #285440; /* mid green — buttons, raised faces */
+
+  /* Neutrals / lettering */
+  --cream: #f4eedc;
+  --cream-muted: #c9c5b7;
+  --cream-dim: rgba(244, 238, 220, 0.55);
+
+  /* Warm accent — star, CTAs, waypoints only */
+  --rust: #c75a31;
+  --rust-light: #db6e42;
+  --rust-deep: #a94125;
+
+  /* Lines / borders */
+  --line: rgba(244, 238, 220, 0.22);
+  --line-strong: rgba(244, 238, 220, 0.34);
+  --line-green: #345e4d;
+
+  /* Type */
+  --sans: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --condensed: "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+
+  /* Type scale */
+  --step--1: clamp(0.83rem, 0.8rem + 0.15vw, 0.9rem);
+  --step-0: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
+  --step-1: clamp(1.2rem, 1.1rem + 0.5vw, 1.5rem);
+  --step-2: clamp(1.55rem, 1.35rem + 1vw, 2.1rem);
+  --step-3: clamp(2rem, 1.6rem + 2vw, 3.1rem);
+  --step-4: clamp(2.6rem, 1.9rem + 3.4vw, 4.6rem);
+
+  /* Spacing scale */
+  --space-2xs: 0.375rem;
+  --space-xs: 0.625rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2.5rem;
+  --space-xl: 4rem;
+  --space-2xl: 6rem;
+
+  /* Radii */
+  --radius-sm: 9px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 27px;
+
+  /* Layout */
+  --container: 1080px;
+  --container-narrow: 720px;
+
+  /* Elevation */
+  --shadow-sm: 0 8px 20px rgba(4, 19, 14, 0.28);
+  --shadow-md: 0 18px 40px rgba(2, 15, 10, 0.32);
+  --shadow-raised: 0 12px 28px rgba(4, 19, 14, 0.28), inset 0 1px rgba(255, 255, 255, 0.16);
+}

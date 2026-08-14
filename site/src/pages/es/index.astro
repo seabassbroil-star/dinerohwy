@@ -1,0 +1,40 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import EmailCapture from "../../components/EmailCapture.astro";
+import StatStrip from "../../components/StatStrip.astro";
+
+const stats = [
+  { value: "3 min", label: "cotización promedio" },
+  { value: "24/7", label: "asistente con IA" },
+  { value: "100%", label: "de clientes con seguimiento" },
+];
+---
+
+<BaseLayout
+  title="Dinero Hwy — Software que hace ganar dinero a tu negocio"
+  description="Dinero Hwy crea sitios web y automatización para negocios locales. Prueba cada herramienta en vivo antes de contratar."
+>
+  <section class="hero section">
+    <div class="motif-glow" aria-hidden="true"></div>
+    <div class="container hero-inner">
+      <span class="eyebrow">internet + dinero</span>
+      <h1>No pierdas otro cliente.</h1>
+      <p class="lede">
+        Dinero Hwy construye el software que convierte tu sitio web en una máquina:
+        responde a tus clientes, envía cotizaciones y da seguimiento mientras tú
+        atiendes el negocio. <strong>Nosotros ponemos el internet. Tú cobras el dinero.</strong>
+      </p>
+      <EmailCapture variant="hero" magnet="report-card" source="es-home-hero" collectBusiness={true} heading="" sub="" />
+      <p class="hero-fineprint">Reporte gratis de tu sitio web y Google — tu negocio evaluado, con 3 mejoras. Sin presión.</p>
+      <div class="hero-stats"><StatStrip items={stats} /></div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero { position: relative; padding-top: var(--space-2xl); overflow: hidden; }
+  .hero-inner { display: grid; justify-items: start; gap: 1rem; max-width: 780px; }
+  .hero-fineprint { color: var(--cream-muted); font-size: var(--step--1); margin: 0.25rem 0 0; }
+  .hero-stats { margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--line); width: 100%; }
+  .hero-stats :global(.stats) { justify-content: flex-start; }
+</style>

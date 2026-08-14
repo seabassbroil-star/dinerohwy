@@ -1,0 +1,72 @@
+---
+import "../styles/tokens.css";
+import "../styles/global.css";
+import "../styles/motifs.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import RouteBackground from "../components/RouteBackground.astro";
+import { getLangFromUrl } from "../i18n/ui";
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  noindex?: boolean;
+}
+
+const {
+  title = "Dinero Hwy — Software that makes your local business money",
+  description = "Dinero Hwy builds websites and automation for local businesses — and every tool runs live on this site so you can try it before you buy it.",
+  image = "/assets/dinerohwy-social-card.png",
+  noindex = false,
+} = Astro.props;
+
+const lang = getLangFromUrl(Astro.url);
+const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url).href;
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0b2d22" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex" />}
+    <link rel="icon" href="/assets/dinerohwy-mark.svg" type="image/svg+xml" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+    <meta property="og:locale" content={lang === "es" ? "es_US" : "en_US"} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
+  </head>
+  <body>
+    <RouteBackground />
+    <a class="skip-link" href="#main">Skip to content</a>
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+    <style is:global>
+      .skip-link {
+        position: absolute;
+        left: -999px;
+        top: 0.5rem;
+        z-index: 100;
+        padding: 0.5rem 1rem;
+        background: var(--rust);
+        color: var(--cream);
+        border-radius: var(--radius-sm);
+      }
+      .skip-link:focus { left: 0.5rem; }
+    </style>
+  </body>
+</html>

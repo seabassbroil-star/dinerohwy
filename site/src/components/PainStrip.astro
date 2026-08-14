@@ -1,0 +1,32 @@
+---
+import Icon from "./Icon.astro";
+import type { IconName } from "../icons";
+
+interface Pain { icon: IconName; title: string; body: string; }
+interface Props { items: Pain[]; }
+const { items } = Astro.props;
+---
+
+<div class="pains">
+  {items.map((pain) => (
+    <div class="pain">
+      <span class="pain-icon"><Icon name={pain.icon} size={22} /></span>
+      <h3 class="pain-title">{pain.title}</h3>
+      <p class="pain-body">{pain.body}</p>
+    </div>
+  ))}
+</div>
+
+<style>
+  .pains { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-md); }
+  .pain {
+    padding: 1.25rem;
+    border-left: 3px solid var(--rust);
+    background: rgba(6, 27, 20, 0.3);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  }
+  .pain-icon { color: var(--rust-light); display: inline-flex; margin-bottom: 0.5rem; }
+  .pain-title { font-size: var(--step-1); margin-bottom: 0.35rem; }
+  .pain-body { color: var(--cream-muted); margin: 0; }
+  @media (max-width: 760px) { .pains { grid-template-columns: 1fr; } }
+</style>

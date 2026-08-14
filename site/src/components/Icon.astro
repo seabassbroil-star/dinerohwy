@@ -1,0 +1,32 @@
+---
+import { icons, type IconName } from "../icons";
+
+interface Props {
+  name: IconName;
+  size?: number;
+  stroke?: number;
+  label?: string;
+  class?: string;
+}
+
+const { name, size = 24, stroke = 1.75, label, class: className } = Astro.props;
+const inner = icons[name];
+const a11y = label
+  ? { role: "img", "aria-label": label }
+  : { "aria-hidden": "true" };
+---
+
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width={size}
+  height={size}
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width={stroke}
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class={className}
+  set:html={inner}
+  {...a11y}
+/>

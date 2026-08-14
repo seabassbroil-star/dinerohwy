@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-labelledby="title desc">
+  <title id="title">Dinero Highway H-star mark</title>
+  <desc id="desc">A realistic cream H layered over a rust five-point star on natural dark green.</desc>
+  <defs>
+    <linearGradient id="green" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#285440"/><stop offset="1" stop-color="#103326"/></linearGradient>
+    <linearGradient id="star" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#df7848"/><stop offset="1" stop-color="#a54022"/></linearGradient>
+    <linearGradient id="cream" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#fffdf3"/><stop offset="1" stop-color="#d8d0bc"/></linearGradient>
+    <filter id="raised" x="-20%" y="-25%" width="140%" height="155%"><feDropShadow dx="0" dy="5" stdDeviation="3" flood-color="#061c14" flood-opacity=".7"/></filter>
+  </defs>
+  <rect x="10" y="10" width="220" height="220" rx="40" fill="#142e25" stroke="#061b14" stroke-width="8"/>
+  <rect x="22" y="22" width="196" height="196" rx="30" fill="url(#green)" stroke="#f4eedc" stroke-width="5"/>
+  <g filter="url(#raised)">
+    <polygon points="120,38 141,96 203,97 153,134 171,193 120,158 69,193 87,134 37,97 99,96" fill="url(#star)" stroke="#f4eedc" stroke-width="4" stroke-linejoin="round"/>
+    <text x="120" y="163" text-anchor="middle" fill="url(#cream)" stroke="#103326" stroke-width="7" paint-order="stroke fill" font-family="Arial Narrow, Helvetica Neue, Arial, sans-serif" font-size="115" font-weight="900">H</text>
+  </g>
+</svg>

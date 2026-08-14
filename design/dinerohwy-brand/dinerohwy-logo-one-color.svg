@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 590 270" role="img" aria-labelledby="title desc">
+  <title id="title">Dinero Highway one-color logo</title>
+  <desc id="desc">A compact, scrunched one-color street-sign logo reading Dinero with HWY and a large H over a five-point star.</desc>
+  <rect x="15" y="25" width="560" height="220" rx="27" fill="#111111"/>
+  <rect x="37" y="47" width="516" height="176" rx="14" fill="none" stroke="#ffffff" stroke-width="5"/>
+  <polygon points="96,58 114,112 171,112 125,145 143,199 96,166 49,199 67,145 21,112 78,112" fill="#ffffff" stroke="#111111" stroke-width="3"/>
+  <text x="96" y="171" text-anchor="middle" fill="#111111" stroke="#ffffff" stroke-width="2" paint-order="stroke fill" font-family="Arial Narrow, Helvetica Neue, Arial, sans-serif" font-size="104" font-weight="900">H</text>
+  <text x="176" y="191" textLength="296" lengthAdjust="spacingAndGlyphs" fill="#ffffff" font-family="Arial Narrow, Helvetica Neue, Arial, sans-serif" font-size="112" font-weight="700">Dinero</text>
+  <text x="444" y="98" textLength="80" lengthAdjust="spacingAndGlyphs" fill="#ffffff" font-family="Arial Narrow, Helvetica Neue, Arial, sans-serif" font-size="40" font-weight="850">HWY</text>
+</svg>

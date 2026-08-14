@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 590 270" role="img" aria-labelledby="title desc">
+  <title id="title">Dinero Highway apparel graphic</title>
+  <desc id="desc">A flat dark-green street-sign print reading Dinero with a large H over a five-point star and HWY.</desc>
+  <defs>
+    <filter id="fabric" x="-2%" y="-4%" width="104%" height="108%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.012 0.075" numOctaves="1" seed="8" result="weave"/>
+      <feDisplacementMap in="SourceGraphic" in2="weave" scale="1.4" xChannelSelector="R" yChannelSelector="B"/>
+    </filter>
+  </defs>
+  <g filter="url(#fabric)">
+    <rect x="20" y="30" width="550" height="210" rx="25" fill="#173e2f"/>
+    <rect x="35" y="45" width="520" height="180" rx="16" fill="none" stroke="#eee8d7" stroke-width="5"/>
+    <polygon points="96,58 114,112 171,112 125,145 143,199 96,166 49,199 67,145 21,112 78,112" fill="#bd512f" stroke="#eee8d7" stroke-width="4" stroke-linejoin="round"/>
+    <text x="96" y="171" text-anchor="middle" fill="#eee8d7" stroke="#173e2f" stroke-width="5" paint-order="stroke fill" font-family="Arial Narrow, Helvetica Neue, Arial, sans-serif" font-size="104" font-weight="900">H</text>
+    <text x="176" y="191" textLength="296" lengthAdjust="spacingAndGlyphs" fill="#eee8d7" font-family="Arial Narrow, Helvetica Neue, Arial, sans-serif" font-size="112" font-weight="700">Dinero</text>
+    <text x="444" y="98" textLength="80" lengthAdjust="spacingAndGlyphs" fill="#eee8d7" font-family="Arial Narrow, Helvetica Neue, Arial, sans-serif" font-size="40" font-weight="850">HWY</text>
+  </g>
+</svg>

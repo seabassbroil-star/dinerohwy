@@ -1,0 +1,211 @@
+<title>internetdinero — logo exploration, round 3</title>
+<style>
+  :root{
+    --ink:#070B09;--surface:#0C120E;--surface-2:#101812;--line:#1B2620;
+    --text:#EDF3EE;--muted:#8FA396;--accent:#31D286;--accent-deep:#17925B;--gold:#D9B36A;
+    --sans:ui-sans-serif,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  }
+  html{background:var(--ink);}
+  body{font-family:var(--sans);background:var(--ink);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px;}
+  main{display:grid;gap:88px;padding-bottom:120px;}
+
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);}
+  .intro{padding:84px 0 0;}
+  .intro h1{font-size:clamp(32px,4.6vw,50px);line-height:1.08;letter-spacing:-.02em;font-weight:700;margin:16px 0 18px;max-width:24ch;text-wrap:balance;}
+  .intro p{color:var(--muted);max-width:64ch;margin:0;}
+  .intro b{color:var(--accent);}
+
+  section header.shead{display:grid;gap:6px;margin-bottom:22px;}
+  .shead h2{font-size:23px;letter-spacing:-.01em;margin:4px 0 0;}
+  .shead p{color:var(--muted);margin:0;max-width:68ch;}
+
+  .vgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  .vcard{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;display:grid;gap:12px;align-content:start;}
+  .stage{background:var(--ink);border:1px solid var(--line);border-radius:10px;display:flex;align-items:center;justify-content:center;min-height:180px;padding:16px;}
+  .vname{font-size:15px;font-weight:650;}
+  .axis{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);}
+  .read{font-size:13px;color:var(--text);background:var(--surface-2);border:1px solid var(--line);border-radius:8px;padding:8px 12px;line-height:1.5;}
+  .read span{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:3px;}
+  .vnote{font-size:12.8px;color:var(--muted);line-height:1.5;margin:0;}
+  .tiny{display:flex;align-items:center;gap:10px;}
+  .tiny .cap{font-family:var(--mono);font-size:11px;color:#5C6E63;}
+  .tinybox{width:26px;height:26px;border:1px solid var(--line);border-radius:5px;background:var(--ink);display:flex;align-items:center;justify-content:center;}
+
+  .pairs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  .pcard{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;display:grid;gap:10px;}
+  .pstage{background:var(--ink);border:1px solid var(--line);border-radius:10px;display:flex;align-items:center;justify-content:center;min-height:96px;padding:14px;}
+  .wordmark{font-weight:750;letter-spacing:-.02em;color:var(--text);}
+  .wordmark b{color:var(--accent);}
+  .pcap{font-family:var(--mono);font-size:11px;color:#5C6E63;letter-spacing:.08em;text-transform:uppercase;}
+
+  footer.note{color:#5C6E63;font-size:13.5px;max-width:70ch;}
+
+  @media (max-width:960px){.vgrid{grid-template-columns:repeat(2,1fr);}.pairs{grid-template-columns:1fr;}}
+  @media (max-width:640px){.vgrid{grid-template-columns:1fr;}}
+</style>
+
+<div class="wrap">
+<main>
+
+  <header class="intro">
+    <div class="eyebrow">Logo exploration · Round 3 · internetdinero</div>
+    <h1>Wider net: from hidden meaning to minted metal</h1>
+    <p>Rounds 1–2 (monograms, screens-and-coins) live in version history. This round deliberately spans <b>four opposite corners</b> — abstract-with-a-secret, bold fintech glyph, pure growth gesture, and crafted emblem — so your reaction tells us the direction even if no single mark is final yet. Each card notes which corner it's from.</p>
+  </header>
+
+  <!-- ============ CONCEPTS ============ -->
+  <section>
+    <header class="shead">
+      <div class="eyebrow">01 · Six marks</div>
+      <h2>Round 3 concepts</h2>
+    </header>
+    <div class="vgrid">
+
+      <div class="vcard">
+        <div class="stage">
+          <svg width="120" height="120" viewBox="0 0 120 120" role="img" aria-label="growth d with hidden arrow">
+            <circle cx="52" cy="72" r="27" fill="#31D286"/>
+            <rect x="68" y="14" width="17" height="85" rx="8" fill="#31D286"/>
+            <polygon points="52,50 38,66 66,66" fill="#070B09"/>
+            <rect x="47" y="66" width="10" height="20" fill="#070B09"/>
+          </svg>
+        </div>
+        <div class="vname">R1 · The growth d</div>
+        <div class="axis">Corner: hidden in plain sight</div>
+        <div class="read"><span>Customer read</span>At first: a bold green "d" for dinero. Then: the arrow pointing up inside it.</div>
+        <p class="vnote">FedEx-style double read — the negative space of the d is an upward arrow. Money conveyed by growth, no $ anywhere.</p>
+        <div class="tiny"><div class="tinybox"><svg width="16" height="16" viewBox="0 0 120 120"><circle cx="52" cy="72" r="27" fill="#31D286"/><rect x="68" y="14" width="17" height="85" rx="8" fill="#31D286"/><polygon points="52,48 36,67 68,67" fill="#070B09"/><rect x="46" y="67" width="12" height="21" fill="#070B09"/></svg></div><span class="cap">16px — d + arrow survive</span></div>
+      </div>
+
+      <div class="vcard">
+        <div class="stage">
+          <svg width="120" height="120" viewBox="0 0 120 120" role="img" aria-label="the dinero currency symbol">
+            <circle cx="52" cy="72" r="26" fill="none" stroke="#31D286" stroke-width="15"/>
+            <rect x="70" y="10" width="16" height="89" rx="8" fill="#31D286"/>
+            <rect x="58" y="22" width="40" height="7" rx="3.5" fill="#EDF3EE"/>
+            <rect x="58" y="36" width="40" height="7" rx="3.5" fill="#EDF3EE"/>
+          </svg>
+        </div>
+        <div class="vname">R2 · The đ — a minted currency symbol</div>
+        <div class="axis">Corner: hidden in plain sight / craft</div>
+        <div class="read"><span>Customer read</span>"That looks like a currency sign… for their own money."</div>
+        <p class="vnote">Currency symbols are letters with strike-bars ($, €, ¥, ₿). This invents one for dinero: a d with double bars. Ownable, classy, and the brand story writes itself — "we mint new money for local businesses."</p>
+        <div class="tiny"><div class="tinybox"><svg width="16" height="16" viewBox="0 0 120 120"><circle cx="52" cy="72" r="26" fill="none" stroke="#31D286" stroke-width="17"/><rect x="70" y="10" width="17" height="89" rx="8" fill="#31D286"/><rect x="56" y="20" width="44" height="9" rx="4.5" fill="#EDF3EE"/><rect x="56" y="36" width="44" height="9" rx="4.5" fill="#EDF3EE"/></svg></div><span class="cap">16px — đ survives</span></div>
+      </div>
+
+      <div class="vcard">
+        <div class="stage">
+          <svg width="120" height="120" viewBox="0 0 120 120" role="img" aria-label="rising bars badge">
+            <rect x="4" y="4" width="112" height="112" rx="26" fill="#0C120E" stroke="#1B2620" stroke-width="2"/>
+            <rect x="28" y="68" width="14" height="28" rx="7" fill="#31D286"/>
+            <rect x="53" y="50" width="14" height="46" rx="7" fill="#31D286"/>
+            <rect x="78" y="32" width="14" height="64" rx="7" fill="#31D286"/>
+            <circle cx="85" cy="20" r="8" fill="#D9B36A"/>
+          </svg>
+        </div>
+        <div class="vname">R3 · Steps up</div>
+        <div class="axis">Corner: bold fintech glyph</div>
+        <div class="read"><span>Customer read</span>"Their thing makes numbers go up — and there's the money at the top."</div>
+        <p class="vnote">Cash-App-energy badge: three rising bars, a coin cresting the tallest. Punchy, unmistakable, great avatar.</p>
+        <div class="tiny"><div class="tinybox"><svg width="16" height="16" viewBox="0 0 120 120"><rect x="4" y="4" width="112" height="112" rx="26" fill="#0C120E"/><rect x="24" y="68" width="17" height="30" rx="8" fill="#31D286"/><rect x="51" y="48" width="17" height="50" rx="8" fill="#31D286"/><rect x="78" y="28" width="17" height="70" rx="8" fill="#31D286"/><circle cx="87" cy="16" r="10" fill="#D9B36A"/></svg></div><span class="cap">16px — bars + coin survive</span></div>
+      </div>
+
+      <div class="vcard">
+        <div class="stage">
+          <svg width="120" height="120" viewBox="0 0 120 120" role="img" aria-label="growth gesture stroke">
+            <path d="M16 92 C 46 90, 50 60, 76 44" fill="none" stroke="#31D286" stroke-width="13" stroke-linecap="round"/>
+            <circle cx="90" cy="36" r="11" fill="#D9B36A"/>
+          </svg>
+        </div>
+        <div class="vname">R4 · The lift</div>
+        <div class="axis">Corner: abstract gesture</div>
+        <div class="read"><span>Customer read</span>"Up and to the right." The universal shape of doing well.</div>
+        <p class="vnote">One confident stroke rising to a coin — a swoosh that means revenue. The most abstract of the set; lives or dies on execution polish.</p>
+        <div class="tiny"><div class="tinybox"><svg width="16" height="16" viewBox="0 0 120 120"><path d="M14 94 C 48 92, 52 58, 78 42" fill="none" stroke="#31D286" stroke-width="18" stroke-linecap="round"/><circle cx="92" cy="32" r="14" fill="#D9B36A"/></svg></div><span class="cap">16px — stroke + coin survive</span></div>
+      </div>
+
+      <div class="vcard">
+        <div class="stage">
+          <svg width="120" height="120" viewBox="0 0 120 120" role="img" aria-label="minted crest">
+            <circle cx="60" cy="60" r="54" fill="#0C120E" stroke="#D9B36A" stroke-width="3"/>
+            <circle cx="60" cy="60" r="46" fill="none" stroke="#17925B" stroke-width="2" stroke-dasharray="4 4"/>
+            <circle cx="54" cy="68" r="15" fill="none" stroke="#31D286" stroke-width="9"/>
+            <rect x="64" y="30" width="10" height="52" rx="5" fill="#31D286"/>
+            <rect x="56" y="38" width="26" height="5" rx="2.5" fill="#EDF3EE"/>
+            <circle cx="14" cy="60" r="2.5" fill="#D9B36A"/>
+            <circle cx="106" cy="60" r="2.5" fill="#D9B36A"/>
+          </svg>
+        </div>
+        <div class="vname">R5 · The mint</div>
+        <div class="axis">Corner: crafted emblem</div>
+        <div class="read"><span>Customer read</span>"This looks like actual currency — established, trustworthy."</div>
+        <p class="vnote">The đ glyph struck onto a coin face: gold rim, reeded (dashed) inner edge. Feels like an institution rather than an app; strong on invoices, stamps, wax-seal-style watermarks.</p>
+        <div class="tiny"><div class="tinybox"><svg width="16" height="16" viewBox="0 0 120 120"><circle cx="60" cy="60" r="54" fill="#0C120E" stroke="#D9B36A" stroke-width="6"/><circle cx="52" cy="70" r="17" fill="none" stroke="#31D286" stroke-width="11"/><rect x="64" y="26" width="12" height="60" rx="6" fill="#31D286"/><rect x="52" y="36" width="32" height="7" rx="3.5" fill="#EDF3EE"/></svg></div><span class="cap">16px — coin + glyph survive</span></div>
+      </div>
+
+      <div class="vcard">
+        <div class="stage">
+          <svg width="120" height="120" viewBox="0 0 120 120" role="img" aria-label="window inside d">
+            <circle cx="52" cy="70" r="28" fill="#31D286"/>
+            <rect x="68" y="12" width="17" height="86" rx="8" fill="#31D286"/>
+            <rect x="38" y="57" width="28" height="25" rx="5" fill="#070B09"/>
+            <circle cx="43.5" cy="62" r="1.8" fill="#31D286"/>
+            <circle cx="49" cy="62" r="1.8" fill="#31D286"/>
+            <line x1="40" y1="66.5" x2="64" y2="66.5" stroke="#31D286" stroke-width="2"/>
+          </svg>
+        </div>
+        <div class="vname">R6 · The internet inside the d</div>
+        <div class="axis">Corner: hidden in plain sight</div>
+        <div class="read"><span>Customer read</span>A "d" whose window is open for business — the internet living inside dinero.</div>
+        <p class="vnote">Inverts round 2: instead of money on a screen, the screen is inside the money-letter. Subtle at logo size, disappears gracefully to a plain bold d at 16&nbsp;px.</p>
+        <div class="tiny"><div class="tinybox"><svg width="16" height="16" viewBox="0 0 120 120"><circle cx="52" cy="70" r="28" fill="#31D286"/><rect x="68" y="12" width="17" height="86" rx="8" fill="#31D286"/><rect x="40" y="58" width="25" height="23" rx="6" fill="#070B09"/></svg></div><span class="cap">16px — reads as bold d</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ WITH THE NAME ============ -->
+  <section>
+    <header class="shead">
+      <div class="eyebrow">02 · Next to the name</div>
+      <h2>Three strongest, paired with the wordmark</h2>
+    </header>
+    <div class="pairs">
+      <div class="pcard">
+        <div class="pstage">
+          <span style="display:flex;align-items:center;gap:11px">
+            <svg width="32" height="32" viewBox="0 0 120 120"><circle cx="52" cy="72" r="27" fill="#31D286"/><rect x="68" y="14" width="17" height="85" rx="8" fill="#31D286"/><polygon points="52,50 38,66 66,66" fill="#070B09"/><rect x="47" y="66" width="10" height="20" fill="#070B09"/></svg>
+            <span class="wordmark" style="font-size:19px">internet<b>dinero</b></span>
+          </span>
+        </div>
+        <div class="pcap">R1 · growth d + wordmark</div>
+      </div>
+      <div class="pcard">
+        <div class="pstage">
+          <span style="display:flex;align-items:center;gap:11px">
+            <svg width="32" height="32" viewBox="0 0 120 120"><circle cx="52" cy="72" r="26" fill="none" stroke="#31D286" stroke-width="15"/><rect x="70" y="10" width="16" height="89" rx="8" fill="#31D286"/><rect x="58" y="22" width="40" height="7" rx="3.5" fill="#EDF3EE"/><rect x="58" y="36" width="40" height="7" rx="3.5" fill="#EDF3EE"/></svg>
+            <span class="wordmark" style="font-size:19px">internet<b>dinero</b></span>
+          </span>
+        </div>
+        <div class="pcap">R2 · đ symbol + wordmark</div>
+      </div>
+      <div class="pcard">
+        <div class="pstage">
+          <span style="display:flex;align-items:center;gap:11px">
+            <svg width="32" height="32" viewBox="0 0 120 120"><rect x="4" y="4" width="112" height="112" rx="26" fill="#0C120E" stroke="#1B2620" stroke-width="3"/><rect x="28" y="68" width="14" height="28" rx="7" fill="#31D286"/><rect x="53" y="50" width="14" height="46" rx="7" fill="#31D286"/><rect x="78" y="32" width="14" height="64" rx="7" fill="#31D286"/><circle cx="85" cy="20" r="8" fill="#D9B36A"/></svg>
+            <span class="wordmark" style="font-size:19px">internet<b>dinero</b></span>
+          </span>
+        </div>
+        <div class="pcap">R3 · steps up + wordmark</div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="note">
+    How to react even if none is final: name the one you'd be least embarrassed to hand a customer on a business card, and the one that's closest-but-wrong — that pair usually locates the target. The đ idea (R2/R5) is the most ownable story in the set: brands rarely get to invent a currency symbol.
+  </footer>
+
+</main>
+</div>

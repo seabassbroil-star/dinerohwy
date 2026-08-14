@@ -1,0 +1,22 @@
+{
+  "nav.showcase": "Proyectos",
+  "nav.tools": "Herramientas",
+  "nav.book": "Libro",
+  "nav.work": "Casos",
+  "nav.free": "Gratis",
+  "nav.about": "Nosotros",
+  "nav.contact": "Contacto",
+  "cta.primary": "Quiero mi Reporte gratis",
+  "cta.email_placeholder": "tu@tunegocio.com",
+  "email.heading": "Recibe tu Reporte gratis de tu sitio web y Google",
+  "email.sub": "Tu negocio, evaluado — más 3 mejoras concretas. Sin costo, sin presión.",
+  "email.button": "Enviar mi Reporte",
+  "email.success": "Revisa tu correo — tu Reporte va en camino.",
+  "email.error": "Algo salió mal. Inténtalo de nuevo.",
+  "footer.tagline": "Software que hace ganar dinero a tu negocio local mientras trabajas.",
+  "footer.built_with": "Dominio y hosting en",
+  "footer.location": "Houston, Texas",
+  "demo.live": "Demo en vivo",
+  "demo.coming": "Muy pronto",
+  "lang.switch": "English"
+}

@@ -1,0 +1,32 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "dinerohwy",
+  "pages_build_output_dir": "./dist",
+  "compatibility_date": "2026-08-14",
+  "compatibility_flags": ["nodejs_compat"],
+
+  // Leads database. Run `wrangler d1 create dinerohwy-leads` and paste the
+  // returned database_id here AND in workers/mailer/wrangler.jsonc (same DB).
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "dinerohwy-leads",
+      "database_id": "PLACEHOLDER-run-wrangler-d1-create"
+    }
+  ],
+
+  // Image-quote photo uploads. Run `wrangler r2 bucket create dinerohwy-uploads`.
+  "r2_buckets": [
+    {
+      "binding": "UPLOADS",
+      "bucket_name": "dinerohwy-uploads"
+    }
+  ],
+
+  "vars": {
+    "SITE_URL": "https://dinerohwy.com",
+    "RESEND_FROM": "Dinero Hwy <hello@dinerohwy.com>"
+  }
+  // Secret (do NOT put here): RESEND_API_KEY
+  // Set with: wrangler pages secret put RESEND_API_KEY --project-name dinerohwy
+}

@@ -1,0 +1,24 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+.astro/
+.dryrun/
+
+# Cloudflare / wrangler local state
+.wrangler/
+.dev.vars
+
+# Secrets
+*.env
+.env
+.env.*
+
+# Local Claude Code settings
+.claude/settings.local.json
+
+# OS / editor
+.DS_Store
+*.log
+Thumbs.db

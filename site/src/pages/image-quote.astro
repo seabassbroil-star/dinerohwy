@@ -1,0 +1,53 @@
+---
+import ProductLayout from "../layouts/ProductLayout.astro";
+import DemoFrame from "../components/DemoFrame.astro";
+import Icon from "../components/Icon.astro";
+import ImageQuote from "../demos/ImageQuote/ImageQuote.tsx";
+
+const steps = [
+  { icon: "upload", title: "Snap a photo", body: "Your customer photographs the job — a driveway, a wall, a yard." },
+  { icon: "quote", title: "Get a price instantly", body: "A believable estimate appears on screen in seconds. No waiting, no phone tag." },
+  { icon: "email", title: "It lands in the inbox", body: "The quote is emailed automatically — and you just captured a real lead." },
+];
+---
+
+<ProductLayout
+  title="Instant Quotes"
+  eyebrow="Quotes in minutes, not days"
+  icon="quote"
+  tagline="A customer uploads a photo, answers two questions, and gets a price on the spot. The slow-quote problem, solved. Try it right now — you're the customer."
+  description="Instant photo-based quotes for local businesses. Try the live demo."
+  magnet="quote-demo"
+>
+  <section>
+    <h2>How it works</h2>
+    <div class="how-grid">
+      {steps.map((s, i) => (
+        <div class="how-step">
+          <span class="how-num">{i + 1}</span>
+          <span class="how-icon"><Icon name={s.icon} size={20} /></span>
+          <h3>{s.title}</h3>
+          <p>{s.body}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section>
+    <h2>Try it — you're the customer</h2>
+    <p class="lede">Fill this out like one of your customers would. You'll get a real emailed quote, so you feel exactly what they'd feel.</p>
+    <DemoFrame title="Instant Quote" status="live" caption="Live sample tool. Estimates use a demo pricing model — a real deployment uses your prices.">
+      <ImageQuote client:visible />
+    </DemoFrame>
+  </section>
+</ProductLayout>
+
+<style>
+  .how-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-md); margin-top: var(--space-md); }
+  .how-step { position: relative; padding: 1.5rem 1.25rem 1.25rem; border: 1px solid var(--line); border-radius: var(--radius-lg); background: rgba(6,27,20,.3); }
+  .how-num { position: absolute; top: -14px; left: 1.25rem; display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--rust); color: var(--cream); font-weight: 800; font-size: 14px; }
+  .how-icon { display: inline-flex; color: var(--rust-light); margin-bottom: 0.5rem; }
+  .how-step h3 { font-size: var(--step-1); margin-bottom: 0.35rem; }
+  .how-step p { color: var(--cream-muted); margin: 0; }
+  @media (max-width: 760px) { .how-grid { grid-template-columns: 1fr; } }
+</style>

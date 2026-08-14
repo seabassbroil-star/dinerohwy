@@ -1,0 +1,15 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import EmailCapture from "../components/EmailCapture.astro";
+---
+
+<BaseLayout title="Contact — Dinero Hwy" description="Get in touch with Dinero Hwy — a free 15-minute chat, no pitch.">
+  <section class="section container" style="max-width:640px">
+    <span class="eyebrow">Let's talk</span>
+    <h1>Get in touch.</h1>
+    <p class="lede">Drop your email and what you're working on. We'll reply with a free 15-minute chat — no pressure, no pitch.</p>
+    <div class="card" style="margin-top:1.5rem">
+      <EmailCapture variant="inline" magnet="contact" source="contact-page" heading="" sub="" collectBusiness={true} buttonLabel="Start the conversation" />
+    </div>
+  </section>
+</BaseLayout>
