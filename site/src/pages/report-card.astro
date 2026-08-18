@@ -1,0 +1,53 @@
+---
+import ProductLayout from "../layouts/ProductLayout.astro";
+import DemoFrame from "../components/DemoFrame.astro";
+import Icon from "../components/Icon.astro";
+import ReportCard from "../demos/ReportCard/ReportCard.tsx";
+
+const steps = [
+  { icon: "seo", title: "We look at your site", body: "Type your website (or 'none'). We check the things that decide whether customers find you and stick around." },
+  { icon: "check", title: "You get a grade", body: "An honest A–F on 11 real signals — secure, mobile, easy to call, findable, fast — no jargon." },
+  { icon: "arrow-right", title: "Plus your top 3 fixes", body: "The three changes that would help most, in plain English. Do them yourself, or we'll do them for you." },
+];
+---
+
+<ProductLayout
+  title="Free Report Card"
+  eyebrow="No cost, no pitch"
+  icon="seo"
+  tagline="See how well customers can find your business online — graded in seconds, with the 3 fixes that matter most. This is the real thing, not a teaser."
+  description="A free, honest audit of your business's website — graded A–F with your top 3 fixes. Built by Dinero Hwy."
+  magnet="report-card"
+>
+  <section>
+    <h2>How it works</h2>
+    <div class="rc-how">
+      {steps.map((s, i) => (
+        <div class="rc-how-step">
+          <span class="rc-how-num">{i + 1}</span>
+          <span class="rc-how-icon"><Icon name={s.icon} size={20} /></span>
+          <h3>{s.title}</h3>
+          <p>{s.body}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section>
+    <h2>Grade your business now</h2>
+    <p class="lede">Free, instant, and honest. We only check what's really on your site — no made-up numbers.</p>
+    <DemoFrame title="Website & Google Report Card" status="live" caption="Runs a real audit of your live site. Leave an email and we'll send the full report + do the fixes for you.">
+      <ReportCard client:visible />
+    </DemoFrame>
+  </section>
+</ProductLayout>
+
+<style>
+  .rc-how { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-md); margin-top: var(--space-md); }
+  .rc-how-step { position: relative; padding: 1.5rem 1.25rem 1.25rem; border: 1px solid var(--line); border-radius: var(--radius-lg); background: rgba(6,27,20,.3); }
+  .rc-how-num { position: absolute; top: -14px; left: 1.25rem; display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--rust); color: var(--cream); font-weight: 800; font-size: 14px; }
+  .rc-how-icon { display: inline-flex; color: var(--rust-light); margin-bottom: 0.5rem; }
+  .rc-how-step h3 { font-size: var(--step-1); margin-bottom: 0.35rem; }
+  .rc-how-step p { color: var(--cream-muted); margin: 0; }
+  @media (max-width: 760px) { .rc-how { grid-template-columns: 1fr; } }
+</style>

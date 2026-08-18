@@ -1,0 +1,49 @@
+<title>Dinero Hwy — final logo preview</title>
+<style>
+  :root{--forest-950:#061b14;--forest-800:#103b2d;--cream:#f4eedc;--cream-muted:#c9c5b7;--line:rgba(244,238,220,.16);--sans:Inter,ui-sans-serif,-apple-system,"Segoe UI",sans-serif;--mono:ui-monospace,Menlo,monospace;}
+  *{box-sizing:border-box;}
+  body{margin:0;min-height:100vh;color:var(--cream);font-family:var(--sans);background:radial-gradient(circle at 50% 0%,rgba(75,119,92,.28),transparent 42rem),linear-gradient(160deg,var(--forest-800),var(--forest-950) 74%);}
+  .wrap{width:min(920px,calc(100% - 3rem));margin-inline:auto;padding-block:clamp(2rem,5vh,4rem);}
+  .eyebrow{font-size:.72rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:#c75a31;margin:0 0 .5rem;}
+  h1{font-size:2rem;letter-spacing:-.03em;margin:0 0 2rem;}
+  .stage{display:grid;place-items:center;padding:3rem;border-radius:20px;background:radial-gradient(circle at 50% 45%,rgba(75,119,92,.28),transparent 60%),var(--forest-950);border:1px solid var(--line);}
+  .stage svg{width:min(520px,94%);height:auto;filter:drop-shadow(0 20px 28px rgba(2,15,10,.45));}
+  .row{display:flex;align-items:center;gap:2rem;flex-wrap:wrap;margin-top:1.5rem;}
+  .chip{border:1px solid var(--line);border-radius:14px;padding:1rem 1.25rem;background:rgba(6,27,20,.4);text-align:center;color:var(--cream-muted);font-size:.72rem;}
+  .chip svg{display:block;margin:0 auto .5rem;height:auto;}
+  .navbar{flex:1;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.7rem 1rem;border-radius:12px;background:rgba(6,27,20,.72);border:1px solid var(--line);min-width:280px;}
+  .navbar svg{width:160px;height:auto;} .navbar .cta{width:90px;height:26px;border-radius:7px;background:linear-gradient(145deg,#db6e42,#a94125);}
+  .foot{margin-top:1.5rem;color:var(--cream-muted);font-size:.85rem;}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="logo" viewBox="0 0 640 200">
+    <rect x="5" y="6" width="630" height="190" rx="22" fill="#08251c"/>
+    <rect x="10" y="10" width="620" height="180" rx="18" fill="#1b4635" stroke="#0a2119" stroke-width="2"/>
+    <rect x="24" y="24" width="592" height="152" rx="10" fill="none" stroke="#f4eedc" stroke-width="5"/>
+    <text x="300" y="144" text-anchor="middle" fill="#f4eedc" font-family="Arial Narrow, Helvetica Neue, Arial, sans-serif" font-size="110" font-weight="700" textLength="384" lengthAdjust="spacingAndGlyphs">Dinero</text>
+    <!-- black HWY tab, upper-right -->
+    <rect x="496" y="34" width="104" height="52" rx="9" fill="#0d0f0b" stroke="#000" stroke-width="1"/>
+    <text x="548" y="71" text-anchor="middle" fill="#f4eedc" font-family="Arial Narrow, Helvetica Neue, Arial, sans-serif" font-size="30" font-weight="850" letter-spacing="1">HWY</text>
+    <!-- nails: one on each corner; the top-right nail goes through the black tab -->
+    <g fill="#efe9d7" stroke="#0a2119" stroke-width="1.5">
+      <circle cx="46" cy="46" r="5.5"/>
+      <circle cx="46" cy="154" r="5.5"/>
+      <circle cx="594" cy="154" r="5.5"/>
+      <circle cx="585" cy="49" r="5.5"/>
+    </g>
+  </symbol>
+</svg>
+
+<div class="wrap">
+  <p class="eyebrow">Logo · final direction</p>
+  <h1>Dinero Hwy — black HWY tab, nailed corners</h1>
+  <div class="stage"><svg viewBox="0 0 640 200" role="img" aria-label="Dinero Hwy street sign"><use href="#logo"/></svg></div>
+
+  <div class="row">
+    <div class="navbar"><svg viewBox="0 0 640 200"><use href="#logo"/></svg><span class="cta"></span></div>
+    <div class="chip"><svg viewBox="0 0 640 200" width="120"><use href="#logo"/></svg>120px</div>
+    <div class="chip"><svg viewBox="0 0 640 200" width="72"><use href="#logo"/></svg>72px</div>
+  </div>
+  <p class="foot">HWY tab is now black; a nail sits through it in the top-right, plus a nail on each of the other three corners. Say the word and I’ll bake this into the real logo assets + the site header/footer.</p>
+</div>

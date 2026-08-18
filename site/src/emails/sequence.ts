@@ -45,13 +45,13 @@ export const sequence: Record<string, Builder> = {
     subject: "One quick win for your business this week",
     html: emailLayout({
       title: "A quick win",
-      previewText: "The fastest way to stop losing after-hours customers.",
+      previewText: "The easiest way to win the customers who show up after hours.",
       siteUrl: ctx.siteUrl,
       unsubscribeUrl: ctx.unsubscribeUrl,
       bodyHtml:
         `<h1 style="margin:0 0 12px;font-size:22px;color:${C.cream}">A 10-minute win</h1>` +
-        p(`${greet(ctx)} here's the single fastest fix for most local businesses: capture people who show up after hours.`) +
-        p(`Most visitors who can't reach you simply leave. A tiny "get a callback" box on your site turns those silent bounces into real leads — automatically.`) +
+        p(`${greet(ctx)} here's the single easiest win for most local businesses: catch the people who show up after hours.`) +
+        p(`A tiny "get a callback" box on your site quietly turns after-hours visitors into real leads — automatically, while you're closed.`) +
         emailButton(`${ctx.siteUrl}/image-quote`, "See instant-capture in action") +
         muted(`Tomorrow's tip: why a fast quote beats a cheap quote.`),
     }),
@@ -82,7 +82,7 @@ export const sequence: Record<string, Builder> = {
       unsubscribeUrl: ctx.unsubscribeUrl,
       bodyHtml:
         `<h1 style="margin:0 0 12px;font-size:22px;color:${C.cream}">Want a hand putting this to work?</h1>` +
-        p(`${greet(ctx)} if any of this looked useful, let's spend 15 minutes on your business specifically — what's leaking money and the one thing worth fixing first.`) +
+        p(`${greet(ctx)} if any of this looked useful, let's spend 15 minutes on your business specifically — the biggest opportunity online and the one move worth making first.`) +
         p(`No pressure and no pitch. Just useful.`) +
         emailButton(`${ctx.siteUrl}/contact`, "Grab a free 15-min chat") +
         muted(`Prefer email? Just reply to this one.`),

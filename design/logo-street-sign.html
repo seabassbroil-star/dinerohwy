@@ -1,0 +1,108 @@
+<title>Dinero Hwy — street sign (HWY offset upper-right)</title>
+<style>
+  :root{
+    --forest-950:#061b14;--forest-900:#0b2d22;--forest-800:#103b2d;--forest-700:#1b4635;
+    --cream:#f4eedc;--cream-muted:#c9c5b7;--rust:#c75a31;--line:rgba(244,238,220,.16);
+    --sans:Inter,ui-sans-serif,-apple-system,"Segoe UI",sans-serif;--mono:ui-monospace,Menlo,monospace;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;min-height:100vh;color:var(--cream);font-family:var(--sans);
+    background:radial-gradient(circle at 50% 0%,rgba(75,119,92,.28),transparent 42rem),linear-gradient(160deg,var(--forest-800),var(--forest-950) 74%);background-attachment:fixed;}
+  .wrap{width:min(1180px,calc(100% - 3rem));margin-inline:auto;padding-block:clamp(2rem,5vh,4rem);}
+  .eyebrow{font-size:.72rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:var(--rust);margin:0 0 .6rem;}
+  h1{font-size:clamp(1.8rem,1.2rem+2.4vw,2.8rem);letter-spacing:-.03em;margin:0 0 .5rem;}
+  .sub{color:var(--cream-muted);max-width:64ch;margin:0;line-height:1.6;}
+  .grid{display:grid;gap:1.5rem;margin-top:2.5rem;}
+  @media(min-width:900px){.grid{grid-template-columns:repeat(3,1fr);}}
+  .card{border:1px solid var(--line);border-radius:20px;background:linear-gradient(160deg,rgba(40,84,64,.18),rgba(6,27,20,.28));overflow:hidden;}
+  .head{display:flex;align-items:baseline;gap:.75rem;padding:1.25rem 1.5rem 0;}
+  .num{font-family:var(--mono);font-size:.8rem;font-weight:700;color:var(--rust);}
+  .title{font-size:1.1rem;font-weight:800;margin:0;}
+  .desc{color:var(--cream-muted);font-size:.9rem;line-height:1.5;margin:.4rem 1.5rem 0;}
+  .stage{display:grid;place-items:center;padding:clamp(1.5rem,4vw,2.5rem);margin:1.25rem 1.5rem 0;border-radius:14px;background:radial-gradient(circle at 50% 45%,rgba(75,119,92,.26),transparent 60%),var(--forest-950);border:1px solid var(--line);}
+  .stage svg{width:min(430px,92%);height:auto;filter:drop-shadow(0 18px 26px rgba(2,15,10,.4));}
+  .navbar{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin:1rem 1.5rem 1.5rem;padding:.7rem 1rem;border-radius:12px;background:rgba(6,27,20,.72);border:1px solid var(--line);}
+  .navbar svg{width:150px;height:auto;display:block;}
+  .navbar .cta{width:88px;height:26px;border-radius:7px;background:linear-gradient(145deg,#db6e42,#a94125);}
+  .foot{margin-top:2rem;color:var(--cream-muted);font-size:.85rem;line-height:1.6;}
+  .foot code{font-family:var(--mono);color:var(--cream);background:rgba(244,238,220,.08);padding:.1rem .35rem;border-radius:4px;}
+  .fix{color:var(--cream);}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <!-- 1 · DIMENSIONAL (original blade, star/H removed, HWY upper-right) -->
+  <symbol id="logoDim" viewBox="0 0 640 220">
+    <defs>
+      <linearGradient id="dGreen" x1="0" y1="0" x2=".9" y2="1"><stop offset="0" stop-color="#285440"/><stop offset=".48" stop-color="#1b4635"/><stop offset="1" stop-color="#103326"/></linearGradient>
+      <linearGradient id="dRim" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9aab9d"/><stop offset=".42" stop-color="#445d52"/><stop offset="1" stop-color="#142b23"/></linearGradient>
+      <linearGradient id="dCream" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fffdf3"/><stop offset=".58" stop-color="#f4eedc"/><stop offset="1" stop-color="#d8d0bc"/></linearGradient>
+      <radialGradient id="dRivet" cx="35%" cy="28%" r="70%"><stop offset="0" stop-color="#e6e6da"/><stop offset=".32" stop-color="#8e9d93"/><stop offset="1" stop-color="#1c3028"/></radialGradient>
+      <clipPath id="dFace"><rect x="24" y="26" width="592" height="168" rx="18"/></clipPath>
+      <filter id="dShadow" x="-8%" y="-16%" width="116%" height="140%"><feDropShadow dx="0" dy="9" stdDeviation="5" flood-color="#04130e" flood-opacity=".38"/></filter>
+      <filter id="dRaised" x="-14%" y="-18%" width="128%" height="150%"><feDropShadow dx="0" dy="4" stdDeviation="2" flood-color="#061c14" flood-opacity=".62"/></filter>
+      <filter id="dSurface"><feTurbulence type="fractalNoise" baseFrequency=".7" numOctaves="2" seed="11" result="n"/><feColorMatrix in="n" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 .07 0" result="g"/><feBlend in="SourceGraphic" in2="g" mode="soft-light"/></filter>
+    </defs>
+    <g filter="url(#dShadow)">
+      <rect x="14" y="16" width="612" height="188" rx="24" fill="url(#dRim)" stroke="#071e16" stroke-width="5"/>
+      <rect x="24" y="26" width="592" height="168" rx="18" fill="url(#dGreen)" stroke="#071f17" stroke-width="3"/>
+      <g clip-path="url(#dFace)" filter="url(#dSurface)"><rect x="24" y="26" width="592" height="168" fill="url(#dGreen)"/><path d="M40 42h560" stroke="#fff" stroke-opacity=".14" stroke-width="4" stroke-linecap="round"/><path d="M40 178h560" stroke="#061e16" stroke-opacity=".36" stroke-width="3" stroke-linecap="round"/></g>
+      <rect x="36" y="38" width="568" height="144" rx="12" fill="none" stroke="url(#dCream)" stroke-width="5"/>
+    </g>
+    <g filter="url(#dRaised)" fill="url(#dCream)" font-family="Arial Narrow, Helvetica Neue, Arial, sans-serif">
+      <text x="308" y="156" text-anchor="middle" font-size="120" font-weight="700" textLength="392" lengthAdjust="spacingAndGlyphs">Dinero</text>
+      <text x="586" y="76" text-anchor="end" font-size="42" font-weight="850" letter-spacing="2">HWY</text>
+    </g>
+    <g fill="url(#dRivet)" stroke="#0a2119" stroke-width="2"><circle cx="52" cy="54" r="6"/><circle cx="588" cy="54" r="6"/><circle cx="52" cy="166" r="6"/><circle cx="588" cy="166" r="6"/></g>
+  </symbol>
+
+  <!-- 2 · FLAT CLASSIC (municipal blade, HWY upper-right, corner bolts) -->
+  <symbol id="logoFlat" viewBox="0 0 640 200">
+    <rect x="5" y="6" width="630" height="190" rx="22" fill="#08251c"/>
+    <rect x="10" y="10" width="620" height="180" rx="18" fill="#1b4635" stroke="#0a2119" stroke-width="2"/>
+    <rect x="24" y="24" width="592" height="152" rx="10" fill="none" stroke="#f4eedc" stroke-width="5"/>
+    <text x="306" y="140" text-anchor="middle" fill="#f4eedc" font-family="Arial Narrow, Helvetica Neue, Arial, sans-serif" font-size="108" font-weight="700" textLength="392" lengthAdjust="spacingAndGlyphs">Dinero</text>
+    <text x="590" y="66" text-anchor="end" fill="#f4eedc" font-family="Arial Narrow, Helvetica Neue, Arial, sans-serif" font-size="38" font-weight="850" letter-spacing="2">HWY</text>
+    <g fill="#efe9d7" stroke="#0a2119" stroke-width="1.5"><circle cx="44" cy="44" r="5"/><circle cx="596" cy="44" r="5"/><circle cx="44" cy="156" r="5"/><circle cx="596" cy="156" r="5"/></g>
+  </symbol>
+
+  <!-- 3 · FLAT + HWY TAB (small route-marker box, upper-right) -->
+  <symbol id="logoTab" viewBox="0 0 640 200">
+    <rect x="5" y="6" width="630" height="190" rx="22" fill="#08251c"/>
+    <rect x="10" y="10" width="620" height="180" rx="18" fill="#1b4635" stroke="#0a2119" stroke-width="2"/>
+    <rect x="24" y="24" width="592" height="152" rx="10" fill="none" stroke="#f4eedc" stroke-width="5"/>
+    <text x="300" y="142" text-anchor="middle" fill="#f4eedc" font-family="Arial Narrow, Helvetica Neue, Arial, sans-serif" font-size="110" font-weight="700" textLength="384" lengthAdjust="spacingAndGlyphs">Dinero</text>
+    <g><rect x="512" y="38" width="84" height="40" rx="7" fill="#c75a31"/><text x="554" y="68" text-anchor="middle" fill="#f4eedc" font-family="Arial Narrow, Helvetica Neue, Arial, sans-serif" font-size="30" font-weight="850" letter-spacing="1">HWY</text></g>
+    <g fill="#efe9d7" stroke="#0a2119" stroke-width="1.5"><circle cx="44" cy="44" r="5"/><circle cx="44" cy="156" r="5"/><circle cx="596" cy="156" r="5"/></g>
+  </symbol>
+</svg>
+
+<div class="wrap">
+  <p class="eyebrow">Logo · HWY offset, upper-right</p>
+  <h1>Dinero <span style="color:var(--rust)">ʰʷʸ</span> — take two</h1>
+  <p class="sub">Fixed: “Dinero” is the main legend, <b class="fix">“HWY” sits small in the upper-right corner</b> like a real street sign’s suffix/directional. Star and “H” gone. Same three blade styles so you pick the finish.</p>
+
+  <div class="grid">
+    <div class="card">
+      <div class="head"><span class="num">01</span><h2 class="title">Dimensional</h2></div>
+      <p class="desc">Your original blade — realistic rim, rivets, grain — with the star/H removed. Essentially the logo you have, decluttered. HWY top-right.</p>
+      <div class="stage"><svg viewBox="0 0 640 220" role="img" aria-label="Dimensional, HWY upper-right"><use href="#logoDim"/></svg></div>
+      <div class="navbar"><svg viewBox="0 0 640 220"><use href="#logoDim"/></svg><span class="cta"></span></div>
+    </div>
+
+    <div class="card">
+      <div class="head"><span class="num">02</span><h2 class="title">Flat Classic</h2></div>
+      <p class="desc">A true municipal blade — flat green, cream border, corner bolts. “Dinero” big, “HWY” small top-right. The most authentic street sign.</p>
+      <div class="stage"><svg viewBox="0 0 640 200" role="img" aria-label="Flat, HWY upper-right"><use href="#logoFlat"/></svg></div>
+      <div class="navbar"><svg viewBox="0 0 640 200"><use href="#logoFlat"/></svg><span class="cta"></span></div>
+    </div>
+
+    <div class="card">
+      <div class="head"><span class="num">03</span><h2 class="title">Flat + HWY tab</h2></div>
+      <p class="desc">Same flat blade, but HWY lives in a small rust route-marker tab in the corner — a touch more branded / dev-cred.</p>
+      <div class="stage"><svg viewBox="0 0 640 200" role="img" aria-label="Flat with HWY tab"><use href="#logoTab"/></svg></div>
+      <div class="navbar"><svg viewBox="0 0 640 200"><use href="#logoTab"/></svg><span class="cta"></span></div>
+    </div>
+  </div>
+
+  <p class="foot">HWY is now offset in the upper-right on all three. Type is the current <code>Arial Narrow</code> stack; the winner gets outlined to paths (and I can swap in a true Highway-Gothic face if you want). Pick one (or a hybrid) and I’ll rebuild the real assets + drop it in the header.</p>
+</div>

@@ -6,6 +6,9 @@ dist/
 .astro/
 .dryrun/
 
+# Raw media captures (reproducible; keeps the repo lean)
+design/media/
+
 # Cloudflare / wrangler local state
 .wrangler/
 .dev.vars

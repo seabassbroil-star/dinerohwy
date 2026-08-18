@@ -1,0 +1,86 @@
+<title>Dinero HWY — Galveston print kit (cards + sticker)</title>
+<style>
+  :root{
+    --forest-950:#061b14; --forest-900:#0b2d22; --forest-800:#103b2d; --forest-700:#1b4635;
+    --cream:#f4eedc; --cream-muted:#c9c5b7; --rust:#c75a31; --rust-light:#db6e42;
+    --sans:Inter,ui-sans-serif,-apple-system,"Segoe UI",sans-serif; --mono:ui-monospace,Menlo,monospace;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:#2a2f2c;color:var(--cream);font-family:var(--sans);padding:28px;}
+  .note{max-width:760px;margin:0 auto 24px;color:var(--cream);font-size:14px;line-height:1.6;}
+  .note h1{font-size:22px;margin:0 0 6px;} .note code{font-family:var(--mono);background:rgba(244,238,220,.1);padding:.1rem .3rem;border-radius:4px;}
+  .sheet{display:flex;flex-wrap:wrap;gap:26px;justify-content:center;align-items:flex-start;}
+  .label{width:100%;text-align:center;color:var(--cream-muted);font-size:12px;letter-spacing:.14em;text-transform:uppercase;margin:10px 0 -8px;}
+
+  /* Business card 3.5in x 2in @ ~300dpi -> 1050x600, shown scaled */
+  .card{width:525px;height:300px;border-radius:14px;overflow:hidden;position:relative;box-shadow:0 12px 30px rgba(0,0,0,.4);}
+  .card-front{background:radial-gradient(120% 90% at 20% -20%,#124  ,transparent 60%),linear-gradient(150deg,var(--forest-800),var(--forest-950));display:grid;grid-template-columns:1fr auto;align-items:center;padding:26px;}
+  .wm{font-size:34px;font-weight:800;letter-spacing:-.02em;color:var(--cream);line-height:1;}
+  .wm b{color:var(--rust-light);}
+  .tag{margin-top:10px;color:var(--cream);font-weight:700;font-size:15px;max-width:20ch;line-height:1.25;}
+  .sub{margin-top:10px;color:var(--cream-muted);font-size:12px;font-family:var(--mono);}
+  .qrbox{display:grid;justify-items:center;gap:6px;background:var(--cream);border-radius:12px;padding:12px;}
+  .qrbox svg{width:120px;height:120px;display:block;}
+  .qrbox span{font-size:9px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--forest-900);}
+
+  .card-back{background:var(--cream);color:var(--forest-950);display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center;padding:26px;}
+  .card-back .qrbox{background:transparent;padding:0;} .card-back .qrbox svg{width:150px;height:150px;}
+  .card-back h2{margin:0 0 6px;font-size:22px;letter-spacing:-.02em;}
+  .card-back p{margin:0 0 4px;font-size:13px;color:#2c4a3c;line-height:1.4;}
+  .card-back .handle{font-family:var(--mono);font-weight:700;color:var(--rust);font-size:13px;margin-top:8px;}
+
+  /* Round sticker 2in -> 600px, shown at 300 */
+  .sticker{width:300px;height:300px;border-radius:50%;background:radial-gradient(120% 120% at 30% 10%,var(--forest-700),var(--forest-950));border:8px solid var(--cream);display:grid;place-items:center;position:relative;box-shadow:0 12px 30px rgba(0,0,0,.4);}
+  .sticker .ring{position:absolute;inset:14px;border-radius:50%;border:2px dashed rgba(244,238,220,.3);}
+  .sticker .in{display:grid;justify-items:center;gap:8px;text-align:center;}
+  .sticker .st-top{font-weight:800;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--rust-light);}
+  .sticker .qrbox{background:var(--cream);border-radius:10px;padding:9px;} .sticker .qrbox svg{width:120px;height:120px;}
+  .sticker .st-bot{font-family:var(--mono);font-size:11px;color:var(--cream);font-weight:700;}
+
+  @media print{ body{background:#fff;padding:0;} .note{display:none;} .sheet{gap:0;} .label{color:#999;} }
+</style>
+
+<div class="note">
+  <h1>Galveston print kit 🚦</h1>
+  <p>Take this to any print shop, or print at home. <b>Business card</b> is 3.5″×2″; <b>sticker</b> is a 2″ round. Each QR is <b>UTM-tagged</b> so scans are attributed in your dashboard: the card QR → <code>utm_source=card</code>, the sticker QR → <code>utm_source=sticker</code>. Both point to <code>dinerohwy.com/galveston</code>. Standalone QR files (card/sticker/seawall/strand) live in <code>site/public/assets/qr/</code> if you want bigger stickers for the Seawall or Strand.</p>
+</div>
+
+<div class="sheet">
+  <div class="label">Business card — front</div>
+  <div class="card card-front">
+    <div>
+      <div class="wm">Dinero <b>HWY</b></div>
+      <div class="tag">Get found by Galveston's 8.9 million visitors.</div>
+      <div class="sub">websites &amp; automation · built local</div>
+    </div>
+    <div class="qrbox">
+      <svg viewBox="0 0 43 43" shape-rendering="crispEdges"><path stroke="#061b14" d="M1 1.5h7m2 0h2m2 0h2m1 0h1m2 0h1m2 0h2m1 0h1m2 0h5m1 0h7M1 2.5h1m5 0h1m3 0h4m4 0h1m3 0h1m4 0h1m4 0h1m1 0h1m5 0h1M1 3.5h1m1 0h3m1 0h1m1 0h7m1 0h1m2 0h2m6 0h2m1 0h1m3 0h1m1 0h3m1 0h1M1 4.5h1m1 0h3m1 0h1m1 0h1m1 0h1m2 0h2m1 0h2m1 0h3m3 0h1m1 0h1m1 0h2m1 0h1m1 0h3m1 0h1M1 5.5h1m1 0h3m1 0h1m1 0h1m1 0h2m4 0h1m2 0h3m1 0h1m1 0h1m2 0h1m1 0h1m1 0h1m1 0h1m1 0h3m1 0h1M1 6.5h1m5 0h1m1 0h1m2 0h1m1 0h2m3 0h1m6 0h3m4 0h1m1 0h1m5 0h1M1 7.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M9 8.5h1m4 0h1m1 0h2m3 0h3m1 0h1m1 0h1m3 0h1m1 0h1M1 9.5h1m1 0h5m3 0h2m2 0h1m2 0h1m4 0h1m1 0h4m1 0h1m1 0h1m2 0h5M2 10.5h1m8 0h1m5 0h6m1 0h1m4 0h5m1 0h1m1 0h1m1 0h1m1 0h1M2 11.5h1m1 0h1m1 0h5m2 0h1m1 0h2m4 0h1m3 0h2m1 0h1m1 0h1m2 0h1m2 0h2M2 12.5h5m1 0h1m1 0h2m3 0h2m3 0h3m1 0h1m2 0h1m4 0h3m1 0h1m1 0h1m1 0h1M1 13.5h2m1 0h7m3 0h1m8 0h2m1 0h3m1 0h1m1 0h1m3 0h1m1 0h2m1 0h1M3 14.5h4m1 0h1m2 0h2m2 0h4m2 0h2m2 0h2m2 0h2m1 0h4m1 0h1m2 0h2M2 15.5h10m2 0h1m1 0h1m3 0h1m1 0h1m4 0h4m2 0h2m3 0h2M2 16.5h1m1 0h2m2 0h1m2 0h1m2 0h2m1 0h1m2 0h3m2 0h1m1 0h1m3 0h1m1 0h1m1 0h2m1 0h1M2 17.5h1m1 0h2m1 0h2m2 0h1m1 0h3m2 0h1m1 0h1m2 0h1m1 0h1m1 0h4m1 0h1m1 0h1m1 0h1m1 0h2M1 18.5h1m1 0h2m6 0h1m3 0h1m1 0h6m1 0h1m1 0h2m1 0h1m2 0h2m1 0h4m2 0h1M1 19.5h1m1 0h2m1 0h2m7 0h4m2 0h2m3 0h4m1 0h1m3 0h1m1 0h1M1 20.5h1m1 0h3m2 0h5m1 0h10m1 0h2m1 0h2m2 0h1m2 0h1m1 0h2M1 21.5h2m1 0h1m2 0h1m1 0h1m5 0h2m4 0h2m2 0h1m1 0h4m5 0h1m2 0h1M2 22.5h1m2 0h2m1 0h1m6 0h1m2 0h4m1 0h2m1 0h1m2 0h2m1 0h2m1 0h4m1 0h2M4 23.5h2m1 0h2m2 0h2m1 0h1m1 0h2m3 0h1m1 0h1m4 0h2m1 0h1m3 0h2m2 0h1M2 24.5h1m2 0h1m3 0h1m1 0h3m2 0h1m2 0h1m1 0h5m2 0h2m3 0h1m3 0h2m1 0h2M1 25.5h1m1 0h2m2 0h1m1 0h1m1 0h1m3 0h1m2 0h1m4 0h1m1 0h6m8 0h1m1 0h1M2 26.5h1m2 0h1m2 0h1m1 0h1m1 0h5m1 0h1m1 0h3m1 0h2m1 0h1m1 0h1m1 0h2m2 0h4m1 0h2M7 27.5h1m1 0h1m4 0h5m2 0h3m3 0h5m1 0h1m1 0h3M1 28.5h2m3 0h1m1 0h1m6 0h1m4 0h3m2 0h1m1 0h3m2 0h2m1 0h4M1 29.5h1m1 0h5m1 0h1m1 0h4m1 0h3m1 0h2m2 0h3m1 0h1m1 0h1m1 0h1m5 0h3M1 30.5h6m1 0h1m1 0h4m2 0h2m1 0h1m2 0h1m3 0h2m1 0h1m1 0h2m1 0h5m1 0h2M1 31.5h1m1 0h3m1 0h1m1 0h3m1 0h6m2 0h2m1 0h5m5 0h3M1 32.5h1m1 0h2m1 0h1m1 0h1m1 0h1m5 0h2m4 0h3m2 0h1m1 0h1m1 0h6m1 0h1M1 33.5h1m1 0h3m1 0h2m2 0h1m1 0h1m4 0h1m4 0h5m1 0h9m1 0h1m1 0h1M9 34.5h3m1 0h2m1 0h2m1 0h3m2 0h1m4 0h1m1 0h3m3 0h1m1 0h3M1 35.5h7m5 0h2m4 0h1m1 0h1m1 0h1m4 0h1m3 0h2m1 0h1m1 0h2M1 36.5h1m5 0h1m1 0h2m1 0h3m2 0h1m6 0h2m1 0h1m1 0h1m2 0h2m3 0h2m1 0h2M1 37.5h1m1 0h3m1 0h1m1 0h2m2 0h2m2 0h1m1 0h5m1 0h1m2 0h3m2 0h7M1 38.5h1m1 0h3m1 0h1m1 0h1m1 0h7m2 0h2m2 0h1m2 0h1m1 0h3m2 0h1m1 0h1m1 0h1M1 39.5h1m1 0h3m1 0h1m1 0h1m3 0h2m1 0h1m2 0h1m2 0h2m2 0h5m3 0h5M1 40.5h1m5 0h1m2 0h3m1 0h2m2 0h1m1 0h4m3 0h1m1 0h1m1 0h3m3 0h2m1 0h1M1 41.5h7m1 0h2m1 0h2m1 0h2m2 0h1m4 0h1m1 0h2m2 0h1m1 0h1m3 0h4"/></svg>
+      <span>Scan → free Report Card</span>
+    </div>
+  </div>
+
+  <div class="label">Business card — back</div>
+  <div class="card card-back">
+    <div class="qrbox">
+      <svg viewBox="0 0 43 43" shape-rendering="crispEdges"><path stroke="#061b14" d="M1 1.5h7m2 0h2m2 0h2m1 0h1m2 0h1m2 0h2m1 0h1m2 0h5m1 0h7M1 2.5h1m5 0h1m3 0h4m4 0h1m3 0h1m4 0h1m4 0h1m1 0h1m5 0h1M1 3.5h1m1 0h3m1 0h1m1 0h7m1 0h1m2 0h2m6 0h2m1 0h1m3 0h1m1 0h3m1 0h1M1 4.5h1m1 0h3m1 0h1m1 0h1m1 0h1m2 0h2m1 0h2m1 0h3m3 0h1m1 0h1m1 0h2m1 0h1m1 0h3m1 0h1M1 5.5h1m1 0h3m1 0h1m1 0h1m1 0h2m4 0h1m2 0h3m1 0h1m1 0h1m2 0h1m1 0h1m1 0h1m1 0h1m1 0h3m1 0h1M1 6.5h1m5 0h1m1 0h1m2 0h1m1 0h2m3 0h1m6 0h3m4 0h1m1 0h1m5 0h1M1 7.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M9 8.5h1m4 0h1m1 0h2m3 0h3m1 0h1m1 0h1m3 0h1m1 0h1M1 9.5h1m1 0h5m3 0h2m2 0h1m2 0h1m4 0h1m1 0h4m1 0h1m1 0h1m2 0h5M2 10.5h1m8 0h1m5 0h6m1 0h1m4 0h5m1 0h1m1 0h1m1 0h1m1 0h1M2 11.5h1m1 0h1m1 0h5m2 0h1m1 0h2m4 0h1m3 0h2m1 0h1m1 0h1m2 0h1m2 0h2M2 12.5h5m1 0h1m1 0h2m3 0h2m3 0h3m1 0h1m2 0h1m4 0h3m1 0h1m1 0h1m1 0h1M1 13.5h2m1 0h7m3 0h1m8 0h2m1 0h3m1 0h1m1 0h1m3 0h1m1 0h2m1 0h1M3 14.5h4m1 0h1m2 0h2m2 0h4m2 0h2m2 0h2m2 0h2m1 0h4m1 0h1m2 0h2M2 15.5h10m2 0h1m1 0h1m3 0h1m1 0h1m4 0h4m2 0h2m3 0h2M2 16.5h1m1 0h2m2 0h1m2 0h1m2 0h2m1 0h1m2 0h3m2 0h1m1 0h1m3 0h1m1 0h1m1 0h2m1 0h1M2 17.5h1m1 0h2m1 0h2m2 0h1m1 0h3m2 0h1m1 0h1m2 0h1m1 0h1m1 0h4m1 0h1m1 0h1m1 0h1m1 0h2M1 18.5h1m1 0h2m6 0h1m3 0h1m1 0h6m1 0h1m1 0h2m1 0h1m2 0h2m1 0h4m2 0h1M1 19.5h1m1 0h2m1 0h2m7 0h4m2 0h2m3 0h4m1 0h1m3 0h1m1 0h1M1 20.5h1m1 0h3m2 0h5m1 0h10m1 0h2m1 0h2m2 0h1m2 0h1m1 0h2M1 21.5h2m1 0h1m2 0h1m1 0h1m5 0h2m4 0h2m2 0h1m1 0h4m5 0h1m2 0h1M2 22.5h1m2 0h2m1 0h1m6 0h1m2 0h4m1 0h2m1 0h1m2 0h2m1 0h2m1 0h4m1 0h2M4 23.5h2m1 0h2m2 0h2m1 0h1m1 0h2m3 0h1m1 0h1m4 0h2m1 0h1m3 0h2m2 0h1M2 24.5h1m2 0h1m3 0h1m1 0h3m2 0h1m2 0h1m1 0h5m2 0h2m3 0h1m3 0h2m1 0h2M1 25.5h1m1 0h2m2 0h1m1 0h1m1 0h1m3 0h1m2 0h1m4 0h1m1 0h6m8 0h1m1 0h1M2 26.5h1m2 0h1m2 0h1m1 0h1m1 0h5m1 0h1m1 0h3m1 0h2m1 0h1m1 0h1m1 0h2m2 0h4m1 0h2M7 27.5h1m1 0h1m4 0h5m2 0h3m3 0h5m1 0h1m1 0h3M1 28.5h2m3 0h1m1 0h1m6 0h1m4 0h3m2 0h1m1 0h3m2 0h2m1 0h4M1 29.5h1m1 0h5m1 0h1m1 0h4m1 0h3m1 0h2m2 0h3m1 0h1m1 0h1m1 0h1m5 0h3M1 30.5h6m1 0h1m1 0h4m2 0h2m1 0h1m2 0h1m3 0h2m1 0h1m1 0h2m1 0h5m1 0h2M1 31.5h1m1 0h3m1 0h1m1 0h3m1 0h6m2 0h2m1 0h5m5 0h3M1 32.5h1m1 0h2m1 0h1m1 0h1m1 0h1m5 0h2m4 0h3m2 0h1m1 0h1m1 0h6m1 0h1M1 33.5h1m1 0h3m1 0h2m2 0h1m1 0h1m4 0h1m4 0h5m1 0h9m1 0h1m1 0h1M9 34.5h3m1 0h2m1 0h2m1 0h3m2 0h1m4 0h1m1 0h3m3 0h1m1 0h3M1 35.5h7m5 0h2m4 0h1m1 0h1m1 0h1m4 0h1m3 0h2m1 0h1m1 0h2M1 36.5h1m5 0h1m1 0h2m1 0h3m2 0h1m6 0h2m1 0h1m1 0h1m2 0h2m3 0h2m1 0h2M1 37.5h1m1 0h3m1 0h1m1 0h2m2 0h2m2 0h1m1 0h5m1 0h1m2 0h3m2 0h7M1 38.5h1m1 0h3m1 0h1m1 0h1m1 0h7m2 0h2m2 0h1m2 0h1m1 0h3m2 0h1m1 0h1m1 0h1M1 39.5h1m1 0h3m1 0h1m1 0h1m3 0h2m1 0h1m2 0h1m2 0h2m2 0h5m3 0h5M1 40.5h1m5 0h1m2 0h3m1 0h2m2 0h1m1 0h4m3 0h1m1 0h1m1 0h3m3 0h2m1 0h1M1 41.5h7m1 0h2m1 0h2m1 0h2m2 0h1m4 0h1m1 0h2m2 0h1m1 0h1m3 0h4"/></svg>
+    </div>
+    <div>
+      <h2>Is your business easy to find online?</h2>
+      <p>Scan for a <b>free Report Card</b> — your website &amp; Google presence graded, plus 3 fixes. No cost, no pitch.</p>
+      <p>Websites &amp; automation, built local — with a person you can meet.</p>
+      <div class="handle">dinerohwy.com/galveston · @dinerohwy</div>
+    </div>
+  </div>
+
+  <div class="label">Round sticker — 2″</div>
+  <div class="sticker">
+    <div class="ring"></div>
+    <div class="in">
+      <span class="st-top">Get found · Galveston</span>
+      <div class="qrbox">
+        <svg viewBox="0 0 43 43" shape-rendering="crispEdges"><path stroke="#061b14" d="M1 1.5h7m2 0h2m2 0h4m2 0h1m2 0h2m1 0h1m2 0h2m1 0h2m1 0h7M1 2.5h1m5 0h1m3 0h1m1 0h2m2 0h1m1 0h1m3 0h1m4 0h1m4 0h1m1 0h1m5 0h1M1 3.5h1m1 0h3m1 0h1m1 0h7m4 0h2m6 0h2m1 0h1m1 0h1m1 0h1m1 0h3m1 0h1M1 4.5h1m1 0h3m1 0h1m1 0h1m1 0h3m2 0h2m1 0h2m1 0h4m2 0h1m1 0h1m1 0h2m1 0h1m1 0h3m1 0h1M1 5.5h1m1 0h3m1 0h1m1 0h1m1 0h2m3 0h2m2 0h1m1 0h1m1 0h1m1 0h1m2 0h1m1 0h1m1 0h1m1 0h1m1 0h3m1 0h1M1 6.5h1m5 0h1m1 0h1m2 0h4m1 0h1m1 0h1m5 0h4m4 0h1m1 0h1m5 0h1M1 7.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M9 8.5h1m3 0h2m1 0h2m2 0h1m1 0h2m3 0h1m3 0h1m1 0h1M1 9.5h1m1 0h5m3 0h2m2 0h1m2 0h1m4 0h1m1 0h4m1 0h1m1 0h1m2 0h5M4 10.5h1m4 0h1m1 0h1m2 0h1m2 0h1m1 0h3m2 0h1m4 0h9m1 0h1m1 0h1M2 11.5h2m2 0h2m3 0h1m1 0h4m1 0h1m2 0h2m2 0h2m1 0h1m1 0h1m2 0h1m3 0h1M2 12.5h2m1 0h2m2 0h3m3 0h2m2 0h6m2 0h1m4 0h3m1 0h3m1 0h1M1 13.5h2m2 0h5m5 0h1m2 0h1m4 0h2m1 0h3m1 0h1m1 0h1m3 0h1m1 0h2m1 0h1M3 14.5h4m2 0h1m2 0h1m2 0h4m2 0h2m2 0h2m2 0h1m2 0h4m1 0h1M2 15.5h1m2 0h5m4 0h3m3 0h1m1 0h1m4 0h3m1 0h1m1 0h2m3 0h2M2 16.5h1m1 0h2m4 0h1m6 0h1m2 0h3m2 0h1m1 0h1m5 0h1m1 0h2m1 0h1M2 17.5h4m1 0h2m1 0h1m2 0h1m1 0h1m1 0h2m1 0h1m2 0h1m1 0h1m1 0h4m1 0h3m1 0h1m1 0h2m1 0h1M3 18.5h3m5 0h3m1 0h1m1 0h6m1 0h1m1 0h2m1 0h1m2 0h1m2 0h5m1 0h1M1 19.5h1m1 0h2m2 0h1m4 0h1m2 0h1m1 0h2m2 0h2m3 0h4m1 0h1m1 0h1m1 0h1m1 0h3M2 20.5h3m1 0h1m1 0h4m1 0h3m2 0h6m1 0h2m1 0h2m3 0h1m1 0h1m1 0h2M2 21.5h1m1 0h2m1 0h1m1 0h1m2 0h2m1 0h3m3 0h2m4 0h4m1 0h1m3 0h1m2 0h1M2 22.5h1m5 0h1m3 0h1m2 0h1m2 0h4m1 0h2m1 0h1m2 0h2m1 0h2m1 0h4m1 0h2M1 23.5h2m1 0h5m2 0h2m1 0h1m2 0h1m3 0h1m1 0h1m4 0h2m1 0h1m2 0h3m2 0h1M6 24.5h1m2 0h1m1 0h3m5 0h1m1 0h5m2 0h2m3 0h1m3 0h2m1 0h2M1 25.5h4m2 0h1m3 0h1m3 0h2m1 0h1m4 0h1m1 0h6m8 0h1m1 0h1M2 26.5h1m2 0h1m3 0h2m1 0h2m1 0h2m3 0h3m1 0h2m1 0h1m1 0h1m1 0h2m2 0h4m1 0h2M7 27.5h2m5 0h1m1 0h2m3 0h1m5 0h5m1 0h1m1 0h3M1 28.5h2m3 0h1m1 0h1m1 0h2m2 0h2m4 0h4m1 0h1m1 0h3m2 0h2m1 0h4M1 29.5h1m2 0h4m1 0h2m1 0h2m2 0h3m1 0h2m1 0h4m1 0h1m1 0h1m1 0h1m5 0h3M1 30.5h6m4 0h7m4 0h1m3 0h2m1 0h1m1 0h2m1 0h5m1 0h2M1 31.5h1m2 0h2m1 0h1m1 0h3m1 0h6m2 0h2m1 0h5m1 0h2m2 0h3M1 32.5h1m1 0h2m1 0h1m1 0h4m4 0h2m4 0h3m2 0h1m1 0h1m1 0h6m1 0h1m1 0h1M1 33.5h1m2 0h2m1 0h2m1 0h1m4 0h1m1 0h2m4 0h5m1 0h9m1 0h1M9 34.5h3m1 0h3m1 0h1m1 0h3m2 0h1m4 0h1m1 0h1m1 0h1m3 0h5M1 35.5h7m4 0h1m1 0h1m4 0h1m1 0h1m1 0h1m4 0h1m3 0h2m1 0h1m1 0h2M1 36.5h1m5 0h1m1 0h2m3 0h1m9 0h2m1 0h1m1 0h1m2 0h2m3 0h2m1 0h2M1 37.5h1m1 0h3m1 0h1m1 0h2m1 0h1m1 0h1m1 0h2m1 0h2m1 0h2m4 0h3m2 0h5m1 0h1M1 38.5h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h4m3 0h2m2 0h1m2 0h1m1 0h4m1 0h1m1 0h1m1 0h1M1 39.5h1m1 0h3m1 0h1m1 0h1m4 0h1m4 0h1m1 0h3m2 0h5m1 0h1m1 0h5M1 40.5h1m5 0h1m2 0h7m1 0h1m1 0h1m1 0h2m3 0h1m1 0h1m1 0h3m3 0h2m1 0h1M1 41.5h7m1 0h2m1 0h2m1 0h1m3 0h2m3 0h1m1 0h2m2 0h1m1 0h1m3 0h4"/></svg>
+      </div>
+      <span class="st-bot">dinerohwy.com/galveston</span>
+    </div>
+  </div>
+</div>

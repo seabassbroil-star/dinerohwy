@@ -2,6 +2,7 @@
 import { getLangFromUrl, useT, localizedPath } from "../i18n/ui";
 import EmailCapture from "./EmailCapture.astro";
 import Icon from "./Icon.astro";
+import AIStack from "./AIStack.astro";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useT(lang);
@@ -37,6 +38,14 @@ const cols = [
     <div class="footer-brand">
       <img src="/assets/dinerohwy-logo-primary.svg?v=2" alt="Dinero Hwy" width="590" height="270" />
       <p class="footer-tagline">{t("footer.tagline")}</p>
+      <div class="footer-social">
+        <a href="https://x.com/dinerohwy" target="_blank" rel="noopener" aria-label="Dinero Hwy on X">
+          <Icon name="x" size={18} />
+        </a>
+        <a href="https://github.com/seabassbroil-star/dinerohwy" target="_blank" rel="noopener" aria-label="Dinero Hwy on GitHub">
+          <Icon name="code" size={18} />
+        </a>
+      </div>
       <div class="route-bar" aria-hidden="true"></div>
     </div>
 
@@ -58,6 +67,7 @@ const cols = [
 
   <div class="container footer-base">
     <span>© {year} Dinero Hwy · {t("footer.location")}</span>
+    <span class="footer-ai"><AIStack label={t("footer.built_ai")} size="sm" /></span>
     <a class="partner" href="https://www.cloudflare.com" target="_blank" rel="noopener">
       <Icon name="cloud" size={16} />
       <span>{t("footer.built_with")} Cloudflare</span>
@@ -80,6 +90,12 @@ const cols = [
   }
   .footer-brand img { width: 170px; height: auto; }
   .footer-tagline { color: var(--cream-muted); max-width: 30ch; margin: 0.75rem 0 1rem; }
+  .footer-social { display: flex; gap: 0.6rem; margin-bottom: 1rem; }
+  .footer-social a {
+    display: grid; place-items: center; width: 36px; height: 36px;
+    border: 1px solid var(--line-strong); border-radius: 9px; color: var(--cream-muted);
+  }
+  .footer-social a:hover { color: var(--cream); border-color: var(--cream-muted); }
 
   .footer-col h4 {
     font-size: var(--step--1);
@@ -105,6 +121,7 @@ const cols = [
     letter-spacing: 0.1em;
     font-weight: 700;
   }
+  .footer-ai { text-transform: none; letter-spacing: normal; }
   .partner { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--cream-muted); }
   .partner:hover { color: var(--cream); }
   .partner :global(svg) { color: var(--rust-light); }

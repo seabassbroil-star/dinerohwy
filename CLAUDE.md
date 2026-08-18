@@ -43,7 +43,12 @@ Local D1 for dev: `npx wrangler d1 execute dinerohwy-leads --local --file=./sche
 - **Icons** are line-based on a 24px grid in `src/icons/index.ts`, rendered by `Icon.astro` (`currentColor`). Add new glyphs to the map.
 - **Reused components:** `EmailCapture` (progressive-enhanced form, works without JS; used in hero/footer/demos), `DemoFrame` (live vs coming-soon chrome + waitlist capture), `SolutionCard`, `PainStrip`, `StatStrip`, `ProductLayout` (pain → how → demo → CTA template).
 - **Logo SVGs** in `site/public/assets/` render their wordmark with live `<text>` in **Arial Narrow** — distorts off-Windows. Outline to `<path>` before relying on them at scale (flagged in the plan).
+- **AI-stack claim:** the site openly credits building with Claude, ChatGPT & Grok — render it with `AIStack.astro` (plain-text chips only, never third-party logos). Voice rules live in `docs/messaging.md`; keep AI framed as leverage under outcome-first headlines, always paired with the human-accountability line.
 - **Security headers** are in `public/_headers` (edit there, not in HTML); assets get a 7-day cache.
+
+## Go-to-market (read before any marketing/copy work)
+
+**`docs/go-to-market.md` is the governing strategy.** Dinero Hwy sells **in person, on the ground** — the site is **credibility + a demo + something to bring to the conversation**, not a cold-lead closer. ICP = **approachable owner-operated local businesses** (food, trades, auto, shops, personal care; owner 45+, "doesn't do computers"), **not** gated professional offices. Offer sequence: **create digital value first, then streamline the bottleneck with AI.** Voice/ethos rules are in `docs/messaging.md`.
 
 ## Docs
 

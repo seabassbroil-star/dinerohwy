@@ -1,0 +1,274 @@
+<title>Dinero HWY — "Get Online" commercial</title>
+<style>
+  :root {
+    --forest-950:#061b14; --forest-900:#0b2d22; --forest-800:#103b2d; --forest-700:#1b4635;
+    --cream:#f4eedc; --cream-muted:#c9c5b7; --rust:#c75a31; --rust-light:#db6e42; --rust-deep:#a94125;
+    --line:rgba(244,238,220,.16); --line-strong:rgba(244,238,220,.34);
+    --sans:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    --condensed:"Arial Narrow","Helvetica Neue",Arial,sans-serif;
+    --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    --radius-lg:20px; --radius-md:14px; --radius-sm:9px;
+    --shadow-md:0 18px 40px rgba(2,15,10,.32); --shadow-sm:0 8px 20px rgba(4,19,14,.28);
+    --space-lg:2.5rem;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;min-height:100vh;color:var(--cream);font-family:var(--sans);
+    background:radial-gradient(circle at 50% 0%,rgba(75,119,92,.28),transparent 42rem),linear-gradient(160deg,var(--forest-800),var(--forest-950) 74%);background-attachment:fixed;}
+  .wrap{width:min(1000px,calc(100% - 2rem));margin-inline:auto;padding-block:clamp(1.5rem,4vh,3rem);}
+  .lead{margin:0 0 1.25rem;}
+  .eyebrow{display:inline-block;font-size:.72rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:var(--rust);}
+  h1{font-size:clamp(1.5rem,1.1rem+2vw,2.2rem);letter-spacing:-.03em;margin:.3rem 0 .3rem;}
+  .sub{color:var(--cream-muted);margin:0;max-width:60ch;line-height:1.55;}
+
+  .film{position:relative;aspect-ratio:16/9;border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--line-strong);
+    background:radial-gradient(120% 80% at 50% -10%,#0c3325,transparent 60%),linear-gradient(180deg,#05130e 0%,#061b14 55%,#030d09 100%),#05130e;
+    box-shadow:var(--shadow-md);isolation:isolate;}
+  .scene{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .4s ease,visibility .4s;display:grid;place-items:center;}
+  .film[data-scene="1"] .scene-1,.film[data-scene="2"] .scene-2,.film[data-scene="3"] .scene-3,
+  .film[data-scene="4"] .scene-4,.film[data-scene="5"] .scene-5,.film[data-scene="6"] .scene-6{opacity:1;visibility:visible;}
+
+  .road{position:absolute;left:0;right:0;bottom:0;height:42%;background:linear-gradient(180deg,#0a2a20,#06180f);border-top:2px solid rgba(244,238,220,.14);}
+  .road::after{content:"";position:absolute;top:46%;left:0;right:0;height:4px;background:repeating-linear-gradient(90deg,var(--rust) 0 34px,transparent 34px 74px);opacity:.8;}
+  .film[data-scene="1"] .scene-1 .road::after,.film[data-scene="6"] .scene-6 .road::after{animation:dash 1.1s linear infinite;}
+  @keyframes dash{to{background-position:-108px 0;}}
+  .signs{position:absolute;top:16%;left:0;right:0;display:flex;justify-content:center;gap:clamp(10px,3vw,34px);}
+  .rsign{width:clamp(48px,9vw,96px);height:clamp(34px,6.5vw,66px);border-radius:8px;border:3px solid rgba(244,238,220,.5);background:linear-gradient(160deg,#1b4635,#103326);position:relative;display:grid;place-items:center;}
+  .rsign.lit{box-shadow:0 0 22px rgba(219,110,66,.5),inset 0 0 0 2px rgba(244,238,220,.3);border-color:var(--cream);}
+  .rsign.lit::before{content:"";width:60%;height:44%;border-radius:3px;background:var(--cream);opacity:.85;}
+  .rsign.dark{opacity:.5;border-color:rgba(244,238,220,.28);}
+  .rsign.dark small{font-size:clamp(7px,1.4vw,11px);font-weight:800;letter-spacing:.06em;color:var(--cream-muted);}
+  .film[data-scene="1"] .scene-1 .rsign.dark{animation:worry 1.4s ease-in-out infinite;}
+  @keyframes worry{50%{opacity:.28;}}
+  .traffic{position:absolute;left:0;right:0;bottom:15%;height:40px;}
+  .car{position:absolute;top:0;width:34px;height:12px;border-radius:6px;background:linear-gradient(90deg,#7a1f10,var(--rust));box-shadow:0 0 12px rgba(219,110,66,.7);}
+  .film[data-scene="1"] .scene-1 .car,.film[data-scene="6"] .scene-6 .car{animation:drive 2.6s linear infinite;}
+  .car.c2{top:16px;animation-duration:3.4s!important;animation-delay:-1s!important;opacity:.9;}
+  .car.c3{top:6px;animation-duration:2.1s!important;animation-delay:-1.6s!important;}
+  .car.c4{top:20px;animation-duration:3s!important;animation-delay:-.5s!important;opacity:.8;}
+  .car.c5{top:10px;animation-duration:2.4s!important;animation-delay:-2s!important;}
+  @keyframes drive{from{left:-12%;}to{left:112%;}}
+  .traffic.exit .car{animation:peel 2.4s ease-in infinite!important;}
+  @keyframes peel{0%{left:-10%;top:0;opacity:1;}70%{top:0;}100%{left:60%;top:-120px;opacity:0;}}
+
+  .shop{position:relative;width:70%;height:70%;}
+  .counter{position:absolute;left:8%;right:8%;bottom:12%;height:26%;border-radius:10px;background:linear-gradient(180deg,#285440,#103326);border:2px solid rgba(244,238,220,.25);}
+  .owner{position:absolute;left:50%;bottom:34%;transform:translateX(-50%);display:grid;justify-items:center;}
+  .head{width:clamp(40px,8vw,64px);aspect-ratio:1;border-radius:50%;background:#d8b48c;border:3px solid #b98e63;}
+  .apron{width:clamp(80px,16vw,130px);height:clamp(70px,13vw,110px);margin-top:-6px;border-radius:20px 20px 8px 8px;background:linear-gradient(180deg,var(--cream),var(--cream-muted));border:2px solid #b7b09a;}
+  .bubble{position:absolute;top:4%;right:4%;max-width:46%;padding:.8rem 1rem;border-radius:14px 14px 14px 2px;background:var(--cream);color:#103326;font-weight:800;font-size:clamp(13px,2.4vw,20px);box-shadow:var(--shadow-sm);}
+  .film[data-scene="2"] .scene-2 .bubble{animation:pop .5s cubic-bezier(.2,.9,.3,1.3) both;}
+  @keyframes pop{from{opacity:0;transform:scale(.6) translateY(8px);}}
+
+  .napkin{position:relative;width:min(64%,460px);aspect-ratio:3/2;background:#fbf7ea;border-radius:8px;transform:rotate(-3deg);box-shadow:var(--shadow-md);color:#14352a;display:grid;align-content:center;gap:.5rem;padding:8%;font-weight:700;}
+  .scratch{font-size:clamp(15px,3vw,26px);color:#6f7b63;text-decoration:line-through;opacity:0;}
+  .film[data-scene="3"] .scene-3 .s-a{animation:fadeUp .35s .15s both;}
+  .film[data-scene="3"] .scene-3 .s-b{animation:fadeUp .35s .6s both;}
+  .pick{font-size:clamp(20px,4.4vw,40px);font-weight:900;color:#10361f;display:flex;align-items:center;gap:.5rem;opacity:0;}
+  .film[data-scene="3"] .scene-3 .pick{animation:fadeUp .4s 1.1s both;}
+  .chk{display:inline-grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--rust);color:var(--cream);}
+  .film[data-scene="3"] .scene-3 .chk{animation:pop .35s 1.5s both;}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
+
+  .mint{position:relative;display:grid;justify-items:center;gap:1rem;width:80%;}
+  .supra{font-family:var(--mono);font-size:clamp(11px,2vw,16px);letter-spacing:.28em;color:var(--rust-light);font-weight:800;opacity:0;}
+  .film[data-scene="4"] .scene-4 .supra{animation:fadeUp .5s .1s both;}
+  .signlogo{width:min(70%,460px);height:auto;filter:drop-shadow(0 18px 26px rgba(2,15,10,.5));opacity:0;}
+  .film[data-scene="4"] .scene-4 .signlogo{animation:plant .6s .25s cubic-bezier(.2,.9,.3,1.2) both;}
+  @keyframes plant{from{opacity:0;transform:translateY(-26px) scale(.9);}to{opacity:1;transform:none;}}
+  .tag{position:absolute;top:6%;right:2%;transform-origin:top center;display:grid;justify-items:center;padding:.5rem .9rem;background:linear-gradient(160deg,var(--rust-light),var(--rust-deep));border-radius:10px;color:var(--cream);box-shadow:var(--shadow-md);opacity:0;}
+  .tag::before{content:"";position:absolute;top:-14px;width:2px;height:14px;background:rgba(244,238,220,.6);}
+  .tag b{font-size:clamp(22px,5vw,44px);font-weight:900;line-height:1;}
+  .tag span{font-weight:800;}
+  .tag small{font-size:10px;letter-spacing:.08em;opacity:.9;}
+  .film[data-scene="4"] .scene-4 .tag{animation:swingIn .7s .5s cubic-bezier(.2,.9,.3,1.2) both;}
+  @keyframes swingIn{0%{opacity:0;transform:rotate(-24deg) translateY(-10px);}60%{opacity:1;transform:rotate(10deg);}100%{transform:rotate(0);opacity:1;}}
+
+  .browser{width:min(74%,520px);border-radius:12px;overflow:hidden;border:1px solid var(--line-strong);background:var(--forest-900);box-shadow:var(--shadow-md);}
+  .chrome{display:flex;align-items:center;gap:6px;padding:.5rem .75rem;background:var(--forest-800);}
+  .chrome i{width:9px;height:9px;border-radius:50%;background:var(--line-strong);}
+  .chrome span{margin-left:.5rem;font-size:12px;color:var(--cream-muted);font-family:var(--mono);}
+  .build{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:16px;min-height:190px;}
+  .blk{border-radius:8px;background:linear-gradient(160deg,rgba(40,84,64,.6),rgba(6,27,20,.5));border:1px solid var(--line);opacity:0;}
+  .blk.b1{grid-column:1/-1;height:46px;background:linear-gradient(90deg,var(--rust-deep),var(--rust));}
+  .blk.b2,.blk.b3{height:56px;}
+  .blk.b4,.blk.b5{height:40px;}
+  .film[data-scene="5"] .scene-5 .blk{animation:blockIn .42s both;}
+  .film[data-scene="5"] .scene-5 .b1{animation-delay:.15s;}
+  .film[data-scene="5"] .scene-5 .b2{animation-delay:.45s;}
+  .film[data-scene="5"] .scene-5 .b3{animation-delay:.65s;}
+  .film[data-scene="5"] .scene-5 .b4{animation-delay:.85s;}
+  .film[data-scene="5"] .scene-5 .b5{animation-delay:1s;}
+  @keyframes blockIn{from{opacity:0;transform:translateY(14px) scale(.96);}to{opacity:1;transform:none;}}
+  .build-wrap{display:grid;gap:1rem;justify-items:center;width:min(74%,520px);}
+  .pricefit{display:grid;gap:.5rem;justify-items:center;width:100%;opacity:0;}
+  .ai-strip{display:inline-flex;align-items:center;gap:.45rem;font-family:var(--mono);justify-self:center;}
+  .ai-label{font-size:clamp(9px,1.5vw,12px);font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--cream-muted);}
+  .ai-chip{padding:.2rem .6rem;border:1px solid var(--line-strong);border-radius:999px;background:rgba(6,27,20,.5);color:var(--cream);font-weight:700;font-size:clamp(10px,1.8vw,14px);}
+  .ai-dot{color:var(--rust);font-weight:800;}
+  .ai-credit{font-family:var(--mono);font-size:clamp(10px,1.7vw,13px);color:var(--cream-muted);margin:.35rem 0 0;letter-spacing:.02em;}
+  .film[data-scene="5"] .scene-5 .pricefit{animation:fadeUp .5s 1.15s both;}
+  .pf-label{font-size:clamp(11px,1.9vw,15px);color:var(--cream-muted);letter-spacing:.02em;}
+  .pf-label b{color:var(--cream);}
+  .pf-range{display:flex;align-items:center;gap:.6rem;width:100%;}
+  .pf-range i{font-style:normal;font-size:clamp(9px,1.5vw,12px);color:var(--cream-muted);white-space:nowrap;}
+  .pf-bar{position:relative;flex:1;height:5px;border-radius:999px;background:linear-gradient(90deg,rgba(219,110,66,.35),var(--rust));}
+  .pf-bar b{position:absolute;top:50%;left:42%;width:13px;height:13px;border-radius:50%;background:var(--cream);border:2px solid var(--rust);transform:translate(-50%,-50%);}
+
+  .growthline{position:absolute;top:8%;right:6%;width:22%;max-width:200px;height:auto;z-index:1;opacity:.85;}
+  .growthline .gl-line,.growthline .gl-arrow{fill:none;stroke:var(--rust-light);stroke-width:5;stroke-linecap:round;stroke-linejoin:round;}
+  .growthline .gl-line{stroke-dasharray:320;stroke-dashoffset:320;}
+  .growthline .gl-arrow{stroke-dasharray:60;stroke-dashoffset:60;}
+  .film[data-scene="6"] .scene-6 .growthline .gl-line{animation:draw 1s .5s ease-out forwards;}
+  .film[data-scene="6"] .scene-6 .growthline .gl-arrow{animation:draw .4s 1.4s ease-out forwards;}
+  @keyframes draw{to{stroke-dashoffset:0;}}
+  @media (max-width:620px){.growthline{display:none;}}
+  .endcard{position:relative;z-index:2;display:grid;justify-items:center;gap:.5rem;text-align:center;padding:1rem;}
+  .endcard .signlogo{width:min(48%,300px);opacity:1;animation:none;filter:drop-shadow(0 16px 22px rgba(2,15,10,.5));}
+  .film[data-scene="6"] .scene-6 .endcard .signlogo{animation:plant .6s both;}
+  .kicker{font-size:clamp(15px,2.8vw,24px);font-weight:800;line-height:1.25;margin:.4rem 0 0;}
+  .kicker b{color:var(--rust-light);}
+  .reassure{font-size:clamp(12px,2vw,16px);color:var(--cream);margin:.6rem 0 0;font-weight:700;}
+  .reassure b{color:var(--rust-light);}
+  .url{font-size:clamp(12px,2vw,16px);color:var(--cream-muted);margin:.3rem 0 0;}
+  .url b{color:var(--cream);}
+  .cf{display:inline-flex;align-items:center;gap:.4rem;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--cream-muted);margin:.2rem 0 0;}
+  .cf svg{color:var(--rust-light);}
+
+  .caption{position:absolute;left:50%;bottom:8%;transform:translateX(-50%);width:min(90%,760px);margin:0;text-align:center;font-size:clamp(15px,2.9vw,26px);font-weight:800;line-height:1.25;letter-spacing:-.01em;color:var(--cream);text-shadow:0 2px 10px rgba(2,15,10,.9),0 0 3px rgba(2,15,10,.8);}
+  .superline{position:absolute;left:0;right:0;bottom:8%;text-align:center;font-size:clamp(16px,3.2vw,30px);font-weight:900;color:var(--cream);text-shadow:0 2px 12px rgba(2,15,10,.9);opacity:0;padding:0 1rem;}
+  .film.is-done .superline{animation:fadeUp .6s .3s both;}
+  .film.is-done .caption{opacity:0;}
+  .progress{position:absolute;top:0;left:0;right:0;height:4px;background:rgba(244,238,220,.12);}
+  .progress span{display:block;height:100%;width:0;background:var(--rust);}
+  .film-start{position:absolute;inset:0;z-index:5;display:grid;place-content:center;gap:.4rem;justify-items:center;border:0;cursor:pointer;color:var(--cream);font:inherit;font-weight:800;font-size:1.1rem;background:radial-gradient(circle at 50% 45%,rgba(6,27,20,.5),rgba(4,16,11,.82));}
+  .film-start svg{padding:.6rem;border-radius:50%;background:var(--rust);}
+  .film:not([data-scene="0"]) .film-start{display:none;}
+
+  .controls{display:flex;flex-wrap:wrap;gap:.75rem;justify-content:center;margin-top:1.25rem;}
+  .btn{display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 1.4rem;border:1px solid var(--line-strong);border-radius:var(--radius-sm);font:inherit;font-weight:800;color:var(--cream);cursor:pointer;background:rgba(244,238,220,.04);text-decoration:none;}
+  .btn-primary{background:linear-gradient(145deg,var(--rust-light),var(--rust-deep));border-color:rgba(255,255,255,.22);}
+  .btn:hover{transform:translateY(-1px);}
+</style>
+
+<!-- inline logo (star + H) used as a <symbol> so both scenes reuse it -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="logo" viewBox="0 0 590 270">
+    <defs>
+      <linearGradient id="lg-green" x1="0" y1="0" x2="0.9" y2="1"><stop offset="0" stop-color="#285440"/><stop offset=".48" stop-color="#1b4635"/><stop offset="1" stop-color="#103326"/></linearGradient>
+      <linearGradient id="lg-rim" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9aab9d"/><stop offset=".42" stop-color="#445d52"/><stop offset="1" stop-color="#142b23"/></linearGradient>
+      <linearGradient id="lg-cream" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fffdf3"/><stop offset=".58" stop-color="#f4eedc"/><stop offset="1" stop-color="#d8d0bc"/></linearGradient>
+      <linearGradient id="lg-star" x1="0" y1="0" x2="0.8" y2="1"><stop offset="0" stop-color="#dd7445"/><stop offset=".52" stop-color="#c75a31"/><stop offset="1" stop-color="#9e3d21"/></linearGradient>
+      <radialGradient id="lg-rivet" cx="35%" cy="28%" r="70%"><stop offset="0" stop-color="#e6e6da"/><stop offset=".32" stop-color="#8e9d93"/><stop offset="1" stop-color="#1c3028"/></radialGradient>
+      <clipPath id="lg-face"><rect x="25" y="35" width="540" height="200" rx="20"/></clipPath>
+      <filter id="lg-shadow" x="-8%" y="-20%" width="116%" height="145%"><feDropShadow dx="0" dy="9" stdDeviation="5" flood-color="#04130e" flood-opacity=".38"/></filter>
+      <filter id="lg-raised" x="-20%" y="-25%" width="140%" height="155%"><feDropShadow dx="0" dy="4" stdDeviation="2" flood-color="#061c14" flood-opacity=".65"/></filter>
+      <filter id="lg-surface" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".72" numOctaves="2" seed="11" result="noise"/><feColorMatrix in="noise" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 .07 0" result="grain"/><feBlend in="SourceGraphic" in2="grain" mode="soft-light"/></filter>
+    </defs>
+    <g filter="url(#lg-shadow)">
+      <rect x="15" y="25" width="560" height="220" rx="27" fill="url(#lg-rim)" stroke="#071e16" stroke-width="5"/>
+      <rect x="25" y="35" width="540" height="200" rx="20" fill="url(#lg-green)" stroke="#071f17" stroke-width="3"/>
+      <g clip-path="url(#lg-face)" filter="url(#lg-surface)"><rect x="25" y="35" width="540" height="200" fill="url(#lg-green)"/><path d="M38 50h514" stroke="#ffffff" stroke-opacity=".15" stroke-width="4" stroke-linecap="round"/><path d="M40 219h510" stroke="#061e16" stroke-opacity=".38" stroke-width="3" stroke-linecap="round"/></g>
+      <rect x="37" y="47" width="516" height="176" rx="14" fill="none" stroke="url(#lg-cream)" stroke-width="5"/>
+    </g>
+    <g filter="url(#lg-raised)"><polygon points="96,58 114,112 171,112 125,145 143,199 96,166 49,199 67,145 21,112 78,112" fill="url(#lg-star)" stroke="#f4eedc" stroke-width="4" stroke-linejoin="round"/><text x="96" y="171" text-anchor="middle" fill="url(#lg-cream)" stroke="#103326" stroke-width="6" paint-order="stroke fill" font-family="Arial Narrow, Helvetica Neue, Arial, sans-serif" font-size="104" font-weight="900">H</text></g>
+    <g filter="url(#lg-raised)"><text x="176" y="191" textLength="296" lengthAdjust="spacingAndGlyphs" fill="url(#lg-cream)" font-family="Arial Narrow, Helvetica Neue, Arial, sans-serif" font-size="112" font-weight="700">Dinero</text><text x="444" y="76" textLength="80" lengthAdjust="spacingAndGlyphs" fill="url(#lg-cream)" font-family="Arial Narrow, Helvetica Neue, Arial, sans-serif" font-size="40" font-weight="850">HWY</text></g>
+    <g fill="url(#lg-rivet)" stroke="#0a2119" stroke-width="2"><circle cx="43" cy="65" r="6"/><circle cx="547" cy="65" r="6"/><circle cx="43" cy="205" r="6"/><circle cx="547" cy="205" r="6"/></g>
+  </symbol>
+</svg>
+
+<div class="wrap">
+  <p class="lead">
+    <span class="eyebrow">Dinero HWY · commercial</span>
+    <h1>"The Exit Sign" — your address online for ~$11/yr</h1>
+    <span class="sub">A ~35-second spot for local business owners. The address (domain + hosting) is ~$11/yr on Cloudflare; the site is built by Dinero Hwy, priced to fit. Captions-first so it works muted — press play, or it starts on its own.</span>
+  </p>
+
+  <div class="film" id="film" data-scene="0">
+    <div class="scene scene-1">
+      <div class="road"></div>
+      <div class="signs"><span class="rsign lit"></span><span class="rsign lit"></span><span class="rsign dark"><small>YOUR SHOP?</small></span><span class="rsign lit"></span><span class="rsign lit"></span></div>
+      <div class="traffic"><span class="car"></span><span class="car c2"></span><span class="car c3"></span><span class="car c4"></span><span class="car c5"></span></div>
+    </div>
+    <div class="scene scene-2">
+      <div class="shop"><div class="owner"><span class="head"></span><span class="apron"></span></div><div class="counter"></div><div class="bubble">"I don't do computers."</div></div>
+    </div>
+    <div class="scene scene-3">
+      <div class="napkin"><span class="scratch s-a">carniceria?</span><span class="scratch s-b">cruz-meats?</span><span class="pick">cruzmeats.com <b class="chk"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12 5 5L20 6"/></svg></b></span></div>
+    </div>
+    <div class="scene scene-4">
+      <div class="mint"><span class="supra">DIGITAL REAL ESTATE</span><svg class="signlogo" viewBox="0 0 590 270"><use href="#logo"/></svg><span class="tag"><b>$12</b><span>/yr</span><small>your land · Cloudflare</small></span></div>
+    </div>
+    <div class="scene scene-5">
+      <div class="build-wrap">
+        <div class="browser"><div class="chrome"><i></i><i></i><i></i><span>cruzmeats.com</span></div><div class="build"><span class="blk b1"></span><span class="blk b2"></span><span class="blk b3"></span><span class="blk b4"></span><span class="blk b5"></span></div></div>
+        <div class="pricefit"><span class="ai-strip"><span class="ai-label">Powered by</span><span class="ai-chip">Claude</span><span class="ai-dot">·</span><span class="ai-chip">ChatGPT</span><span class="ai-dot">·</span><span class="ai-chip">Grok</span></span><span class="pf-label">Built by Dinero Hwy · <b>priced to fit</b></span><span class="pf-range"><i>Simple site</i><span class="pf-bar"><b></b></span><i>Full storefront</i></span></div>
+      </div>
+    </div>
+    <div class="scene scene-6">
+      <div class="road payoff"></div>
+      <div class="traffic exit"><span class="car"></span><span class="car c2"></span><span class="car c3"></span></div>
+      <svg class="growthline" viewBox="0 0 200 120" preserveAspectRatio="none"><polyline class="gl-line" points="8,108 52,86 96,90 140,44 190,12"/><path class="gl-arrow" d="M172 12 L190 12 L190 30"/></svg>
+      <div class="endcard">
+        <svg class="signlogo" viewBox="0 0 590 270"><use href="#logo"/></svg>
+        <p class="kicker">You built the business.<br>We build the internet part.<br><b>You collect the dinero.</b></p>
+        <p class="reassure">$12/yr for your land. The site? We build it — <b>priced to fit</b>.</p>
+        <p class="ai-credit">Built with Claude, ChatGPT &amp; Grok — and a human you can meet.</p>
+        <p class="url">See your sign first — free · <b>dinerohwy.com</b></p>
+        <p class="cf"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18a4 4 0 0 1-.5-7.97A6 6 0 0 1 18 9.5a3.5 3.5 0 0 1-.5 8.5H7Z"/></svg> Domain &amp; hosting on Cloudflare</p>
+      </div>
+    </div>
+
+    <p class="caption" id="caption"></p>
+    <div class="superline">Invest twelve bucks a year in digital real estate. Watch it grow.</div>
+    <div class="progress"><span id="bar"></span></div>
+    <button class="film-start" id="filmStart" type="button">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+      Play the ad
+    </button>
+  </div>
+
+  <div class="controls">
+    <button class="btn" id="replay" type="button" hidden>↻ Replay</button>
+    <a class="btn btn-primary" href="https://dinerohwy.com">Get your sign — free Report Card</a>
+  </div>
+</div>
+
+<script>
+  const scenes = [
+    { d: 5000, cap: "Your customers are online — driving right past you." },
+    { d: 5200, cap: "Great business. But online? You’re invisible." },
+    { d: 5200, cap: "So we do it with you. Pick a name in minutes." },
+    { d: 6200, cap: "Own your spot for about $12 a year — your digital real estate." },
+    { d: 6200, cap: "We build it with the world’s most advanced AI — priced to fit your budget." },
+    { d: 7200, cap: "You run the business. We build the internet part — and it grows while you work." },
+  ];
+  const film = document.getElementById("film");
+  const caption = document.getElementById("caption");
+  const bar = document.getElementById("bar");
+  const startBtn = document.getElementById("filmStart");
+  const replay = document.getElementById("replay");
+  const total = scenes.reduce((a, s) => a + s.d, 0);
+  let timers = [];
+  const clearTimers = () => { timers.forEach(clearTimeout); timers = []; };
+  function play() {
+    clearTimers();
+    startBtn.style.display = "none";
+    replay.hidden = true;
+    film.classList.remove("is-done");
+    bar.style.transition = "none"; bar.style.width = "0%"; void bar.offsetWidth;
+    bar.style.transition = `width ${total}ms linear`; bar.style.width = "100%";
+    let acc = 0;
+    scenes.forEach((s, i) => {
+      timers.push(setTimeout(() => { film.dataset.scene = String(i + 1); caption.textContent = s.cap; }, acc));
+      acc += s.d;
+    });
+    timers.push(setTimeout(() => { film.dataset.scene = "6"; film.classList.add("is-done"); replay.hidden = false; }, total));
+  }
+  startBtn.addEventListener("click", play);
+  replay.addEventListener("click", play);
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    film.dataset.scene = "6"; film.classList.add("is-done"); caption.textContent = scenes[5].cap; startBtn.style.display = "none";
+  } else {
+    setTimeout(play, 600);
+  }
+</script>

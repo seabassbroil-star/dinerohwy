@@ -1,0 +1,126 @@
+Good. Since you’re using Astro + Supabase, I’d structure questions in layers:
+Business clarity
+User behavior
+Data structure (critical for Supabase)
+SEO & content
+Monetization
+Security & scale
+Workflow & ownership
+Below is exactly how I’d interview a client as a serious web developer.
+1️⃣ Business & Outcome Questions (CEO Level)
+These define the entire architecture.
+Vision
+What is the primary goal of this site?
+Lead generation?
+Directory?
+SaaS?
+Content authority?
+Affiliate revenue?
+What does “success” look like in 6 months?
+Revenue
+How will this site make money?
+Ads?
+Affiliate?
+Subscriptions?
+Featured listings?
+Lead resale?
+What is the fastest path to first revenue?
+Audience
+Who is the exact target user?
+Tourists?
+Locals?
+Business owners?
+Investors?
+What problem are we solving for them?
+2️⃣ User Experience & Behavior
+This determines front-end structure in Astro.
+User Actions
+What are the top 3 actions users must be able to do?
+Search?
+Filter?
+Book?
+Submit?
+Contact?
+Should users log in?
+Should businesses log in?
+Should there be reviews?
+Flow
+What is the ideal homepage journey?
+What should happen after someone clicks a listing?
+Should there be saved favorites?
+3️⃣ Data Architecture (Supabase Critical)
+This is where most projects fail if not clarified early.
+Core Entities
+What data types exist?
+Listings?
+Categories?
+Tags?
+Blog posts?
+Users?
+Reviews?
+Leads?
+Structure
+Do listings belong to multiple categories?
+Do we need:
+Many-to-many relationships?
+Location-based filtering?
+Geolocation (lat/long)?
+Will businesses manage their own listing?
+Data Input
+How does data get added?
+Manual?
+Admin dashboard?
+API import?
+Scraped?
+4️⃣ Content & SEO (Astro Strength)
+Astro is elite for SEO. I’d ask:
+What pages need to rank?
+Are we targeting local keywords?
+Do we need:
+Programmatic SEO pages?
+Dynamic category pages?
+Dynamic location pages?
+Will blog content live in:
+Markdown?
+Supabase?
+Do we need schema markup (LocalBusiness, FAQ, etc.)?
+5️⃣ Admin & Workflow
+Who manages the site?
+Do we need:
+Admin dashboard?
+Role-based permissions?
+Should we use:
+Supabase Auth?
+Magic link login?
+Should listings require approval before publishing?
+6️⃣ Monetization Architecture
+If it's a directory or service site:
+Free listings + paid featured?
+Stripe integration?
+Subscription tiers?
+Lead tracking per listing?
+Analytics dashboard for businesses?
+7️⃣ Security & Compliance
+Will we collect user data?
+Need:
+Terms & privacy?
+GDPR?
+Rate limiting?
+Should Supabase Row Level Security (RLS) be enabled?
+Do businesses see only their own data?
+8️⃣ Scalability & Future
+What happens if traffic 10x’s?
+Will this expand beyond one location?
+Should database structure support:
+Multiple cities?
+Multiple verticals?
+Do we anticipate mobile app later?
+9️⃣ Design Direction
+Minimal or bold?
+Competitors you like?
+Color direction?
+Should it feel:
+Authority?
+Fun?
+Premium?
+Local?

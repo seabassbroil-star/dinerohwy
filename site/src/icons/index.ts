@@ -40,6 +40,13 @@ export const icons = {
     '<path d="M7 18a4 4 0 0 1-.5-7.97A6 6 0 0 1 18 9.5a3.5 3.5 0 0 1-.5 8.5H7Z"/>',
   menu: '<path d="M4 7h16M4 12h16M4 17h16"/>',
   close: '<path d="M6 6l12 12M18 6 6 18"/>',
+
+  // socials
+  x: '<path d="M4 4l6.5 8.5L4.5 20M5 4h4l10 16h-4L5 4Z"/>',
+  instagram:
+    '<rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17 6.9h.01"/>',
+  facebook:
+    '<rect x="3.5" y="3.5" width="17" height="17" rx="5"/><path d="M14.6 8H13c-.8 0-1.4.6-1.4 1.5V12M10 12h4M12.6 12v5.5"/>',
 } as const;
 
 export type IconName = keyof typeof icons;

@@ -8,6 +8,7 @@ const t = useT(lang);
 const p = (path: string) => localizedPath(path, lang);
 
 const tools = [
+  { href: p("/report-card"), icon: "seo", label: "Free Report Card" },
   { href: p("/showcase"), icon: "website", label: t("nav.showcase") },
   { href: p("/review-app"), icon: "review", label: "Review App" },
   { href: p("/image-quote"), icon: "quote", label: "Instant Quotes" },
@@ -39,13 +40,14 @@ const tools = [
           ))}
         </div>
       </details>
+      <a href={p("/get-online")}>Get online</a>
       <a href={p("/book")}>{t("nav.book")}</a>
       <a href={p("/work")}>{t("nav.work")}</a>
       <a href={p("/free")}>{t("nav.free")}</a>
       <a href={p("/about")}>{t("nav.about")}</a>
       <div class="nav-actions">
         <LangSwitch />
-        <a class="btn btn-primary" href={p("/free")}>{t("cta.primary")}</a>
+        <a class="btn btn-primary" href={p("/report-card")}>{t("cta.primary")}</a>
       </div>
     </nav>
   </div>

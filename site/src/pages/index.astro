@@ -5,11 +5,12 @@ import PainStrip from "../components/PainStrip.astro";
 import SolutionCard from "../components/SolutionCard.astro";
 import StatStrip from "../components/StatStrip.astro";
 import Icon from "../components/Icon.astro";
+import AIStack from "../components/AIStack.astro";
 
-const pains = [
-  { icon: "assistant", title: "Missed calls after hours", body: "Customers call when you're busy or closed. No answer means they call the next name on the list." },
-  { icon: "quote", title: "Quotes that take days", body: "By the time you get back with a price, they've already booked someone faster." },
-  { icon: "email", title: "Past customers forgotten", body: "The people who already paid you once never hear from you again. That's money left on the table." },
+const wins = [
+  { icon: "assistant", title: "Answer every customer — even after hours", body: "When you're busy or closed, your site picks up: it replies, books, and captures the details. Every knock gets answered." },
+  { icon: "quote", title: "Quote in minutes, win the job", body: "A customer sends a photo and gets a price on the spot — while they're still deciding. Fast quotes win work." },
+  { icon: "email", title: "Bring past customers back", body: "The people who already love you are your easiest next sale. A simple follow-up brings them back around." },
 ] as const;
 
 const solutions = [
@@ -34,7 +35,7 @@ const stats = [
     <div class="motif-glow" aria-hidden="true"></div>
     <div class="container hero-inner">
       <span class="eyebrow">internet + dinero</span>
-      <h1>Never miss a lead again.</h1>
+      <h1>Get found. Get booked. Grow.</h1>
       <p class="lede">
         Dinero Hwy builds the software that turns your website into a machine —
         it answers customers, sends quotes, and follows up while you run the shop.
@@ -51,19 +52,35 @@ const stats = [
       />
       <p class="hero-fineprint">Free Website &amp; Google Report Card — your business graded, plus 3 fixes. No pitch.</p>
 
+      <p class="hero-ai"><AIStack label="Powered by the world's most advanced AI" /> <span class="hero-ai-human">— with a human you can meet.</span></p>
+
       <div class="hero-stats">
         <StatStrip items={stats} />
       </div>
     </div>
   </section>
 
-  <!-- PAINS -->
+  <!-- OPPORTUNITY STRIP -->
   <section class="section container">
-    <span class="eyebrow">Sound familiar?</span>
-    <h2>Three ways local businesses quietly lose money.</h2>
+    <span class="eyebrow">Hiding in plain sight</span>
+    <h2>Three easy wins already sitting in your business.</h2>
     <div class="stack">
-      <PainStrip items={pains} />
+      <PainStrip items={wins} />
     </div>
+  </section>
+
+  <!-- GROWTH THESIS -->
+  <section class="section container growth">
+    <span class="eyebrow">The untapped part</span>
+    <h2>The best shop in town shouldn't be the best-kept secret.</h2>
+    <p class="lede">
+      You've got the customers, the reputation, and years of knowing exactly what you're doing.
+      The only thing missing is a place online where new people can find you — and that's not
+      falling behind. It's a business that's been holding its breath.
+    </p>
+    <p class="growth-punch">The day it shows up where everyone's already looking, <b>it grows.</b></p>
+    <p class="growth-thesis">You know your business. We know how to put it online. That's the whole deal.</p>
+    <a class="btn btn-primary" href="/get-online">See how it works <Icon name="arrow-right" size={16} /></a>
   </section>
 
   <!-- SOLUTIONS -->
@@ -76,6 +93,22 @@ const stats = [
     </div>
   </section>
 
+  <!-- GET ONLINE TEASER -->
+  <section class="section container">
+    <a class="getonline" href="/get-online">
+      <div>
+        <span class="eyebrow">Watch: 35 seconds</span>
+        <h2>Invest $12 a year in digital real estate — and watch it grow.</h2>
+        <p class="lede">For about $12/yr you own your spot on the map (domain &amp; hosting on Cloudflare). The site itself, we build for you, priced to fit. You don't touch a keyboard.</p>
+        <span class="getonline-cta">Play the ad <Icon name="arrow-right" size={18} /></span>
+      </div>
+      <div class="getonline-art" aria-hidden="true">
+        <span class="route-bar"></span>
+        <span class="getonline-tag"><b>$12</b>/yr</span>
+      </div>
+    </a>
+  </section>
+
   <!-- PROOF -->
   <section class="section container proof">
     <div class="proof-card card">
@@ -86,6 +119,7 @@ const stats = [
           This whole site — the quote demo, the review app, the email engine —
           is real code running on Cloudflare. Inspect it, fork it, or just watch it work.
         </p>
+        <p class="proof-ai">We build with the most advanced AI models on Earth — <b>Claude, ChatGPT, and Grok</b> — so a small local shop gets big-agency work at a price that makes sense.</p>
         <div class="proof-actions">
           <a class="btn btn-ghost" href="/work">
             <Icon name="code" size={18} /> See the work
@@ -116,8 +150,18 @@ const stats = [
   .hero-inner { display: grid; justify-items: start; gap: 1rem; max-width: 780px; }
   .hero h1 { margin: 0.2rem 0; }
   .hero-fineprint { color: var(--cream-muted); font-size: var(--step--1); margin: 0.25rem 0 0; }
+  .hero-ai { display: flex; flex-wrap: wrap; align-items: center; gap: 0.45rem; margin: 0.75rem 0 0; }
+  .hero-ai-human { color: var(--cream-muted); font-size: var(--step--1); font-weight: 700; }
+  .proof-ai { color: var(--cream-muted); margin: 0.75rem 0 0; max-width: 52ch; }
+  .proof-ai b { color: var(--cream); }
   .hero-stats { margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--line); width: 100%; }
   .hero-stats :global(.stats) { justify-content: flex-start; }
+
+  .growth { max-width: 760px; }
+  .growth .lede { margin-top: 0.75rem; }
+  .growth-punch { font-size: var(--step-2); font-weight: 800; letter-spacing: -0.02em; margin: 1.25rem 0 0.5rem; text-wrap: balance; }
+  .growth-punch b { color: var(--rust-light); }
+  .growth-thesis { color: var(--cream-muted); font-size: var(--step-1); margin: 0 0 1.5rem; }
 
   .solutions-grid {
     margin-top: var(--space-md);
@@ -132,6 +176,20 @@ const stats = [
   .proof-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.25rem; }
   .proof-route { display: grid; justify-items: center; gap: 1rem; }
   @media (max-width: 760px) { .proof-card { grid-template-columns: 1fr; } .proof-route { display: none; } }
+
+  .getonline {
+    display: grid; grid-template-columns: 1.5fr 1fr; gap: var(--space-lg); align-items: center;
+    padding: clamp(1.5rem, 4vw, 2.75rem); border-radius: var(--radius-lg);
+    border: 1px solid var(--line); background: linear-gradient(160deg, rgba(40,84,64,.28), rgba(6,27,20,.34));
+    transition: border-color .16s, transform .16s;
+  }
+  .getonline:hover { border-color: var(--line-strong); transform: translateY(-2px); color: var(--cream); }
+  .getonline-cta { display: inline-flex; align-items: center; gap: .5rem; margin-top: 1rem; color: var(--rust-light); font-weight: 800; }
+  .getonline-art { position: relative; display: grid; place-items: center; min-height: 120px; }
+  .getonline-art .route-bar { width: 80%; }
+  .getonline-tag { position: absolute; padding: .6rem 1rem; border-radius: 12px; background: linear-gradient(160deg, var(--rust-light), var(--rust-deep)); color: var(--cream); font-weight: 700; box-shadow: var(--shadow-md); }
+  .getonline-tag b { font-family: var(--condensed); font-size: 1.8rem; }
+  @media (max-width: 760px) { .getonline { grid-template-columns: 1fr; } .getonline-art { display: none; } }
 
   .final-cta { max-width: 640px; text-align: center; }
   .final-cta :global(.capture) { justify-items: center; }

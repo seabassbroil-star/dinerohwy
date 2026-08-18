@@ -1,0 +1,111 @@
+<title>Dinero HWY — Logo</title>
+<style>
+  :root {
+    --forest-950: #061b14; --forest-800: #103b2d;
+    --cream: #f4eedc; --cream-muted: #c9c5b7; --rust: #c75a31;
+    --line: rgba(244, 238, 220, 0.16);
+    --sans: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh; color: var(--cream); font-family: var(--sans);
+    background: radial-gradient(circle at 50% 0%, rgba(75,119,92,.28), transparent 42rem), linear-gradient(160deg, var(--forest-800), var(--forest-950) 74%);
+    background-attachment: fixed;
+  }
+  .wrap { width: min(1060px, calc(100% - 3rem)); margin-inline: auto; padding-block: clamp(2rem, 5vh, 4rem); }
+  .eyebrow { font-size: .72rem; font-weight: 800; letter-spacing: .22em; text-transform: uppercase; color: var(--rust); margin: 0 0 .6rem; }
+  h1 { font-size: clamp(1.7rem, 1.1rem + 2.2vw, 2.5rem); letter-spacing: -.03em; margin: 0 0 .5rem; }
+  .sub { color: var(--cream-muted); max-width: 60ch; margin: 0 0 2.5rem; line-height: 1.6; }
+
+  .hero { display: grid; place-items: center; padding: clamp(2rem, 6vw, 4rem); border-radius: 20px;
+    background: radial-gradient(circle at 50% 40%, rgba(75,119,92,.30), transparent 62%), var(--forest-950); border: 1px solid var(--line); }
+  .hero svg { width: min(460px, 92%); height: auto; filter: drop-shadow(0 24px 30px rgba(2,15,10,.45)); }
+
+  .row { display: grid; gap: 1.25rem; margin-top: 1.25rem; }
+  @media (min-width: 800px) { .row { grid-template-columns: 1.15fr 1fr; } }
+  .panel { border: 1px solid var(--line); border-radius: 16px; padding: 1.5rem; background: linear-gradient(160deg, rgba(40,84,64,.16), rgba(6,27,20,.28)); }
+  .panel h3 { margin: 0 0 1rem; font-size: .95rem; font-weight: 800; letter-spacing: .01em; }
+  .panel h3 span { color: var(--cream-muted); font-weight: 600; }
+  .panel .construct { width: 100%; height: auto; border-radius: 10px; background: var(--forest-950); }
+
+  .navbar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .7rem 1rem; border-radius: 12px; background: rgba(6,27,20,.72); border: 1px solid var(--line); margin-bottom: 1rem; }
+  .navbar svg { width: 118px; height: auto; display: block; }
+  .navbar .lk { display: flex; gap: .8rem; opacity: .5; } .navbar .lk span { width: 38px; height: 8px; border-radius: 4px; background: var(--cream-muted); }
+  .navbar .cta { width: 84px; height: 26px; border-radius: 7px; background: linear-gradient(145deg,#db6e42,#a94125); }
+  .sizes { display: flex; align-items: flex-end; gap: 1.25rem; flex-wrap: wrap; }
+  .sizes .chip { text-align: center; color: var(--cream-muted); font-size: .7rem; }
+  .sizes .chip svg { display: block; height: auto; margin-bottom: .4rem; }
+
+  .foot { margin-top: 2rem; color: var(--cream-muted); font-size: .85rem; line-height: 1.6; }
+  .foot code { font-family: var(--mono); color: var(--cream); background: rgba(244,238,220,.08); padding: .1rem .35rem; border-radius: 4px; }
+  .phi { color: var(--rust); font-weight: 700; }
+</style>
+
+<!-- ===== symbol: the logo (golden-rectangle sign, Dinero over a bigger HWY) ===== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="logo" viewBox="0 0 680 420">
+    <defs>
+      <linearGradient id="green" x1="0" y1="0" x2=".9" y2="1"><stop offset="0" stop-color="#285440"/><stop offset=".48" stop-color="#1b4635"/><stop offset="1" stop-color="#103326"/></linearGradient>
+      <linearGradient id="rim" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9aab9d"/><stop offset=".42" stop-color="#445d52"/><stop offset="1" stop-color="#142b23"/></linearGradient>
+      <linearGradient id="cream" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fffdf3"/><stop offset=".58" stop-color="#f4eedc"/><stop offset="1" stop-color="#d8d0bc"/></linearGradient>
+      <radialGradient id="rivet" cx="35%" cy="28%" r="70%"><stop offset="0" stop-color="#e6e6da"/><stop offset=".32" stop-color="#8e9d93"/><stop offset="1" stop-color="#1c3028"/></radialGradient>
+      <clipPath id="face"><rect x="22" y="22" width="636" height="376" rx="26"/></clipPath>
+      <filter id="shadow" x="-8%" y="-16%" width="116%" height="140%"><feDropShadow dx="0" dy="10" stdDeviation="6" flood-color="#04130e" flood-opacity=".38"/></filter>
+      <filter id="raised" x="-14%" y="-18%" width="128%" height="140%"><feDropShadow dx="0" dy="4" stdDeviation="2" flood-color="#061c14" flood-opacity=".6"/></filter>
+      <filter id="surface"><feTurbulence type="fractalNoise" baseFrequency=".7" numOctaves="2" seed="11" result="noise"/><feColorMatrix in="noise" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 .07 0" result="grain"/><feBlend in="SourceGraphic" in2="grain" mode="soft-light"/></filter>
+    </defs>
+    <g filter="url(#shadow)">
+      <rect x="10" y="10" width="660" height="400" rx="34" fill="url(#rim)" stroke="#071e16" stroke-width="5"/>
+      <rect x="22" y="22" width="636" height="376" rx="26" fill="url(#green)" stroke="#071f17" stroke-width="3"/>
+      <g clip-path="url(#face)" filter="url(#surface)"><rect x="22" y="22" width="636" height="376" fill="url(#green)"/><path d="M40 40h600" stroke="#ffffff" stroke-opacity=".14" stroke-width="4" stroke-linecap="round"/><path d="M40 380h600" stroke="#061e16" stroke-opacity=".36" stroke-width="3" stroke-linecap="round"/></g>
+      <rect x="36" y="36" width="608" height="348" rx="20" fill="none" stroke="url(#cream)" stroke-width="5"/>
+    </g>
+    <g filter="url(#raised)" fill="url(#cream)" font-family="Arial Narrow, Helvetica Neue, Arial, sans-serif" text-anchor="middle">
+      <text x="340" y="196" textLength="300" lengthAdjust="spacingAndGlyphs" font-size="118" font-weight="700">Dinero</text>
+      <text x="340" y="356" textLength="486" lengthAdjust="spacingAndGlyphs" font-size="176" font-weight="800" letter-spacing="4">HWY</text>
+    </g>
+    <g fill="url(#rivet)" stroke="#0a2119" stroke-width="2"><circle cx="52" cy="52" r="7"/><circle cx="628" cy="52" r="7"/><circle cx="52" cy="368" r="7"/><circle cx="628" cy="368" r="7"/></g>
+  </symbol>
+</svg>
+
+<div class="wrap">
+  <p class="eyebrow">Logo · basic</p>
+  <h1>Dinero HWY</h1>
+  <p class="sub">One clean sign. Star and “H” gone. Same rim, cream pinstripe border, and corner rivets as the original. Proportions built on the golden ratio (<span class="phi">φ = 1.618</span>); HWY set larger.</p>
+
+  <div class="hero"><svg viewBox="0 0 680 420" role="img" aria-label="Dinero HWY logo"><use href="#logo"/></svg></div>
+
+  <div class="row">
+    <div class="panel">
+      <h3>In context <span>· nav + small sizes</span></h3>
+      <div class="navbar">
+        <svg viewBox="0 0 680 420" aria-hidden="true"><use href="#logo"/></svg>
+        <span class="lk"><span></span><span></span><span></span></span><span class="cta"></span>
+      </div>
+      <div class="sizes">
+        <div class="chip"><svg viewBox="0 0 680 420" width="150"><use href="#logo"/></svg>150px</div>
+        <div class="chip"><svg viewBox="0 0 680 420" width="96"><use href="#logo"/></svg>96px</div>
+        <div class="chip"><svg viewBox="0 0 680 420" width="60"><use href="#logo"/></svg>60px</div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3>The proportions <span>· golden ratio</span></h3>
+      <svg class="construct" viewBox="0 0 680 420" role="img" aria-label="Golden ratio construction">
+        <use href="#logo"/>
+        <g fill="none" stroke="#c75a31" stroke-opacity=".85" stroke-width="1.4">
+          <rect x="10" y="10" width="660" height="400" stroke-dasharray="5 5"/>
+          <line x1="10" y1="257.5" x2="670" y2="257.5"/>
+          <line x1="417.4" y1="10" x2="417.4" y2="410" stroke-opacity=".5" stroke-dasharray="4 6"/>
+        </g>
+        <g fill="#c75a31" font-family="ui-monospace, Menlo, monospace" font-size="15" font-weight="700">
+          <text x="24" y="248">φ · 0.618 line</text>
+          <text x="486" y="30">1 : 1.618</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+
+  <p class="foot">Outer sign is a golden rectangle (<span class="phi">1 : 1.618</span>); the split between <b>Dinero</b> and the larger <b>HWY</b> sits on the horizontal golden line. Say the word and I’ll rebuild it into <code>dinerohwy-logo-primary.svg</code> + the mark/apparel variants and outline the letters to paths. Want it on <b>one line</b> instead of stacked? I’ll do a wide version too.</p>
+</div>
