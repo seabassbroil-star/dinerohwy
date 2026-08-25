@@ -6,12 +6,21 @@
 // newlines) is stripped, never interpreted. Client-side attributes are only UX;
 // this module is what actually decides what a submission is allowed to contain.
 
+// Single source of truth for field size caps — tight, realistic values (below the
+// technical maxes but big enough for real data). Client `maxlength` reads these
+// too; the server is authoritative.
 export const LIMITS = {
   nameMin: 2,
-  nameMax: 60,
-  phoneLen: 10,
+  nameMax: 50, // a person's name
+  businessMax: 64, // just the business name
+  emailMax: 120, // well under RFC 254; fits all real addresses
+  phoneMin: 10, // local number
+  phoneMax: 15, // E.164 max incl. country code
   messageMin: 3,
-  messageMax: 600,
+  messageMax: 400, // a short situation description
+  detailMax: 120, // one-line "anything special"
+  urlMax: 512, // a website address
+  codeLen: 6, // OTP
 } as const;
 
 /**
@@ -61,7 +70,7 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
  * lettersOnly (people write "need it by June 15, budget 500") but still bans
  * <>, symbols, emoji, newlines, and control chars.
  */
-export function messageText(input: unknown, maxLen = 600): string {
+export function messageText(input: unknown, maxLen: number = LIMITS.messageMax): string {
   const s = typeof input === "string" ? input : "";
   return s
     .normalize("NFKC")
@@ -113,17 +122,18 @@ export function validateContactLead(
   const name = lettersOnly(input.name).slice(0, LIMITS.nameMax);
   const message = messageText(input.message);
 
-  const phoneRaw = digitsOnly(input.phone);
-  const phone = /^\d{10}$/.test(phoneRaw) ? phoneRaw : "";
+  const phoneRaw = digitsOnly(input.phone).slice(0, LIMITS.phoneMax);
+  const phone =
+    phoneRaw.length >= LIMITS.phoneMin && phoneRaw.length <= LIMITS.phoneMax ? phoneRaw : "";
 
   const emailRaw = (typeof input.email === "string" ? input.email : "").trim().toLowerCase();
-  const email = EMAIL_RE.test(emailRaw) && emailRaw.length <= 254 ? emailRaw : "";
+  const email = EMAIL_RE.test(emailRaw) && emailRaw.length <= LIMITS.emailMax ? emailRaw : "";
 
   if (name.length < LIMITS.nameMin) {
     errors.push("Please enter your name using letters only.");
   }
   if ((phoneRaw || opts.requireAll) && !phone) {
-    errors.push("Enter a 10-digit phone number.");
+    errors.push("Enter a valid phone number (add your country code if outside the US).");
   }
   if ((emailRaw || opts.requireAll) && !email) {
     errors.push("Enter a valid email address.");
@@ -167,13 +177,13 @@ export function validateTextLead(input: TextLeadInput): ValidationResult {
 
   const name = lettersOnly(input.name).slice(0, LIMITS.nameMax);
   const message = lettersOnly(input.message).slice(0, LIMITS.messageMax);
-  const phone = digitsOnly(input.phone).slice(0, LIMITS.phoneLen + 4); // room to detect "too long"
+  const phone = digitsOnly(input.phone).slice(0, LIMITS.phoneMax);
 
   if (name.length < LIMITS.nameMin) {
     errors.push("Please enter your name using letters only.");
   }
-  if (!/^\d{10}$/.test(phone)) {
-    errors.push("Please enter a 10-digit phone number.");
+  if (phone.length < LIMITS.phoneMin) {
+    errors.push("Please enter a valid phone number.");
   }
   if (message.replace(/\s/g, "").length < LIMITS.messageMin) {
     errors.push("Please tell us how we can help, using letters only.");
@@ -182,6 +192,6 @@ export function validateTextLead(input: TextLeadInput): ValidationResult {
   return {
     ok: errors.length === 0,
     errors,
-    clean: { name, phone: phone.slice(0, LIMITS.phoneLen), message },
+    clean: { name, phone, message },
   };
 }

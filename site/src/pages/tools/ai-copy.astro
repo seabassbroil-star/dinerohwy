@@ -34,19 +34,19 @@ const types = [
       <div class="ai-fieldset" data-step="1">
         <label>
           <span>Name</span>
-          <input name="name" type="text" maxlength="60" pattern="[A-Za-z ]+" autocomplete="name" placeholder="Your name" required data-letters />
+          <input name="name" type="text" maxlength="50" pattern="[A-Za-z ]+" autocomplete="name" placeholder="Your name" required data-letters />
         </label>
         <label>
           <span>Email <em>(we'll text a code here to verify)</em></span>
-          <input name="email" type="email" maxlength="254" autocomplete="email" placeholder="you@example.com" required />
+          <input name="email" type="email" maxlength="120" autocomplete="email" placeholder="you@example.com" required />
         </label>
         <label>
           <span>Phone</span>
-          <input name="phone" type="tel" inputmode="numeric" maxlength="10" pattern="\d{10}" autocomplete="tel-national" placeholder="10-digit number" required data-digits />
+          <input name="phone" type="tel" inputmode="tel" maxlength="16" pattern="[+]?[0-9]{10,15}" autocomplete="tel" placeholder="Phone (add +country code if outside the US)" required data-digits />
         </label>
         <label>
           <span>Business name</span>
-          <input name="business" type="text" maxlength="80" placeholder="Joe's Taqueria" required />
+          <input name="business" type="text" maxlength="64" placeholder="Joe's Taqueria" required />
         </label>
         <label>
           <span>Business type</span>
@@ -57,7 +57,7 @@ const types = [
         </label>
         <label>
           <span>Anything special? <em>(optional)</em></span>
-          <input name="detail" type="text" maxlength="200" placeholder="Family-owned since 1998, best al pastor in town" />
+          <input name="detail" type="text" maxlength="120" placeholder="Family-owned since 1998, best al pastor in town" />
         </label>
         <div class="cf-turnstile" data-sitekey="0x4AAAAAAEawGmmRMkt49lED" data-theme="dark"></div>
         <button class="btn btn-primary" type="submit" data-step1>
@@ -130,7 +130,11 @@ const types = [
     el.addEventListener("input", () => (el.value = el.value.replace(/[^A-Za-z ]+/g, ""))),
   );
   form?.querySelectorAll<HTMLInputElement>("[data-digits]").forEach((el) =>
-    el.addEventListener("input", () => (el.value = el.value.replace(/\D+/g, "").slice(0, 10))),
+    el.addEventListener("input", () => {
+      let v = el.value.replace(/[^\d+]/g, "");
+      v = (v.startsWith("+") ? "+" : "") + v.replace(/\+/g, "");
+      el.value = v.slice(0, 16);
+    }),
   );
   form?.querySelectorAll<HTMLInputElement>("[data-digits6]").forEach((el) =>
     el.addEventListener("input", () => (el.value = el.value.replace(/\D+/g, "").slice(0, 6))),

@@ -18,9 +18,10 @@ export const POST: APIRoute = async ({ request, locals }) => {
   const form = await request.formData().catch(() => null);
   if (!form) return json({ ok: false, message: "Bad request" }, 400);
 
-  const url = normalizeUrl(String(form.get("url") ?? ""));
-  const email = String(form.get("email") ?? "").trim();
-  const business = String(form.get("business") ?? "").trim();
+  // Cap raw input lengths before use (defense against oversized payloads).
+  const url = normalizeUrl(String(form.get("url") ?? "").slice(0, 512));
+  const email = String(form.get("email") ?? "").trim().slice(0, 120);
+  const business = String(form.get("business") ?? "").trim().slice(0, 64);
 
   let html = "";
   let meta: FetchMeta = {

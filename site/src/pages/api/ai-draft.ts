@@ -69,8 +69,8 @@ export const POST: APIRoute = async ({ request, locals }) => {
   const form = await request.formData().catch(() => null);
   if (!form) return json(false, 400, { message: "Bad request" });
 
-  const business = safeText(form.get("business"), 80);
-  const detail = safeText(form.get("detail"), 140);
+  const business = safeText(form.get("business"), 64);
+  const detail = safeText(form.get("detail"), 120);
   const typeKey = String(form.get("type") ?? "").trim();
   const category = CATEGORIES[typeKey];
 

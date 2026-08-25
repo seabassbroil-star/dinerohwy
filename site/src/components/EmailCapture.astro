@@ -41,13 +41,14 @@ const showText = variant !== "footer";
 
   <div class="capture-row">
     {collectBusiness && (
-      <input class="field" type="text" name="business" placeholder="Business name" autocomplete="organization" />
+      <input class="field" type="text" name="business" maxlength="64" placeholder="Business name" autocomplete="organization" />
     )}
     <input
       class="field"
       type="email"
       name="email"
       required
+      maxlength="120"
       placeholder={t("cta.email_placeholder")}
       autocomplete="email"
       aria-label="Email address"

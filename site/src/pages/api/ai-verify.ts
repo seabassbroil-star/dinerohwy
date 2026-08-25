@@ -62,16 +62,26 @@ export const POST: APIRoute = async ({ request, locals }) => {
     });
   }
 
+  // Hidden preheader + spacer: fills the inbox PREVIEW with a decoy line and
+  // invisible characters so the code never shows in any snippet — you must open
+  // the email to see it. The spacer is zero-width/figure-space chars.
+  const preheader =
+    `<div style="display:none;max-height:0;overflow:hidden;mso-hide:all;">Open to view your DineroHWY verification code.</div>` +
+    `<div style="display:none;max-height:0;overflow:hidden;">` +
+    "​ ﻿".repeat(60) +
+    `</div>`;
   const html = `
     <div style="font-family:Arial,Helvetica,sans-serif;font-size:15px;color:#0b2d22;">
-      <p>Your DineroHWY verification code:</p>
+      ${preheader}
+      <p>Thanks for using the DineroHWY AI Copy Assistant. Open this email to get the verification code that unlocks your results — then enter it on the page.</p>
+      <p style="color:#6b6b6b;font-size:13px;">Your code (expires in 10 minutes):</p>
       <p style="font-size:30px;font-weight:900;letter-spacing:4px;margin:8px 0;">${code}</p>
-      <p style="color:#6b6b6b;font-size:13px;">Enter this on the page to unlock your copy. It expires in 10 minutes. If you didn't request it, ignore this email.</p>
+      <p style="color:#6b6b6b;font-size:13px;">If you didn't request this, you can ignore this email.</p>
     </div>`.trim();
 
   const sent = await sendEmail(env ?? {}, {
     to: clean.email,
-    subject: `${code} is your DineroHWY code`,
+    subject: "Your DineroHWY verification code (inside)",
     html,
   });
   if (!sent.ok) {

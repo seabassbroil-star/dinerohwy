@@ -38,8 +38,8 @@ export const POST: APIRoute = async ({ request, locals }) => {
 
   const input = {
     email,
-    name: (form.get("name") as string) || null,
-    business: (form.get("business") as string) || null,
+    name: ((form.get("name") as string) || "").slice(0, 50) || null,
+    business: ((form.get("business") as string) || "").slice(0, 64) || null,
     lang: (form.get("lang") as string) || "en",
     magnet: (form.get("magnet") as string) || "report-card",
     source: (form.get("source") as string) || "unknown",

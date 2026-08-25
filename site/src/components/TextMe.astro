@@ -40,7 +40,7 @@ import Icon from "./Icon.astro";
         type="text"
         name="name"
         required
-        maxlength="60"
+        maxlength="50"
         pattern="[A-Za-z ]+"
         autocomplete="name"
         placeholder="Your name"
@@ -54,11 +54,11 @@ import Icon from "./Icon.astro";
         class="field"
         type="tel"
         name="phone"
-        inputmode="numeric"
-        maxlength="10"
-        pattern="\d{10}"
-        autocomplete="tel-national"
-        placeholder="10-digit number"
+        inputmode="tel"
+        maxlength="16"
+        pattern="[+]?[0-9]{10,15}"
+        autocomplete="tel"
+        placeholder="Phone (add +country code if outside the US)"
         data-digits
       />
     </label>
@@ -69,7 +69,7 @@ import Icon from "./Icon.astro";
         class="field"
         type="email"
         name="email"
-        maxlength="254"
+        maxlength="120"
         autocomplete="email"
         placeholder="you@example.com"
       />
@@ -81,7 +81,7 @@ import Icon from "./Icon.astro";
         class="field textme-textarea"
         name="message"
         required
-        maxlength="600"
+        maxlength="400"
         rows="3"
         placeholder="Tell me a little about your situation"
         data-message
@@ -130,7 +130,10 @@ import Icon from "./Icon.astro";
   });
   form?.querySelectorAll<HTMLInputElement>("[data-digits]").forEach((el) => {
     el.addEventListener("input", () => {
-      const cleaned = el.value.replace(/\D+/g, "").slice(0, 10);
+      // Allow a leading + (country code) then digits, up to 16 chars.
+      let v = el.value.replace(/[^\d+]/g, "");
+      v = (v.startsWith("+") ? "+" : "") + v.replace(/\+/g, "");
+      const cleaned = v.slice(0, 16);
       if (cleaned !== el.value) el.value = cleaned;
     });
   });
