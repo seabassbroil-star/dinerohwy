@@ -1,18 +1,148 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import Icon from "../components/Icon.astro";
+
+const notes = [
+  {
+    label: "Galveston",
+    body: "This is home base. The visual language comes from roads, exits, seawall energy, Texas signs, and local businesses that need websites to turn searches into customers.",
+  },
+  {
+    label: "Ecuador",
+    body: "That branch adds cultural color and perspective. It belongs in the story of the company, not squeezed into every footer line.",
+  },
+  {
+    label: "Developer Proof",
+    body: "DineroHWY is built in public where it makes sense: portfolio pages, tools, and GitHub links are part of the sales argument.",
+  },
+];
 ---
 
-<BaseLayout title="About — Dinero Hwy" description="Local, in Houston. Dinero Hwy builds real software for local businesses.">
-  <section class="section container" style="max-width:720px">
-    <span class="eyebrow">Who's behind this</span>
-    <h1>Local software, built by a real developer.</h1>
-    <p class="lede">Dinero Hwy is a Houston-based studio building websites and automation for local businesses — the kind you can meet face to face.</p>
-    <p>The idea is simple: too many great local businesses are invisible online — the after-hours callers, the fast quotes, the repeat customers are all right there for the taking. Software brings them in quietly in the background. We build that software, put it to work, and prove it by running every tool we sell right here on this site.</p>
-    <p>No agencies, no template mills. Real code on Cloudflare, in the open, so you can see exactly what you're getting.</p>
-    <p>And we'll tell you our secret out loud: we build with the most advanced AI models on Earth — <strong>Claude, ChatGPT, and Grok</strong>. That's why the work is fast and the price makes sense. The AI does the heavy lifting; the judgment, the taste, and the person who answers when you call — that's human, and local. You don't need to understand any of it. That's our job.</p>
-    <h2 style="margin-top:2.5rem">The idea behind Dinero Hwy</h2>
-    <p>Some of the best owners we meet don't "do computers" — and that's exactly right. They spent their years getting great at the actual work, not at websites. So we handle the digital part for them. You stay the expert in your trade; we make sure the world can find you.</p>
-    <p>Here's what gets us up in the morning: a great business that's invisible online isn't <em>behind</em>. It's the most exciting kind of opportunity there is — because the growth is all still ahead of it. You already did the hard part. Now we put your sign on the highway and <strong>watch it grow</strong>.</p>
-    <div class="route-bar" aria-hidden="true" style="margin-top:1.5rem"></div>
+<BaseLayout
+  title="About - DineroHWY"
+  description="About DineroHWY: Galveston-based website development, Ecuador cultural roots, public GitHub proof, and tools for local-business growth."
+>
+  <section class="about-hero container">
+    <span class="eyebrow">About</span>
+    <h1>Built from Galveston, with a wider road behind it.</h1>
+    <p class="lede">
+      DineroHWY is my developer brand for building websites and tools that help
+      local businesses look real, get found, and convert more visitors.
+    </p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="/portfolio">See the Work <Icon name="arrow-right" size={17} /></a>
+      <a class="btn btn-ghost" href="https://github.com/seabassbroil-star" target="_blank" rel="noopener">
+        <Icon name="github" size={18} /> GitHub
+      </a>
+    </div>
+  </section>
+
+  <section class="section container origin-grid" aria-label="DineroHWY background">
+    {notes.map((note) => (
+      <article>
+        <span>{note.label}</span>
+        <p>{note.body}</p>
+      </article>
+    ))}
+  </section>
+
+  <section class="section container about-band">
+    <div>
+      <span class="eyebrow">What this site is</span>
+      <h2>A portfolio, a workshop, and a customer toolset.</h2>
+    </div>
+    <p>
+      The homepage gets a business owner into the website grader. The portfolio
+      shows built sites. The tools page explains the systems behind the builds.
+      GitHub shows the code trail when public proof is useful.
+    </p>
   </section>
 </BaseLayout>
+
+<style>
+  .about-hero {
+    padding-block: clamp(4rem, 8vw, 7rem) var(--space-lg);
+  }
+
+  .about-hero h1 {
+    max-width: 860px;
+    margin-top: 0.45rem;
+    letter-spacing: 0;
+  }
+
+  .about-hero .lede {
+    max-width: 720px;
+    color: var(--cream-muted);
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.25rem;
+  }
+
+  .origin-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    padding-top: 0;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    overflow: hidden;
+    background: var(--line);
+  }
+
+  .origin-grid article {
+    min-height: 260px;
+    display: grid;
+    align-content: end;
+    gap: 0.65rem;
+    padding: 1.3rem;
+    background: rgba(6, 27, 20, 0.72);
+  }
+
+  .origin-grid span {
+    color: var(--rust-light);
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .origin-grid p,
+  .about-band p {
+    margin: 0;
+    color: var(--cream-muted);
+  }
+
+  .about-band {
+    display: grid;
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    gap: var(--space-md);
+    align-items: center;
+    padding: clamp(1.3rem, 4vw, 2rem);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background:
+      linear-gradient(135deg, rgba(219, 110, 66, 0.12), transparent 45%),
+      rgba(6, 27, 20, 0.58);
+  }
+
+  .about-band h2 {
+    margin-top: 0.4rem;
+    letter-spacing: 0;
+  }
+
+  @media (max-width: 820px) {
+    .origin-grid,
+    .about-band {
+      grid-template-columns: 1fr;
+    }
+
+    .origin-grid article {
+      min-height: 190px;
+    }
+  }
+</style>

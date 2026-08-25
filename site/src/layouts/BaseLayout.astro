@@ -5,6 +5,7 @@ import "../styles/motifs.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import RouteBackground from "../components/RouteBackground.astro";
+import TextMe from "../components/TextMe.astro";
 import { getLangFromUrl } from "../i18n/ui";
 
 interface Props {
@@ -17,12 +18,13 @@ interface Props {
 const {
   title = "Dinero Hwy — Software that makes your local business money",
   description = "Dinero Hwy builds websites and automation for local businesses — and every tool runs live on this site so you can try it before you buy it.",
-  image = "/assets/dinerohwy-social-card.png",
+  image = "/assets/dinerohwy-logo-primary.svg?v=11",
   noindex = false,
 } = Astro.props;
 
 const lang = getLangFromUrl(Astro.url);
 const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url).href;
+const absoluteImage = new URL(image, Astro.site ?? Astro.url).href;
 ---
 
 <!doctype html>
@@ -34,18 +36,19 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url).href;
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
-    {noindex && <meta name="robots" content="noindex" />}
-    <link rel="icon" href="/assets/dinerohwy-mark.svg" type="image/svg+xml" />
+    <meta name="robots" content={noindex ? "noindex" : "index, follow"} />
+    <link rel="icon" href="/assets/dinerohwy-logo-primary.svg?v=11" type="image/svg+xml" />
 
     <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={image} />
+    <meta property="og:image" content={absoluteImage} />
     <meta property="og:locale" content={lang === "es" ? "es_US" : "en_US"} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={image} />
+    <meta name="twitter:image" content={absoluteImage} />
   </head>
   <body>
     <RouteBackground />
@@ -54,6 +57,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url).href;
     <main id="main">
       <slot />
     </main>
+    <TextMe />
     <Footer />
     <style is:global>
       .skip-link {

@@ -1,0 +1,218 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Icon from "../components/Icon.astro";
+
+// Status: "Live" items link to a working demo on this site (the site IS the
+// demo — never badge something Live without one). Everything else is
+// "Built to order".
+const services = [
+  {
+    icon: "seo",
+    title: "Website Report Card",
+    status: "Live",
+    href: "/report-card",
+    body: "A free, honest grade of your website — what's costing you customers and which fixes matter first. This is where most owners start.",
+  },
+  {
+    icon: "email",
+    title: "Lead capture & follow-up",
+    status: "Live",
+    href: "/report-card",
+    body: "Forms that turn visitors into conversations, plus automatic follow-up emails — because the fortune is in the follow-up.",
+  },
+  {
+    icon: "code",
+    title: "AI Copy Assistant",
+    status: "Live",
+    href: "/tools/ai-copy",
+    body: "Instant drafts of your SEO description, Google Business posts, and review replies. Try it on your own business right now.",
+  },
+  {
+    icon: "cloud",
+    title: "Website development",
+    status: "Built to order",
+    href: null,
+    body: "A fast, professional site that works on phones and shows up on Google. Owning it costs about $12 a year for your domain — hosting on our stack is free. You pay once for the design, then it just runs.",
+  },
+  {
+    icon: "quote",
+    title: "Photo-quote tool",
+    status: "Built to order",
+    href: null,
+    body: "Customers send a photo of the job; your expertise turns it into a fast quote. Less windshield time, more booked work.",
+  },
+  {
+    icon: "review",
+    title: "Online ordering",
+    status: "Built to order",
+    href: null,
+    body: "Take orders from your own site instead of paying a cut of every sale to a third-party app.",
+  },
+  {
+    icon: "seo",
+    title: "Local SEO & brand visibility",
+    status: "Built to order",
+    href: null,
+    body: "Show up when people nearby search for what you do — Google Business, local signals, and pages built to rank. The Report Card shows you the gaps; this closes them.",
+  },
+  {
+    icon: "code",
+    title: "Scheduled social posts",
+    status: "Built to order",
+    href: null,
+    body: "Structured, automatic posts to X and beyond, so your business stays visible without you living on social media.",
+  },
+  {
+    icon: "cloud",
+    title: "Plugins & custom tools",
+    status: "Built to order",
+    href: null,
+    body: "Software built around YOUR bottleneck — the repetitive task eating your week. Booking, intake, reporting, whatever it is.",
+  },
+  {
+    icon: "quote",
+    title: "Sales funnels",
+    status: "Built to order",
+    href: null,
+    body: "Got a specialized local product? We build the funnel around it — landing page, capture, follow-up — so interest becomes revenue.",
+  },
+] as const;
+---
+
+<BaseLayout
+  title="Services - DineroHWY"
+  description="Websites, tools, and automation for local businesses — from a $12/yr-to-own basic site to custom software that removes your bottleneck."
+>
+  <section class="svc-hero container">
+    <span class="eyebrow">Services</span>
+    <h1>Digital real estate for your business — without the agency price tag.</h1>
+    <p class="lede">
+      A basic website is genuinely affordable to own: about <b>$12 a year</b> for your
+      domain, free hosting on our stack, and a one-time design charge. From there, every
+      service below exists to do one thing — make your business money while you run it.
+    </p>
+    <div class="svc-cta">
+      <button type="button" class="btn btn-primary" data-textme-open aria-haspopup="dialog">
+        Contact me <Icon name="arrow-right" size={17} />
+      </button>
+      <a class="btn btn-ghost" href="/report-card">Grade your site first <Icon name="arrow-right" size={16} /></a>
+    </div>
+  </section>
+
+  <section class="section container svc-grid" aria-label="Services">
+    {services.map((s) => (
+      <article class="svc-card">
+        <div class="svc-top">
+          <Icon name={s.icon} size={22} />
+          <b class:list={["svc-badge", { live: s.status === "Live" }]}>{s.status}</b>
+        </div>
+        <h2>{s.title}</h2>
+        <p>{s.body}</p>
+        {s.href && (
+          <a href={s.href}>Try it live <Icon name="arrow-right" size={15} /></a>
+        )}
+      </article>
+    ))}
+  </section>
+
+  <section class="section container svc-close">
+    <h2>Not sure where to start?</h2>
+    <p>
+      Run the free <a href="/report-card">Report Card</a> on your site, or just reach out —
+      tell me what's eating your time and we'll figure out the highest-value fix together.
+    </p>
+    <button type="button" class="btn btn-primary" data-textme-open aria-haspopup="dialog">
+      Contact me <Icon name="arrow-right" size={17} />
+    </button>
+  </section>
+</BaseLayout>
+
+<style>
+  .svc-hero {
+    padding-block: clamp(4rem, 8vw, 7rem) var(--space-lg);
+  }
+  .svc-hero h1 {
+    max-width: 860px;
+    margin-top: 0.45rem;
+    letter-spacing: 0;
+  }
+  .svc-hero .lede {
+    max-width: 720px;
+    color: var(--cream-muted);
+  }
+  .svc-hero .lede b { color: var(--cream); }
+  .svc-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.2rem;
+  }
+
+  .svc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    gap: var(--space-md);
+    padding-top: 0;
+  }
+
+  .svc-card {
+    display: grid;
+    align-content: start;
+    gap: 0.6rem;
+    padding: clamp(1.1rem, 3vw, 1.6rem);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: rgba(6, 27, 20, 0.6);
+  }
+  .svc-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--rust-light);
+  }
+  .svc-badge {
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 0.28rem 0.6rem;
+    color: var(--cream-muted);
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .svc-badge.live {
+    color: #b8ffc8;
+    background: rgba(94, 171, 116, 0.18);
+    border-color: rgba(94, 171, 116, 0.4);
+  }
+  .svc-card h2 {
+    margin: 0;
+    font-size: var(--step-1);
+    letter-spacing: 0;
+  }
+  .svc-card p {
+    margin: 0;
+    color: var(--cream-muted);
+  }
+  .svc-card a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin-top: 0.25rem;
+    color: var(--cream);
+    font-weight: 850;
+  }
+
+  .svc-close {
+    text-align: center;
+    padding-top: var(--space-md);
+  }
+  .svc-close h2 { letter-spacing: 0; }
+  .svc-close p {
+    max-width: 560px;
+    margin-inline: auto;
+    color: var(--cream-muted);
+  }
+  .svc-close p a { color: var(--rust-light); font-weight: 850; }
+</style>

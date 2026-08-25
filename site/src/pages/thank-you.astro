@@ -1,22 +1,36 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Icon from "../components/Icon.astro";
 ---
 
-<BaseLayout title="Thank you — Dinero Hwy" description="Your Report Card is on the way." noindex={true}>
+<BaseLayout title="Thank you - DineroHWY" description="Your DineroHWY Report Card is on the way." noindex={true}>
   <section class="section container ty">
-    <span class="star-badge" aria-hidden="true" style="width:52px;height:52px;margin-inline:auto"></span>
-    <h1>Check your inbox 🚦</h1>
-    <p class="lede">Your Report Card is on its way. While you wait, every tool we build is running live — go try one.</p>
-    <div class="ty-actions">
-      <a class="btn btn-primary" href="/image-quote">Try instant quotes <Icon name="arrow-right" size={16} /></a>
-      <a class="btn btn-ghost" href="/#tools">See all the tools</a>
-    </div>
-    <div class="route-bar" aria-hidden="true" style="margin:2rem auto 0"></div>
+    <span class="eyebrow">next exit confirmed</span>
+    <h1>Check your inbox.</h1>
+    <p class="lede">
+      Your free Website &amp; Google Report Card is on the way. We will send the grade,
+      the first three fixes, and what to do next.
+    </p>
+    <a class="btn btn-primary" href="/">Back to DineroHWY</a>
   </section>
 </BaseLayout>
 
 <style>
-  .ty { max-width: 620px; text-align: center; display: grid; gap: 1rem; justify-items: center; padding-top: var(--space-2xl); }
-  .ty-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center; margin-top: 0.5rem; }
+  .ty {
+    min-height: calc(100svh - 154px);
+    max-width: 680px;
+    display: grid;
+    align-content: center;
+    justify-items: center;
+    gap: 0.65rem;
+    text-align: center;
+  }
+
+  .ty h1 {
+    font-size: clamp(3rem, 8vw, 6.5rem);
+    letter-spacing: 0;
+  }
+
+  .ty .lede {
+    margin-bottom: 0.65rem;
+  }
 </style>

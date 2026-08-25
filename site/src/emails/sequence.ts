@@ -35,8 +35,8 @@ export const sequence: Record<string, Builder> = {
         `<h1 style="margin:0 0 12px;font-size:24px;color:${C.cream}">Your Report Card is on the way 🚦</h1>` +
         p(`${greet(ctx)} thanks for asking for your free Website &amp; Google Report Card.`) +
         p(`We're grading your online presence right now and will follow up with your score and <strong>3 specific fixes</strong> you can make this week — no jargon, no pitch.`) +
-        muted(`While you wait, meet the tools we build. Every one runs live on our site so you can try it yourself:`) +
-        emailButton(`${ctx.siteUrl}/#tools`, "See the live tools") +
+        muted(`While you wait, the main move is simple: make sure your business can be found, trusted, and contacted from the road customers already travel.`) +
+        emailButton(`${ctx.siteUrl}/`, "Back to DineroHWY") +
         muted(`Just reply to this email if you want us to prioritize anything specific.`),
     }),
   }),
@@ -52,7 +52,7 @@ export const sequence: Record<string, Builder> = {
         `<h1 style="margin:0 0 12px;font-size:22px;color:${C.cream}">A 10-minute win</h1>` +
         p(`${greet(ctx)} here's the single easiest win for most local businesses: catch the people who show up after hours.`) +
         p(`A tiny "get a callback" box on your site quietly turns after-hours visitors into real leads — automatically, while you're closed.`) +
-        emailButton(`${ctx.siteUrl}/image-quote`, "See instant-capture in action") +
+        emailButton(`${ctx.siteUrl}/`, "Get your next fix") +
         muted(`Tomorrow's tip: why a fast quote beats a cheap quote.`),
     }),
   }),
@@ -67,9 +67,9 @@ export const sequence: Record<string, Builder> = {
       bodyHtml:
         `<h1 style="margin:0 0 12px;font-size:22px;color:${C.cream}">Play the customer for a minute</h1>` +
         p(`${greet(ctx)} the best way to understand what we build is to be the customer.`) +
-        p(`Upload a photo to our instant-quote demo and watch a price come back in minutes. That's the exact experience your customers would get — on your site.`) +
-        emailButton(`${ctx.siteUrl}/image-quote`, "Try the quote demo") +
-        muted(`It takes 60 seconds and you'll see why this converts.`),
+        p(`The Report Card points to the first three fixes. Start there, then reply when you want us to build the internet part for you.`) +
+        emailButton(`${ctx.siteUrl}/`, "Return to DineroHWY") +
+        muted(`It is intentionally simple: one page, one offer, one next step.`),
     }),
   }),
 
@@ -84,7 +84,7 @@ export const sequence: Record<string, Builder> = {
         `<h1 style="margin:0 0 12px;font-size:22px;color:${C.cream}">Want a hand putting this to work?</h1>` +
         p(`${greet(ctx)} if any of this looked useful, let's spend 15 minutes on your business specifically — the biggest opportunity online and the one move worth making first.`) +
         p(`No pressure and no pitch. Just useful.`) +
-        emailButton(`${ctx.siteUrl}/contact`, "Grab a free 15-min chat") +
+        emailButton(`${ctx.siteUrl}/`, "Start with the Report Card") +
         muted(`Prefer email? Just reply to this one.`),
     }),
   }),

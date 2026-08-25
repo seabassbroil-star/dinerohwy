@@ -1,0 +1,247 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Icon from "../components/Icon.astro";
+
+const tools = [
+  {
+    icon: "seo",
+    title: "Website Report Card",
+    status: "Live",
+    href: "/report-card",
+    body: "Grades a business site for trust, mobile readiness, local SEO, calls, metadata, images, and speed.",
+    used: "Lead audits and client discovery",
+  },
+  {
+    icon: "code",
+    title: "AI Copy Assistant",
+    status: "Live",
+    href: "/tools/ai-copy",
+    body: "Drafts an SEO description, a Google Business post, and review replies for any local business — running on Workers AI.",
+    used: "Sample value before the first meeting",
+  },
+  {
+    icon: "review",
+    title: "Site Review Workflow",
+    status: "Working system",
+    href: "https://github.com/seabassbroil-star",
+    body: "A review loop for turning screenshots, notes, and page issues into concrete development tasks.",
+    used: "Design cleanup and QA",
+  },
+  {
+    icon: "quote",
+    title: "Quote Capture",
+    status: "Pattern",
+    href: "https://github.com/seabassbroil-star",
+    body: "Forms and backend flows that turn a visitor into a project lead with enough detail to quote responsibly.",
+    used: "Local service funnels",
+  },
+  {
+    icon: "email",
+    title: "Follow-up Engine",
+    status: "Built in",
+    href: "/thank-you",
+    body: "Email capture, unsubscribe handling, and follow-up copy designed for business owners who are not ready today.",
+    used: "Lead nurture",
+  },
+  {
+    icon: "cloud",
+    title: "Cloudflare Builds",
+    status: "Core stack",
+    href: "https://github.com/seabassbroil-star",
+    body: "Fast deployment targets for small sites and tools, with room for Workers, D1, scheduled jobs, and edge APIs.",
+    used: "Performance and reliability",
+  },
+  {
+    icon: "code",
+    title: "Public Code Trail",
+    status: "Ongoing",
+    href: "https://github.com/seabassbroil-star",
+    body: "Repositories become the receipts: the site, tooling, and optimization work can be checked instead of just claimed.",
+    used: "Developer credibility",
+  },
+] as const;
+---
+
+<BaseLayout
+  title="Tools - DineroHWY"
+  description="Tools and workflows used by DineroHWY to build, grade, optimize, and ship websites."
+>
+  <section class="tools-hero container">
+    <span class="eyebrow">Tools</span>
+    <h1>The software behind the websites.</h1>
+    <p class="lede">
+      Each tool supports the same business goal: make the site easier to find,
+      easier to trust, easier to act on, and easier to improve.
+    </p>
+  </section>
+
+  <section class="section container tool-flow" aria-label="DineroHWY tool workflow">
+    {tools.map((tool, index) => (
+      <article class="tool-card">
+        <div class="tool-icon">
+          <Icon name={tool.icon} size={24} />
+          <span>{String(index + 1).padStart(2, "0")}</span>
+        </div>
+        <div>
+          <div class="tool-meta">
+            <b>{tool.status}</b>
+            <span>{tool.used}</span>
+          </div>
+          <h2>{tool.title}</h2>
+          <p>{tool.body}</p>
+          <a href={tool.href} target={tool.href.startsWith("http") ? "_blank" : undefined} rel={tool.href.startsWith("http") ? "noopener" : undefined}>
+            Open <Icon name={tool.href.startsWith("http") ? "arrow-up-right" : "arrow-right"} size={16} />
+          </a>
+        </div>
+      </article>
+    ))}
+  </section>
+</BaseLayout>
+
+<style>
+  .tools-hero {
+    padding-block: clamp(4rem, 8vw, 7rem) var(--space-lg);
+  }
+
+  .tools-hero h1 {
+    max-width: 820px;
+    margin-top: 0.45rem;
+    letter-spacing: 0;
+  }
+
+  .tools-hero .lede {
+    max-width: 690px;
+    color: var(--cream-muted);
+  }
+
+  .tool-flow {
+    position: relative;
+    display: grid;
+    gap: var(--space-md);
+    padding-top: 0;
+  }
+
+  .tool-flow::before {
+    content: "";
+    position: absolute;
+    top: 0.75rem;
+    bottom: 0.75rem;
+    left: 50%;
+    width: 2px;
+    background: linear-gradient(180deg, transparent, var(--rust-light), var(--line-strong), transparent);
+    opacity: 0.74;
+  }
+
+  .tool-card {
+    position: relative;
+    width: min(720px, calc(50% + 210px));
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1rem;
+    min-height: 230px;
+    padding: clamp(1.1rem, 3vw, 1.8rem);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: rgba(6, 27, 20, 0.62);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .tool-card:nth-child(even) {
+    justify-self: end;
+    background:
+      linear-gradient(145deg, rgba(219, 110, 66, 0.1), transparent 42%),
+      rgba(6, 27, 20, 0.62);
+  }
+
+  .tool-card::before {
+    content: "";
+    position: absolute;
+    top: 2rem;
+    width: clamp(1.2rem, 4vw, 4.5rem);
+    height: 2px;
+    background: var(--line-strong);
+  }
+
+  .tool-card:nth-child(odd)::before {
+    right: calc(-1 * clamp(1.2rem, 4vw, 4.5rem));
+  }
+
+  .tool-card:nth-child(even)::before {
+    left: calc(-1 * clamp(1.2rem, 4vw, 4.5rem));
+  }
+
+  .tool-icon {
+    display: grid;
+    justify-items: center;
+    gap: 0.75rem;
+    color: var(--rust-light);
+  }
+
+  .tool-icon span {
+    writing-mode: vertical-rl;
+    color: var(--cream-dim);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    font-weight: 900;
+  }
+
+  .tool-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0.7rem;
+  }
+
+  .tool-meta b,
+  .tool-meta span {
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 0.34rem 0.58rem;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    font-weight: 850;
+  }
+
+  .tool-meta b {
+    color: var(--rust-light);
+    background: rgba(219, 110, 66, 0.12);
+  }
+
+  .tool-card h2 {
+    margin-bottom: 0.55rem;
+    font-size: var(--step-2);
+    letter-spacing: 0;
+  }
+
+  .tool-card p {
+    color: var(--cream-muted);
+  }
+
+  .tool-card a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: var(--cream);
+    font-weight: 850;
+  }
+
+  @media (max-width: 820px) {
+    .tool-flow::before {
+      left: 1rem;
+    }
+
+    .tool-card,
+    .tool-card:nth-child(even) {
+      width: calc(100% - 2rem);
+      justify-self: end;
+    }
+
+    .tool-card::before,
+    .tool-card:nth-child(odd)::before,
+    .tool-card:nth-child(even)::before {
+      left: -1rem;
+      right: auto;
+      width: 1rem;
+    }
+  }
+</style>

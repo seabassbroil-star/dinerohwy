@@ -1,134 +1,71 @@
 ---
-import { getLangFromUrl, useT, localizedPath } from "../i18n/ui";
-import EmailCapture from "./EmailCapture.astro";
 import Icon from "./Icon.astro";
-import AIStack from "./AIStack.astro";
 
-const lang = getLangFromUrl(Astro.url);
-const t = useT(lang);
-const p = (path: string) => localizedPath(path, lang);
 const year = 2026;
-
-const cols = [
-  {
-    title: t("nav.tools"),
-    links: [
-      { href: p("/showcase"), label: t("nav.showcase") },
-      { href: p("/review-app"), label: "Review App" },
-      { href: p("/image-quote"), label: "Instant Quotes" },
-      { href: p("/seo-assistant"), label: "SEO Assistant" },
-      { href: p("/intel-assistant"), label: "Intel Assistant" },
-    ],
-  },
-  {
-    title: "Dinero Hwy",
-    links: [
-      { href: p("/book"), label: t("nav.book") },
-      { href: p("/work"), label: t("nav.work") },
-      { href: p("/free"), label: t("nav.free") },
-      { href: p("/about"), label: t("nav.about") },
-      { href: p("/contact"), label: t("nav.contact") },
-    ],
-  },
-];
 ---
 
 <footer class="site-footer">
-  <div class="container footer-grid">
-    <div class="footer-brand">
-      <img src="/assets/dinerohwy-logo-primary.svg?v=2" alt="Dinero Hwy" width="590" height="270" />
-      <p class="footer-tagline">{t("footer.tagline")}</p>
-      <div class="footer-social">
-        <a href="https://x.com/dinerohwy" target="_blank" rel="noopener" aria-label="Dinero Hwy on X">
-          <Icon name="x" size={18} />
-        </a>
-        <a href="https://github.com/seabassbroil-star/dinerohwy" target="_blank" rel="noopener" aria-label="Dinero Hwy on GitHub">
-          <Icon name="code" size={18} />
-        </a>
-      </div>
-      <div class="route-bar" aria-hidden="true"></div>
-    </div>
-
-    {cols.map((col) => (
-      <nav class="footer-col" aria-label={col.title}>
-        <h4>{col.title}</h4>
-        <ul>
-          {col.links.map((l) => (
-            <li><a href={l.href}>{l.label}</a></li>
-          ))}
-        </ul>
-      </nav>
-    ))}
-
-    <div class="footer-capture">
-      <EmailCapture variant="footer" source="footer" heading={t("email.heading")} />
-    </div>
-  </div>
-
-  <div class="container footer-base">
-    <span>© {year} Dinero Hwy · {t("footer.location")}</span>
-    <span class="footer-ai"><AIStack label={t("footer.built_ai")} size="sm" /></span>
-    <a class="partner" href="https://www.cloudflare.com" target="_blank" rel="noopener">
-      <Icon name="cloud" size={16} />
-      <span>{t("footer.built_with")} Cloudflare</span>
+  <div class="container footer-row">
+    <span>© {year} DineroHWY</span>
+    <span>Galveston, Texas</span>
+    <a href="https://github.com/seabassbroil-star" target="_blank" rel="noopener" aria-label="seabassbroil-star on GitHub">
+      <Icon name="github" size={16} />
+      <span>GitHub</span>
+    </a>
+    <a href="https://x.com/dinerohwy" target="_blank" rel="noopener" aria-label="DineroHWY on X">
+      <Icon name="x" size={16} />
+      <span>@dinerohwy</span>
     </a>
   </div>
 </footer>
 
 <style>
   .site-footer {
-    margin-top: var(--space-2xl);
-    padding-top: var(--space-xl);
+    position: relative;
+    z-index: 2;
     border-top: 1px solid var(--line);
-    background: linear-gradient(180deg, transparent, rgba(6, 27, 20, 0.5));
+    background: rgba(6, 27, 20, 0.82);
   }
-  .footer-grid {
-    display: grid;
-    grid-template-columns: 1.6fr 1fr 1fr 1.4fr;
-    gap: var(--space-lg);
-    padding-bottom: var(--space-xl);
-  }
-  .footer-brand img { width: 170px; height: auto; }
-  .footer-tagline { color: var(--cream-muted); max-width: 30ch; margin: 0.75rem 0 1rem; }
-  .footer-social { display: flex; gap: 0.6rem; margin-bottom: 1rem; }
-  .footer-social a {
-    display: grid; place-items: center; width: 36px; height: 36px;
-    border: 1px solid var(--line-strong); border-radius: 9px; color: var(--cream-muted);
-  }
-  .footer-social a:hover { color: var(--cream); border-color: var(--cream-muted); }
 
-  .footer-col h4 {
-    font-size: var(--step--1);
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--cream-muted);
-    margin-bottom: 0.75rem;
-  }
-  .footer-col ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; }
-  .footer-col a { font-weight: 700; font-size: var(--step--1); }
-
-  .footer-base {
+  .footer-row {
+    min-height: 3.65rem;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: var(--space-md);
-    padding: var(--space-md) var(--space-sm) var(--space-lg);
-    border-top: 1px solid var(--line);
-    margin-top: var(--space-md);
+    justify-content: center;
+    gap: clamp(0.85rem, 3vw, 2rem);
+    color: var(--cream-muted);
+    font-family: var(--mono);
     font-size: var(--step--1);
-    color: var(--cream-dim);
+    font-weight: 800;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
-    font-weight: 700;
   }
-  .footer-ai { text-transform: none; letter-spacing: normal; }
-  .partner { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--cream-muted); }
-  .partner:hover { color: var(--cream); }
-  .partner :global(svg) { color: var(--rust-light); }
 
-  @media (max-width: 860px) {
-    .footer-grid { grid-template-columns: 1fr 1fr; }
-    .footer-brand, .footer-capture { grid-column: 1 / -1; }
-    .footer-base { flex-direction: column; text-align: center; }
+  .footer-row a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    color: var(--cream);
+  }
+
+  .footer-row a:hover {
+    color: var(--rust-light);
+  }
+
+  .footer-row :global(svg) {
+    color: var(--rust-light);
+  }
+
+  @media (max-width: 700px) {
+    .footer-row {
+      min-height: 2.7rem;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+      gap: 0.35rem;
+      padding-block: 0.45rem;
+      font-size: 0.56rem;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
   }
 </style>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 220">
+  <rect x="430" y="6" width="150" height="40" rx="8" fill="#1b4635" stroke="#f4eedc" stroke-width="4"/>
+  <text x="505" y="34" text-anchor="middle" fill="#f4eedc" font-family="Avenir Next Condensed, Helvetica Neue, Arial, sans-serif" font-size="22" font-weight="700" letter-spacing="6">HWY</text>
+  <rect x="5" y="40" width="630" height="174" rx="22" fill="#08251c"/>
+  <rect x="10" y="44" width="620" height="166" rx="18" fill="#1b4635" stroke="#0a2119" stroke-width="2"/>
+  <rect x="24" y="58" width="592" height="138" rx="10" fill="none" stroke="#f4eedc" stroke-width="5"/>
+  <text x="320" y="167" text-anchor="middle" fill="#f4eedc" font-family="Avenir Next Condensed, Helvetica Neue, Arial, sans-serif" font-size="104" font-weight="700" letter-spacing="1">Dinero</text>
+  <g fill="#efe9d7" stroke="#0a2119" stroke-width="1.5"><circle cx="44" cy="78" r="5.5"/><circle cx="596" cy="78" r="5.5"/><circle cx="44" cy="176" r="5.5"/><circle cx="596" cy="176" r="5.5"/></g>
+</svg>

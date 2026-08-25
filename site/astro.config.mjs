@@ -11,6 +11,7 @@ import react from "@astrojs/react";
 export default defineConfig({
   site: "https://dinerohwy.com",
   output: "static",
+  devToolbar: { enabled: false },
   adapter: cloudflare({
     platformProxy: { enabled: true }, // emulates D1/R2 bindings during `astro dev`
     imageService: "compile",

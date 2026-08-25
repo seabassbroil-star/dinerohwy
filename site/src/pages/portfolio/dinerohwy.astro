@@ -1,0 +1,162 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Icon from "../../components/Icon.astro";
+
+const bullets = [
+  "Astro site with a tight public route set: home, portfolio, tools, report card, and follow-up pages.",
+  "Custom DineroHWY visual identity built from the Seawall exit sign, highway path, rooster, Texas coast, and Ecuador color cues.",
+  "Lead capture and email follow-up APIs designed for Cloudflare runtime bindings.",
+  "Website Report Card tool that grades real pages and produces prioritized fixes.",
+];
+
+const stack = ["Astro", "TypeScript", "Cloudflare", "D1", "Cloudflare Email", "GitHub"];
+---
+
+<BaseLayout
+  title="DineroHWY Case Study"
+  description="A case study for the DineroHWY developer portfolio, lead system, and website optimization tooling."
+>
+  <section class="case-hero container">
+    <span class="eyebrow">Case Study</span>
+    <h1>DineroHWY turns the portfolio itself into proof.</h1>
+    <p class="lede">
+      The site is the front door and the workshop: visitors can see the brand,
+      inspect the work, try the grader, and follow the source back to GitHub.
+    </p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="/report-card">Try Report Card <Icon name="arrow-right" size={17} /></a>
+      <a class="btn btn-ghost" href="https://github.com/seabassbroil-star/dinerohwy" target="_blank" rel="noopener">
+        <Icon name="github" size={18} /> Source Repo
+      </a>
+    </div>
+  </section>
+
+  <section class="section container case-grid">
+    <article class="panel">
+      <span class="eyebrow">What it solves</span>
+      <h2>A real developer signal for local businesses.</h2>
+      <p>
+        A potential customer should not have to guess whether the developer can
+        ship. DineroHWY shows the work directly: live pages, useful tools, visible
+        source, and a clear path from site audit to project conversation.
+      </p>
+    </article>
+    <article class="panel">
+      <span class="eyebrow">Built pieces</span>
+      <ul class="check-list">
+        {bullets.map((item) => (
+          <li><Icon name="check" size={18} /> <span>{item}</span></li>
+        ))}
+      </ul>
+    </article>
+  </section>
+
+  <section class="section container proof-band">
+    <div>
+      <span class="eyebrow">Stack</span>
+      <h2>Tools selected for fast local-business sites.</h2>
+    </div>
+    <div class="stack-tags">
+      {stack.map((item) => <span>{item}</span>)}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .case-hero {
+    padding-block: clamp(4rem, 8vw, 7rem) var(--space-lg);
+  }
+
+  .case-hero h1 {
+    max-width: 900px;
+    margin-top: 0.45rem;
+    letter-spacing: 0;
+  }
+
+  .case-hero .lede {
+    max-width: 720px;
+    color: var(--cream-muted);
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.25rem;
+  }
+
+  .case-grid {
+    display: grid;
+    grid-template-columns: 0.95fr 1.05fr;
+    gap: var(--space-md);
+    padding-top: 0;
+  }
+
+  .panel,
+  .proof-band {
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: rgba(6, 27, 20, 0.48);
+    padding: clamp(1.2rem, 3vw, 2rem);
+  }
+
+  .panel h2,
+  .proof-band h2 {
+    margin-top: 0.4rem;
+    letter-spacing: 0;
+  }
+
+  .panel p {
+    color: var(--cream-muted);
+  }
+
+  .check-list {
+    display: grid;
+    gap: 1rem;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  .check-list li {
+    display: grid;
+    grid-template-columns: 1.4rem 1fr;
+    gap: 0.7rem;
+    color: var(--cream);
+  }
+
+  .check-list svg {
+    margin-top: 0.25rem;
+    color: var(--rust-light);
+  }
+
+  .proof-band {
+    display: grid;
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    gap: var(--space-md);
+    align-items: center;
+    padding-block: var(--space-lg);
+  }
+
+  .stack-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+  }
+
+  .stack-tags span {
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+    padding: 0.7rem 0.95rem;
+    background: rgba(244, 238, 220, 0.06);
+    color: var(--cream);
+    font-weight: 850;
+  }
+
+  @media (max-width: 820px) {
+    .case-grid,
+    .proof-band {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,16 +1,29 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-labelledby="title desc">
-  <title id="title">Dinero Highway H-star mark</title>
-  <desc id="desc">A realistic cream H layered over a rust five-point star on natural dark green.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 210" role="img" aria-label="Dinero HWY">
   <defs>
-    <linearGradient id="green" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#285440"/><stop offset="1" stop-color="#103326"/></linearGradient>
-    <linearGradient id="star" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#df7848"/><stop offset="1" stop-color="#a54022"/></linearGradient>
-    <linearGradient id="cream" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#fffdf3"/><stop offset="1" stop-color="#d8d0bc"/></linearGradient>
-    <filter id="raised" x="-20%" y="-25%" width="140%" height="155%"><feDropShadow dx="0" dy="5" stdDeviation="3" flood-color="#061c14" flood-opacity=".7"/></filter>
+    <linearGradient id="face" x1="44" y1="38" x2="476" y2="174" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1f6048"/>
+      <stop offset="0.48" stop-color="#164936"/>
+      <stop offset="1" stop-color="#0b2d22"/>
+    </linearGradient>
+    <linearGradient id="edge" x1="34" y1="36" x2="486" y2="176" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff7e3"/>
+      <stop offset="0.44" stop-color="#f4eedc"/>
+      <stop offset="1" stop-color="#b9b09c"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-24%" width="120%" height="150%">
+      <feDropShadow dx="0" dy="14" stdDeviation="10" flood-color="#02120d" flood-opacity="0.46"/>
+    </filter>
   </defs>
-  <rect x="10" y="10" width="220" height="220" rx="40" fill="#142e25" stroke="#061b14" stroke-width="8"/>
-  <rect x="22" y="22" width="196" height="196" rx="30" fill="url(#green)" stroke="#f4eedc" stroke-width="5"/>
-  <g filter="url(#raised)">
-    <polygon points="120,38 141,96 203,97 153,134 171,193 120,158 69,193 87,134 37,97 99,96" fill="url(#star)" stroke="#f4eedc" stroke-width="4" stroke-linejoin="round"/>
-    <text x="120" y="163" text-anchor="middle" fill="url(#cream)" stroke="#103326" stroke-width="7" paint-order="stroke fill" font-family="Arial Narrow, Helvetica Neue, Arial, sans-serif" font-size="115" font-weight="900">H</text>
+  <g filter="url(#shadow)">
+    <rect x="31" y="39" width="458" height="130" rx="17" fill="#061b14"/>
+    <rect x="39" y="45" width="442" height="118" rx="14" fill="url(#face)" stroke="url(#edge)" stroke-width="7"/>
+    <rect x="53" y="58" width="414" height="92" rx="8" fill="none" stroke="#f4eedc" stroke-width="3" opacity="0.82"/>
+    <path d="M68 61H452" fill="none" stroke="#fff7e3" stroke-width="2" stroke-linecap="round" opacity="0.23"/>
+    <path d="M68 148H452" fill="none" stroke="#02120d" stroke-width="2" stroke-linecap="round" opacity="0.22"/>
+    <circle cx="67" cy="72" r="5" fill="#d6ccb5" opacity="0.62"/>
+    <circle cx="453" cy="72" r="5" fill="#d6ccb5" opacity="0.62"/>
+    <circle cx="67" cy="137" r="5" fill="#d6ccb5" opacity="0.48"/>
+    <circle cx="453" cy="137" r="5" fill="#d6ccb5" opacity="0.48"/>
   </g>
+  <text x="260" y="126" fill="#eadfc6" font-family="Arial Narrow, HelveticaNeue-CondensedBold, Impact, sans-serif" font-size="60" font-weight="900" text-anchor="middle" letter-spacing="1">DINERO HWY</text>
 </svg>

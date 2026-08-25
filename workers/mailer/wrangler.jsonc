@@ -5,7 +5,7 @@
   "compatibility_date": "2026-08-14",
   "compatibility_flags": ["nodejs_compat"],
 
-  // Runs daily at 14:00 UTC (~9am Houston). Sends any follow-up emails that
+  // Runs daily at 14:00 UTC (~9am Galveston). Sends any follow-up emails that
   // have come due and advances each lead to the next step.
   "triggers": { "crons": ["0 14 * * *"] },
 
@@ -15,14 +15,15 @@
     {
       "binding": "DB",
       "database_name": "dinerohwy-leads",
-      "database_id": "PLACEHOLDER-run-wrangler-d1-create"
+      "database_id": "f1de8e22-29f3-43a9-83c9-47c1f7243893"
     }
   ],
 
   "vars": {
     "SITE_URL": "https://dinerohwy.com",
-    "RESEND_FROM": "Dinero Hwy <hello@dinerohwy.com>"
+    "MAIL_FROM": "Dinero Hwy <contact@dinerohwy.com>",
+    "CLOUDFLARE_ACCOUNT_ID": "8b01460b2f34f38394390c132bf49b99"
   },
   "observability": { "enabled": true }
-  // Secret: wrangler secret put RESEND_API_KEY   (run inside workers/mailer)
+  // Secret: wrangler secret put CLOUDFLARE_API_TOKEN   (run inside workers/mailer)
 }

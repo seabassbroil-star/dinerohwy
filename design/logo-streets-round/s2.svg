@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 200">
+  <rect x="5" y="6" width="630" height="190" rx="22" fill="#08251c"/>
+  <rect x="10" y="10" width="620" height="180" rx="18" fill="#1b4635" stroke="#f4eedc" stroke-width="7"/>
+  <text x="48" y="140" text-anchor="start" fill="#f4eedc" font-family="Avenir Next Condensed, Helvetica Neue, Arial, sans-serif" font-size="104" font-weight="700" letter-spacing="1">Dinero</text>
+  <rect x="470" y="46" width="4" height="108" fill="#c75a31"/>
+  <text x="556" y="94" text-anchor="middle" fill="#f4eedc" font-family="Avenir Next Condensed, Helvetica Neue, Arial, sans-serif" font-size="34" font-weight="700" letter-spacing="3">HWY</text>
+  <path d="M556 112 l4 12 12 0 -10 8 4 12 -10 -8 -10 8 4 -12 -10 -8 12 0 z" fill="#c75a31"/>
+</svg>

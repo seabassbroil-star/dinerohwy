@@ -92,3 +92,12 @@ online."** (Number: **~$12/yr** for the land, framed as an investment.)
   footer). The commercial mirrors it with local `.ai-strip` styles.
 - Cloudflare credit and the AI credit sit together in the footer — infrastructure
   and tooling, both named, both honest.
+
+## Canonical lines — added with Episode 2 ("The Machine")
+- "The sign gets them in. The machine brings them back."
+- "It follows up while you sleep."
+- "We run the machine. You collect the dinero."
+- Price framing update (owner-confirmed): $12/yr is the sign — they own it with a
+  small recurring payment. The build is case-by-case and entirely affordable:
+  invite them to reach out, then set expectations fast about what we can and
+  can't do. Never a published rate card; never imply $12 buys the site.

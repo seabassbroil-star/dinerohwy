@@ -1,0 +1,271 @@
+---
+// "Text me" lead widget: a standout floating button (sitewide) that opens a
+// native <dialog> with a 3-field form. Any element with [data-textme-open]
+// (e.g. the hero button) opens the same dialog. The form posts to /api/text-me,
+// which is the authoritative validator — client attributes here are UX only.
+import Icon from "./Icon.astro";
+---
+
+<button
+  type="button"
+  class="btn btn-primary textme-fab"
+  data-textme-open
+  aria-haspopup="dialog"
+  aria-controls="textme-dialog"
+>
+  <Icon name="arrow-right" size={18} />
+  Text me
+</button>
+
+<dialog id="textme-dialog" class="textme-dialog" aria-labelledby="textme-title">
+  <form class="textme-form" method="post" action="/api/text-me" data-textme-form>
+    <div class="textme-head">
+      <div>
+        <span class="eyebrow">Fast reply</span>
+        <h2 id="textme-title">Contact me</h2>
+        <p class="textme-sub">Leave a number or an email — whichever you prefer — and I’ll follow up.</p>
+      </div>
+      <button type="button" class="textme-close" data-textme-close aria-label="Close">×</button>
+    </div>
+
+    {/* Honeypot — hidden from humans; bots that fill it are silently dropped. */}
+    <div class="visually-hidden" aria-hidden="true">
+      <label>Company<input type="text" name="company" tabindex="-1" autocomplete="off" /></label>
+    </div>
+
+    <label class="textme-label">
+      <span>Name</span>
+      <input
+        class="field"
+        type="text"
+        name="name"
+        required
+        maxlength="60"
+        pattern="[A-Za-z ]+"
+        autocomplete="name"
+        placeholder="Your name"
+        data-letters
+      />
+    </label>
+
+    <label class="textme-label">
+      <span>Phone <em>(this, or email)</em></span>
+      <input
+        class="field"
+        type="tel"
+        name="phone"
+        inputmode="numeric"
+        maxlength="10"
+        pattern="\d{10}"
+        autocomplete="tel-national"
+        placeholder="10-digit number"
+        data-digits
+      />
+    </label>
+
+    <label class="textme-label">
+      <span>Email <em>(or phone)</em></span>
+      <input
+        class="field"
+        type="email"
+        name="email"
+        maxlength="254"
+        autocomplete="email"
+        placeholder="you@example.com"
+      />
+    </label>
+
+    <label class="textme-label">
+      <span>What’s going on with your business?</span>
+      <textarea
+        class="field textme-textarea"
+        name="message"
+        required
+        maxlength="600"
+        rows="3"
+        placeholder="Tell me a little about your situation"
+        data-message
+      ></textarea>
+    </label>
+
+    <button class="btn btn-primary textme-submit" type="submit">
+      Send it <Icon name="arrow-right" size={17} />
+    </button>
+
+    <p class="textme-status" role="status" aria-live="polite" hidden></p>
+  </form>
+</dialog>
+
+<script>
+  const dialog = document.getElementById("textme-dialog") as HTMLDialogElement | null;
+  const form = dialog?.querySelector<HTMLFormElement>("[data-textme-form]");
+  const status = dialog?.querySelector<HTMLElement>(".textme-status");
+
+  // Open from any trigger (floating button, hero button, etc.).
+  document.querySelectorAll("[data-textme-open]").forEach((el) => {
+    el.addEventListener("click", () => {
+      if (dialog && typeof dialog.showModal === "function") dialog.showModal();
+    });
+  });
+
+  dialog?.querySelector("[data-textme-close]")?.addEventListener("click", () => dialog.close());
+  // Click on the backdrop (outside the form) closes.
+  dialog?.addEventListener("click", (e) => {
+    if (e.target === dialog) dialog.close();
+  });
+
+  // Live-strip disallowed characters as the user types (UX reinforcement only —
+  // the server allowlists are authoritative).
+  form?.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>("[data-letters]").forEach((el) => {
+    el.addEventListener("input", () => {
+      const cleaned = el.value.replace(/[^A-Za-z ]+/g, "");
+      if (cleaned !== el.value) el.value = cleaned;
+    });
+  });
+  form?.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>("[data-message]").forEach((el) => {
+    el.addEventListener("input", () => {
+      const cleaned = el.value.replace(/[^A-Za-z0-9 .,'\-!?()/]+/g, "");
+      if (cleaned !== el.value) el.value = cleaned;
+    });
+  });
+  form?.querySelectorAll<HTMLInputElement>("[data-digits]").forEach((el) => {
+    el.addEventListener("input", () => {
+      const cleaned = el.value.replace(/\D+/g, "").slice(0, 10);
+      if (cleaned !== el.value) el.value = cleaned;
+    });
+  });
+
+  form?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    // Need at least one way to reach back.
+    const phoneVal = (form.elements.namedItem("phone") as HTMLInputElement | null)?.value.trim() ?? "";
+    const emailVal = (form.elements.namedItem("email") as HTMLInputElement | null)?.value.trim() ?? "";
+    if (!phoneVal && !emailVal) {
+      if (status) {
+        status.hidden = false;
+        status.textContent = "Give me at least one way to reach you — a phone number or an email.";
+        status.classList.add("is-err");
+        status.classList.remove("is-ok");
+      }
+      return;
+    }
+    const btn = form.querySelector<HTMLButtonElement>("button[type=submit]");
+    if (btn) btn.disabled = true;
+    if (status) {
+      status.hidden = false;
+      status.textContent = "Sending…";
+      status.classList.remove("is-ok", "is-err");
+    }
+    try {
+      const res = await fetch(form.action, {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: new FormData(form),
+      });
+      const payload = (await res.json().catch(() => ({}))) as { ok?: boolean; message?: string };
+      const ok = res.ok && payload.ok !== false;
+      if (status) {
+        status.textContent = ok
+          ? "Got it — I’ll follow up shortly."
+          : payload.message || "Please check the form and try again.";
+        status.classList.toggle("is-ok", ok);
+        status.classList.toggle("is-err", !ok);
+      }
+      if (ok) form.reset();
+    } catch {
+      if (status) {
+        status.textContent = "Network error. Please try again.";
+        status.classList.add("is-err");
+      }
+    } finally {
+      if (btn) btn.disabled = false;
+    }
+  });
+</script>
+
+<style>
+  .textme-fab {
+    position: fixed;
+    right: clamp(0.8rem, 3vw, 1.5rem);
+    bottom: clamp(0.8rem, 3vw, 1.5rem);
+    z-index: 60;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    box-shadow: var(--shadow-raised), 0 8px 24px rgba(2, 15, 10, 0.4);
+  }
+
+  .textme-dialog {
+    width: min(30rem, calc(100vw - 2rem));
+    margin: auto;
+    padding: 0;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-lg);
+    background: var(--forest-900);
+    color: var(--cream);
+    box-shadow: var(--shadow-raised);
+  }
+  .textme-dialog::backdrop {
+    background: rgba(2, 15, 10, 0.66);
+    backdrop-filter: blur(2px);
+  }
+
+  .textme-form {
+    display: grid;
+    gap: 0.85rem;
+    padding: clamp(1.2rem, 4vw, 1.75rem);
+  }
+
+  .textme-head {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+  .textme-head h2 { margin: 0.25rem 0 0.35rem; letter-spacing: 0; }
+  .textme-sub { margin: 0; color: var(--cream-muted); font-size: var(--step--1); }
+
+  .textme-close {
+    flex: 0 0 auto;
+    width: 2rem;
+    height: 2rem;
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+    background: rgba(244, 238, 220, 0.05);
+    color: var(--cream);
+    font-size: 1.25rem;
+    line-height: 1;
+    cursor: pointer;
+  }
+  .textme-close:hover { background: rgba(244, 238, 220, 0.12); }
+
+  .textme-label { display: grid; gap: 0.35rem; }
+  .textme-label > span {
+    color: var(--cream-muted);
+    font-family: var(--mono);
+    font-size: 0.74rem;
+    font-weight: 850;
+    text-transform: uppercase;
+  }
+  .textme-label em {
+    font-style: normal;
+    color: var(--cream-dim);
+    text-transform: none;
+  }
+
+  .textme-textarea {
+    border-radius: var(--radius-md);
+    resize: vertical;
+    min-height: 3.2rem;
+    line-height: 1.4;
+  }
+
+  .textme-submit { justify-content: center; margin-top: 0.15rem; }
+
+  .textme-status { margin: 0; font-size: var(--step--1); font-weight: 700; }
+  .textme-status.is-ok { color: #7fd6a6; }
+  .textme-status.is-err { color: var(--rust-light); }
+
+  @media (max-width: 520px) {
+    .textme-fab { left: clamp(0.8rem, 3vw, 1.5rem); justify-content: center; }
+  }
+</style>

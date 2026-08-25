@@ -1,18 +1,29 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 590 270" role="img" aria-labelledby="title desc">
-  <title id="title">Dinero Highway apparel graphic</title>
-  <desc id="desc">A flat dark-green street-sign print reading Dinero with a large H over a five-point star and HWY.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 210" role="img" aria-label="Dinero HWY">
   <defs>
-    <filter id="fabric" x="-2%" y="-4%" width="104%" height="108%">
-      <feTurbulence type="fractalNoise" baseFrequency="0.012 0.075" numOctaves="1" seed="8" result="weave"/>
-      <feDisplacementMap in="SourceGraphic" in2="weave" scale="1.4" xChannelSelector="R" yChannelSelector="B"/>
+    <linearGradient id="face" x1="44" y1="38" x2="476" y2="174" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1f6048"/>
+      <stop offset="0.48" stop-color="#164936"/>
+      <stop offset="1" stop-color="#0b2d22"/>
+    </linearGradient>
+    <linearGradient id="edge" x1="34" y1="36" x2="486" y2="176" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff7e3"/>
+      <stop offset="0.44" stop-color="#f4eedc"/>
+      <stop offset="1" stop-color="#b9b09c"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-24%" width="120%" height="150%">
+      <feDropShadow dx="0" dy="14" stdDeviation="10" flood-color="#02120d" flood-opacity="0.46"/>
     </filter>
   </defs>
-  <g filter="url(#fabric)">
-    <rect x="20" y="30" width="550" height="210" rx="25" fill="#173e2f"/>
-    <rect x="35" y="45" width="520" height="180" rx="16" fill="none" stroke="#eee8d7" stroke-width="5"/>
-    <polygon points="96,58 114,112 171,112 125,145 143,199 96,166 49,199 67,145 21,112 78,112" fill="#bd512f" stroke="#eee8d7" stroke-width="4" stroke-linejoin="round"/>
-    <text x="96" y="171" text-anchor="middle" fill="#eee8d7" stroke="#173e2f" stroke-width="5" paint-order="stroke fill" font-family="Arial Narrow, Helvetica Neue, Arial, sans-serif" font-size="104" font-weight="900">H</text>
-    <text x="176" y="191" textLength="296" lengthAdjust="spacingAndGlyphs" fill="#eee8d7" font-family="Arial Narrow, Helvetica Neue, Arial, sans-serif" font-size="112" font-weight="700">Dinero</text>
-    <text x="444" y="76" textLength="80" lengthAdjust="spacingAndGlyphs" fill="#eee8d7" font-family="Arial Narrow, Helvetica Neue, Arial, sans-serif" font-size="40" font-weight="850">HWY</text>
+  <g filter="url(#shadow)">
+    <rect x="31" y="39" width="458" height="130" rx="17" fill="#061b14"/>
+    <rect x="39" y="45" width="442" height="118" rx="14" fill="url(#face)" stroke="url(#edge)" stroke-width="7"/>
+    <rect x="53" y="58" width="414" height="92" rx="8" fill="none" stroke="#f4eedc" stroke-width="3" opacity="0.82"/>
+    <path d="M68 61H452" fill="none" stroke="#fff7e3" stroke-width="2" stroke-linecap="round" opacity="0.23"/>
+    <path d="M68 148H452" fill="none" stroke="#02120d" stroke-width="2" stroke-linecap="round" opacity="0.22"/>
+    <circle cx="67" cy="72" r="5" fill="#d6ccb5" opacity="0.62"/>
+    <circle cx="453" cy="72" r="5" fill="#d6ccb5" opacity="0.62"/>
+    <circle cx="67" cy="137" r="5" fill="#d6ccb5" opacity="0.48"/>
+    <circle cx="453" cy="137" r="5" fill="#d6ccb5" opacity="0.48"/>
   </g>
+  <text x="260" y="126" fill="#eadfc6" font-family="Arial Narrow, HelveticaNeue-CondensedBold, Impact, sans-serif" font-size="60" font-weight="900" text-anchor="middle" letter-spacing="1">DINERO HWY</text>
 </svg>

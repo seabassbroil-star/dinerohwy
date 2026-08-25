@@ -1,197 +1,487 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import EmailCapture from "../components/EmailCapture.astro";
-import PainStrip from "../components/PainStrip.astro";
-import SolutionCard from "../components/SolutionCard.astro";
-import StatStrip from "../components/StatStrip.astro";
 import Icon from "../components/Icon.astro";
-import AIStack from "../components/AIStack.astro";
 
-const wins = [
-  { icon: "assistant", title: "Answer every customer — even after hours", body: "When you're busy or closed, your site picks up: it replies, books, and captures the details. Every knock gets answered." },
-  { icon: "quote", title: "Quote in minutes, win the job", body: "A customer sends a photo and gets a price on the spot — while they're still deciding. Fast quotes win work." },
-  { icon: "email", title: "Bring past customers back", body: "The people who already love you are your easiest next sale. A simple follow-up brings them back around." },
-] as const;
-
-const solutions = [
-  { href: "/showcase", icon: "website", title: "Showcase Sites", blurb: "Fast, real websites that sell — not brochures. See live examples.", status: "live" },
-  { href: "/review-app", icon: "review", title: "Review App", blurb: "Screenshot any page, drop notes, ship the fix. The cockpit we build with.", status: "live" },
-  { href: "/image-quote", icon: "quote", title: "Instant Quotes", blurb: "A customer uploads a photo and gets a price in minutes. Try it yourself.", status: "live" },
-  { href: "/seo-assistant", icon: "seo", title: "SEO Assistant", blurb: "Find the easiest thing to rank for, ship it, and watch what moves.", status: "coming-soon" },
-  { href: "/intel-assistant", icon: "intel", title: "Intel Assistant", blurb: "An AI that knows your business and answers customers day and night.", status: "coming-soon" },
-  { href: "/book", icon: "book", title: "Agentic AI, for kids", blurb: "Learn how these tools work — explained simply, with a live demo per idea.", status: "live" },
-] as const;
-
-const stats = [
-  { value: "3 min", label: "avg quote delivery" },
-  { value: "24/7", label: "AI assistant" },
-  { value: "100%", label: "of leads followed up" },
+const featured = [
+  {
+    title: "fromGalveston",
+    type: "Local media site",
+    href: "/portfolio/fromgalveston",
+    body: "A Galveston visitor site built as a real publishing product, not a mockup.",
+  },
+  {
+    title: "DineroHWY",
+    type: "This portfolio system",
+    href: "/portfolio/dinerohwy",
+    body: "The brand, lead flow, email engine, and Cloudflare build behind this site.",
+  },
+  {
+    title: "Website Report Card",
+    type: "Optimization tool",
+    href: "/report-card",
+    body: "A live grader that checks a business site and turns the audit into next steps.",
+  },
+  {
+    title: "Services",
+    type: "Work with me",
+    href: "/services",
+    body: "Websites from ~$12/yr to own, plus the tools that make one pay: capture, follow-up, ordering, and automation.",
+  },
 ];
 ---
 
-<BaseLayout>
-  <!-- HERO -->
-  <section class="hero section">
-    <div class="motif-glow" aria-hidden="true"></div>
+<BaseLayout
+  title="DineroHWY - Websites, tools, and optimization"
+  description="DineroHWY is a Galveston-based developer portfolio for websites, optimization tools, and software built for local businesses."
+  image="/assets/concepts/coast-texas-seawall-dinero-exit-clean.png"
+>
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-art" aria-hidden="true"></div>
+    <div class="hero-shade" aria-hidden="true"></div>
+
     <div class="container hero-inner">
-      <span class="eyebrow">internet + dinero</span>
-      <h1>Get found. Get booked. Grow.</h1>
-      <p class="lede">
-        Dinero Hwy builds the software that turns your website into a machine —
-        it answers customers, sends quotes, and follows up while you run the shop.
-        <strong>We build the internet part. You collect the dinero.</strong>
-      </p>
-
-      <EmailCapture
-        variant="hero"
-        magnet="report-card"
-        source="home-hero"
-        collectBusiness={true}
-        heading=""
-        sub=""
-      />
-      <p class="hero-fineprint">Free Website &amp; Google Report Card — your business graded, plus 3 fixes. No pitch.</p>
-
-      <p class="hero-ai"><AIStack label="Powered by the world's most advanced AI" /> <span class="hero-ai-human">— with a human you can meet.</span></p>
-
-      <div class="hero-stats">
-        <StatStrip items={stats} />
-      </div>
-    </div>
-  </section>
-
-  <!-- OPPORTUNITY STRIP -->
-  <section class="section container">
-    <span class="eyebrow">Hiding in plain sight</span>
-    <h2>Three easy wins already sitting in your business.</h2>
-    <div class="stack">
-      <PainStrip items={wins} />
-    </div>
-  </section>
-
-  <!-- GROWTH THESIS -->
-  <section class="section container growth">
-    <span class="eyebrow">The untapped part</span>
-    <h2>The best shop in town shouldn't be the best-kept secret.</h2>
-    <p class="lede">
-      You've got the customers, the reputation, and years of knowing exactly what you're doing.
-      The only thing missing is a place online where new people can find you — and that's not
-      falling behind. It's a business that's been holding its breath.
-    </p>
-    <p class="growth-punch">The day it shows up where everyone's already looking, <b>it grows.</b></p>
-    <p class="growth-thesis">You know your business. We know how to put it online. That's the whole deal.</p>
-    <a class="btn btn-primary" href="/get-online">See how it works <Icon name="arrow-right" size={16} /></a>
-  </section>
-
-  <!-- SOLUTIONS -->
-  <section id="tools" class="section container">
-    <span class="eyebrow">The toolbox</span>
-    <h2>Every tool we sell runs live on this site.</h2>
-    <p class="lede">Don't take our word for it — try them. That's the whole pitch.</p>
-    <div class="solutions-grid">
-      {solutions.map((s) => <SolutionCard {...s} />)}
-    </div>
-  </section>
-
-  <!-- GET ONLINE TEASER -->
-  <section class="section container">
-    <a class="getonline" href="/get-online">
-      <div>
-        <span class="eyebrow">Watch: 35 seconds</span>
-        <h2>Invest $12 a year in digital real estate — and watch it grow.</h2>
-        <p class="lede">For about $12/yr you own your spot on the map (domain &amp; hosting on Cloudflare). The site itself, we build for you, priced to fit. You don't touch a keyboard.</p>
-        <span class="getonline-cta">Play the ad <Icon name="arrow-right" size={18} /></span>
-      </div>
-      <div class="getonline-art" aria-hidden="true">
-        <span class="route-bar"></span>
-        <span class="getonline-tag"><b>$12</b>/yr</span>
-      </div>
-    </a>
-  </section>
-
-  <!-- PROOF -->
-  <section class="section container proof">
-    <div class="proof-card card">
-      <div>
-        <span class="eyebrow">Real software, not templates</span>
-        <h2>Built in the open.</h2>
+      <div class="hero-copy">
+        <span class="eyebrow">Galveston HQ · GitHub-backed</span>
+        <h1 id="hero-title">I build the sites and the software behind them.</h1>
         <p class="lede">
-          This whole site — the quote demo, the review app, the email engine —
-          is real code running on Cloudflare. Inspect it, fork it, or just watch it work.
+          DineroHWY is my proof board: websites I am building, tools I use to grade
+          and optimize them, and public code that shows the work is real.
         </p>
-        <p class="proof-ai">We build with the most advanced AI models on Earth — <b>Claude, ChatGPT, and Grok</b> — so a small local shop gets big-agency work at a price that makes sense.</p>
-        <div class="proof-actions">
-          <a class="btn btn-ghost" href="/work">
-            <Icon name="code" size={18} /> See the work
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="/portfolio">View Portfolio <Icon name="arrow-right" size={17} /></a>
+          <a class="btn btn-ghost" href="https://github.com/seabassbroil-star" target="_blank" rel="noopener">
+            <Icon name="github" size={18} /> GitHub
           </a>
-          <a class="btn btn-ghost" href="https://github.com" target="_blank" rel="noopener">
-            <Icon name="code" size={18} /> View the code
-          </a>
+          <button type="button" class="btn btn-ghost" data-textme-open aria-haspopup="dialog">
+            <Icon name="arrow-right" size={17} /> Text me
+          </button>
         </div>
       </div>
-      <div class="proof-route" aria-hidden="true">
-        <div class="route-bar"></div>
-        <span class="star-badge" style="width:44px;height:44px"></span>
-        <div class="route-bar"></div>
-      </div>
     </div>
   </section>
 
-  <!-- FINAL CTA -->
-  <section class="section container final-cta">
-    <h2>Get your free Report Card.</h2>
-    <p class="lede">Enter your email and we'll grade your website and Google presence — with 3 specific fixes you can make this week.</p>
-    <EmailCapture variant="inline" magnet="report-card" source="home-footer-cta" collectBusiness={true} heading="" sub="" />
+  <section class="section container grader-widget" aria-labelledby="grader-title">
+    <div class="grader-copy">
+      <span class="eyebrow">Website Grader</span>
+      <h2 id="grader-title">See what customers see before you spend money on a rebuild.</h2>
+      <p>
+        Enter a business website and DineroHWY checks the basics that actually affect trust:
+        mobile setup, calls, search titles, local signals, images, social previews, and speed.
+      </p>
+    </div>
+    <form class="grade-teaser" action="/report-card" method="get">
+      <div class="cta-sign-stack" aria-hidden="true">
+        <img class="cta-logo" src="/assets/dinerohwy-logo-primary.svg?v=11" alt="" width="520" height="210" />
+        <div class="next-exit-sign">NEXT EXIT</div>
+      </div>
+      <label for="home-url">Run a quick site grade</label>
+      <div class="teaser-row">
+        <input id="home-url" name="url" type="text" placeholder="yourbusiness.com" autocomplete="url" />
+        <button class="btn btn-primary" type="submit">Grade This Site <Icon name="arrow-right" size={17} /></button>
+      </div>
+      <a class="grader-link" href="/report-card">Open the full grader <Icon name="arrow-right" size={16} /></a>
+    </form>
+  </section>
+
+  <section class="section container proof-strip" aria-label="Developer proof">
+    <div>
+      <span class="eyebrow">Portfolio</span>
+      <strong>Built sites</strong>
+      <p>Live products, case studies, and the business reason behind each build.</p>
+    </div>
+    <div>
+      <span class="eyebrow">Tools</span>
+      <strong>Build workflow</strong>
+      <p>Graders, review tools, quote capture, follow-up, and optimization systems.</p>
+    </div>
+    <div>
+      <span class="eyebrow">GitHub</span>
+      <strong>Public proof</strong>
+      <p>Curated repositories and code links where public source makes the case stronger.</p>
+    </div>
+  </section>
+
+  <section class="section container featured">
+    <div class="section-head">
+      <span class="eyebrow">Selected work</span>
+      <h2>Sites and tools that prove the process.</h2>
+    </div>
+    <div class="featured-grid">
+      {featured.map((item) => (
+        <a class="work-card" href={item.href}>
+          <span>{item.type}</span>
+          <h3>{item.title}</h3>
+          <p>{item.body}</p>
+          <b>Open <Icon name="arrow-right" size={16} /></b>
+        </a>
+      ))}
+    </div>
   </section>
 </BaseLayout>
 
 <style>
-  .hero { position: relative; padding-top: var(--space-2xl); overflow: hidden; }
-  .hero-inner { display: grid; justify-items: start; gap: 1rem; max-width: 780px; }
-  .hero h1 { margin: 0.2rem 0; }
-  .hero-fineprint { color: var(--cream-muted); font-size: var(--step--1); margin: 0.25rem 0 0; }
-  .hero-ai { display: flex; flex-wrap: wrap; align-items: center; gap: 0.45rem; margin: 0.75rem 0 0; }
-  .hero-ai-human { color: var(--cream-muted); font-size: var(--step--1); font-weight: 700; }
-  .proof-ai { color: var(--cream-muted); margin: 0.75rem 0 0; max-width: 52ch; }
-  .proof-ai b { color: var(--cream); }
-  .hero-stats { margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--line); width: 100%; }
-  .hero-stats :global(.stats) { justify-content: flex-start; }
+  :global(body) { background: var(--forest-950); }
 
-  .growth { max-width: 760px; }
-  .growth .lede { margin-top: 0.75rem; }
-  .growth-punch { font-size: var(--step-2); font-weight: 800; letter-spacing: -0.02em; margin: 1.25rem 0 0.5rem; text-wrap: balance; }
-  .growth-punch b { color: var(--rust-light); }
-  .growth-thesis { color: var(--cream-muted); font-size: var(--step-1); margin: 0 0 1.5rem; }
+  .hero {
+    position: relative;
+    min-height: min(720px, calc(88svh - 76px));
+    display: grid;
+    align-items: end;
+    overflow: hidden;
+    isolation: isolate;
+  }
 
-  .solutions-grid {
-    margin-top: var(--space-md);
+  .hero-art,
+  .hero-shade {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .hero-art {
+    z-index: -3;
+    background-image: url("/assets/concepts/coast-texas-seawall-dinero-exit-clean.png?v=1");
+    background-position: center center;
+    background-size: cover;
+    transform: scale(1.01);
+  }
+
+  .hero-shade {
+    z-index: -2;
+    background:
+      linear-gradient(90deg, rgba(6, 27, 20, 0.97), rgba(6, 27, 20, 0.68) 42%, rgba(6, 27, 20, 0.08) 78%),
+      linear-gradient(180deg, rgba(6, 27, 20, 0.04), rgba(6, 27, 20, 0.84));
+  }
+
+  .hero-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-items: end;
+    gap: clamp(1.5rem, 4vw, 3rem);
+    padding-block: clamp(4rem, 8vw, 6.5rem);
+  }
+
+  .hero-copy {
+    max-width: 780px;
+  }
+
+  .hero h1 {
+    max-width: 760px;
+    margin: 0.45rem 0 1rem;
+    font-size: clamp(3.2rem, 7vw, 6.7rem);
+    line-height: 0.88;
+    letter-spacing: 0;
+    text-shadow: 0 5px 24px rgba(2, 15, 10, 0.62);
+  }
+
+  .hero .lede {
+    max-width: 620px;
+    color: var(--cream);
+    text-shadow: 0 3px 18px rgba(2, 15, 10, 0.74);
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.35rem;
+  }
+
+  .proof-strip {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    padding-block: 0;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--line);
+  }
+
+  .proof-strip > div {
+    padding: 1.25rem;
+    background: rgba(6, 27, 20, 0.82);
+  }
+
+  .proof-strip strong {
+    display: block;
+    margin-bottom: 0.25rem;
+    font-size: var(--step-1);
+  }
+
+  .proof-strip p,
+  .work-card p {
+    margin: 0;
+    color: var(--cream-muted);
+  }
+
+  .featured {
+    padding-top: var(--space-md);
+  }
+
+  .grader-widget {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(340px, 440px);
+    gap: clamp(1.25rem, 4vw, 3rem);
+    align-items: center;
+    padding: clamp(1.2rem, 4vw, 2rem);
+    border: 1px solid var(--line-strong);
+    border-radius: 18px;
+    background:
+      linear-gradient(135deg, rgba(219, 110, 66, 0.12), transparent 48%),
+      rgba(6, 27, 20, 0.66);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2rem);
+  }
+
+  .grader-copy h2 {
+    max-width: 720px;
+    margin-top: 0.4rem;
+    letter-spacing: 0;
+  }
+
+  .grader-copy p {
+    max-width: 660px;
+    margin: 0;
+    color: var(--cream-muted);
+  }
+
+  .grade-teaser {
+    position: relative;
+    display: grid;
+    gap: 0.75rem;
+    padding: 1rem;
+    border: 1px solid rgba(244, 238, 220, 0.24);
+    border-radius: 18px;
+    background: rgba(244, 238, 220, 0.045);
+  }
+
+  .cta-sign-stack {
+    width: min(100%, 330px);
+    position: relative;
+    display: block;
+    justify-self: center;
+    margin-bottom: 1.35rem;
+  }
+
+  .cta-logo {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 16px 30px rgba(2, 15, 10, 0.32));
+  }
+
+  .next-exit-sign {
+    position: absolute;
+    right: 8.2%;
+    bottom: -0.7rem;
+    width: min(42%, 145px);
+    border: 2px solid rgba(244, 238, 220, 0.86);
+    border-radius: 9px;
+    padding: 0.38rem 0.6rem;
+    background: var(--rust-deep);
+    color: var(--cream);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-align: center;
+  }
+
+  .grade-teaser label {
+    color: var(--cream);
+    font-size: var(--step-1);
+    font-weight: 850;
+    line-height: 1.15;
+  }
+
+  .teaser-row {
+    display: grid;
+    gap: 0.55rem;
+  }
+
+  .teaser-row input {
+    min-height: 3.35rem;
+    width: 100%;
+    border: 1px solid rgba(244, 238, 220, 0.72);
+    border-radius: 999px;
+    padding-inline: 1rem;
+    background: var(--cream);
+    color: var(--forest-950);
+    font: 850 1rem/1 var(--sans);
+  }
+
+  .teaser-row input::placeholder {
+    color: rgba(6, 27, 20, 0.56);
+  }
+
+  .teaser-row .btn {
+    justify-content: center;
+    text-transform: uppercase;
+  }
+
+  .grader-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: var(--cream-muted);
+    font-weight: 850;
+  }
+
+  .section-head {
+    max-width: 760px;
+    margin-bottom: var(--space-md);
+  }
+
+  .section-head h2 {
+    letter-spacing: 0;
+  }
+
+  .featured-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
     gap: var(--space-md);
   }
-  @media (max-width: 900px) { .solutions-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 600px) { .solutions-grid { grid-template-columns: 1fr; } }
 
-  .proof-card { display: grid; grid-template-columns: 1.5fr 1fr; gap: var(--space-lg); align-items: center; }
-  .proof-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.25rem; }
-  .proof-route { display: grid; justify-items: center; gap: 1rem; }
-  @media (max-width: 760px) { .proof-card { grid-template-columns: 1fr; } .proof-route { display: none; } }
-
-  .getonline {
-    display: grid; grid-template-columns: 1.5fr 1fr; gap: var(--space-lg); align-items: center;
-    padding: clamp(1.5rem, 4vw, 2.75rem); border-radius: var(--radius-lg);
-    border: 1px solid var(--line); background: linear-gradient(160deg, rgba(40,84,64,.28), rgba(6,27,20,.34));
-    transition: border-color .16s, transform .16s;
+  .work-card {
+    min-height: 260px;
+    display: grid;
+    align-content: end;
+    gap: 0.55rem;
+    padding: 1.25rem;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background:
+      linear-gradient(180deg, rgba(244, 238, 220, 0.06), rgba(6, 27, 20, 0.78)),
+      rgba(11, 45, 34, 0.72);
   }
-  .getonline:hover { border-color: var(--line-strong); transform: translateY(-2px); color: var(--cream); }
-  .getonline-cta { display: inline-flex; align-items: center; gap: .5rem; margin-top: 1rem; color: var(--rust-light); font-weight: 800; }
-  .getonline-art { position: relative; display: grid; place-items: center; min-height: 120px; }
-  .getonline-art .route-bar { width: 80%; }
-  .getonline-tag { position: absolute; padding: .6rem 1rem; border-radius: 12px; background: linear-gradient(160deg, var(--rust-light), var(--rust-deep)); color: var(--cream); font-weight: 700; box-shadow: var(--shadow-md); }
-  .getonline-tag b { font-family: var(--condensed); font-size: 1.8rem; }
-  @media (max-width: 760px) { .getonline { grid-template-columns: 1fr; } .getonline-art { display: none; } }
 
-  .final-cta { max-width: 640px; text-align: center; }
-  .final-cta :global(.capture) { justify-items: center; }
-  .final-cta :global(.capture-row) { justify-content: center; }
+  .work-card span {
+    color: var(--rust-light);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .work-card h3 {
+    margin: 0;
+    letter-spacing: 0;
+  }
+
+  .work-card b {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin-top: 0.3rem;
+    color: var(--cream);
+  }
+
+  @media (max-width: 880px) {
+    .hero-inner,
+    .proof-strip,
+    .featured-grid,
+    .grader-widget {
+      grid-template-columns: 1fr;
+    }
+
+    .hero {
+      min-height: 560px;
+      align-items: end;
+    }
+
+    .hero-art {
+      background-position: 66% center;
+      transform: none;
+    }
+
+    .hero-shade {
+      background:
+        linear-gradient(90deg, rgba(6, 27, 20, 0.98), rgba(6, 27, 20, 0.78) 54%, rgba(6, 27, 20, 0.2)),
+        linear-gradient(180deg, rgba(6, 27, 20, 0.06), rgba(6, 27, 20, 0.88));
+    }
+
+    .hero-inner {
+      padding-block: 3.6rem 3.2rem;
+    }
+
+    .hero h1 {
+      max-width: 10ch;
+      font-size: 3rem;
+      line-height: 0.94;
+    }
+
+    .hero .lede {
+      max-width: 31ch;
+    }
+
+    .proof-strip {
+      transform: none;
+      margin-top: var(--space-md);
+    }
+
+    .grader-widget {
+      transform: none;
+      margin-top: var(--space-md);
+      padding: 1rem;
+      gap: 1.25rem;
+    }
+
+    .grade-teaser {
+      justify-items: center;
+      text-align: center;
+    }
+
+    .cta-sign-stack {
+      width: min(100%, 272px);
+      margin-inline: auto;
+      margin-bottom: 1.2rem;
+    }
+
+    .next-exit-sign {
+      right: 4%;
+      bottom: -0.62rem;
+      width: min(43%, 128px);
+      padding: 0.32rem 0.5rem;
+      font-size: 0.64rem;
+    }
+
+    .grade-teaser label,
+    .teaser-row {
+      width: 100%;
+      text-align: left;
+    }
+
+    .grader-link {
+      justify-self: center;
+    }
+  }
+
+  @media (max-width: 460px) {
+    .hero {
+      min-height: 520px;
+    }
+
+    .hero-art {
+      background-position: 71% center;
+    }
+
+    .hero h1 {
+      font-size: 2.75rem;
+    }
+
+    .hero-actions .btn {
+      padding-inline: 1.05rem;
+    }
+
+    .grader-widget {
+      border-radius: 14px;
+    }
+
+    .grade-teaser {
+      padding: 0.85rem;
+      border-radius: 14px;
+    }
+  }
 </style>

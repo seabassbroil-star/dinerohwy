@@ -1,0 +1,299 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Icon from "../../components/Icon.astro";
+
+const types = [
+  ["restaurant", "Restaurant / food"],
+  ["salon", "Salon / barber"],
+  ["auto", "Auto shop / mechanic"],
+  ["trades", "Trades / contractor"],
+  ["retail", "Retail shop"],
+  ["service", "Other local service"],
+] as const;
+---
+
+<BaseLayout
+  title="AI Copy Assistant - DineroHWY"
+  description="Generate an SEO description, a Google Business post, and review replies for a local business — live, in seconds."
+>
+  <section class="ai-shell container">
+    <div class="ai-copy">
+      <span class="eyebrow">AI Copy Assistant</span>
+      <h1>Marketing copy for a local business, in seconds.</h1>
+      <p class="lede">
+        Enter a business and get an SEO description, a Google Business post, and two
+        review replies — the kind of sample value worth bringing to a first meeting.
+      </p>
+    </div>
+
+    <form id="ai-form" class="ai-form">
+      <div class="visually-hidden" aria-hidden="true">
+        <label>Company<input type="text" name="company" tabindex="-1" autocomplete="off" /></label>
+      </div>
+
+      <div class="ai-fieldset" data-step="1">
+        <label>
+          <span>Name</span>
+          <input name="name" type="text" maxlength="60" pattern="[A-Za-z ]+" autocomplete="name" placeholder="Your name" required data-letters />
+        </label>
+        <label>
+          <span>Email <em>(we'll text a code here to verify)</em></span>
+          <input name="email" type="email" maxlength="254" autocomplete="email" placeholder="you@example.com" required />
+        </label>
+        <label>
+          <span>Phone</span>
+          <input name="phone" type="tel" inputmode="numeric" maxlength="10" pattern="\d{10}" autocomplete="tel-national" placeholder="10-digit number" required data-digits />
+        </label>
+        <label>
+          <span>Business name</span>
+          <input name="business" type="text" maxlength="80" placeholder="Joe's Taqueria" required />
+        </label>
+        <label>
+          <span>Business type</span>
+          <select name="type" required>
+            <option value="" disabled selected>Choose one…</option>
+            {types.map(([value, label]) => <option value={value}>{label}</option>)}
+          </select>
+        </label>
+        <label>
+          <span>Anything special? <em>(optional)</em></span>
+          <input name="detail" type="text" maxlength="200" placeholder="Family-owned since 1998, best al pastor in town" />
+        </label>
+        <div class="cf-turnstile" data-sitekey="0x4AAAAAAEawGmmRMkt49lED" data-theme="dark"></div>
+        <button class="btn btn-primary" type="submit" data-step1>
+          Email me a code <Icon name="arrow-right" size={17} />
+        </button>
+      </div>
+
+      <div class="ai-fieldset" data-step="2" hidden>
+        <p class="ai-code-note">We emailed a 6-digit code to <b id="ai-code-email"></b>. Enter it to unlock your copy (check spam if it's slow).</p>
+        <label>
+          <span>Verification code</span>
+          <input name="code" type="text" inputmode="numeric" maxlength="6" pattern="\d{6}" placeholder="6-digit code" data-digits6 />
+        </label>
+        <button class="btn btn-primary" type="submit" data-step2>
+          Unlock my copy <Icon name="arrow-right" size={17} />
+        </button>
+        <button class="btn btn-ghost" type="button" data-restart>Start over</button>
+      </div>
+
+      <p id="ai-message" class="form-note" role="status" aria-live="polite"></p>
+    </form>
+  </section>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+  <section class="section container ai-out" aria-live="polite">
+    <article id="ai-empty" class="ai-card ai-empty">
+      <Icon name="code" size={28} />
+      <div>
+        <h2>What you'll get</h2>
+        <p>A ≤155-character SEO meta description, a short Google Business post, and two
+        ready-to-send review replies (one happy, one handling a complaint).</p>
+      </div>
+    </article>
+
+    <div id="ai-result" hidden>
+      <article class="ai-card">
+        <div class="ai-head"><h2>SEO description</h2><button class="copy" data-copy="out-seo">Copy</button></div>
+        <p id="out-seo" class="ai-text"></p>
+      </article>
+      <article class="ai-card">
+        <div class="ai-head"><h2>Google Business post</h2><button class="copy" data-copy="out-post">Copy</button></div>
+        <p id="out-post" class="ai-text"></p>
+      </article>
+      <article class="ai-card">
+        <div class="ai-head"><h2>Review replies</h2><button class="copy" data-copy="out-replies">Copy</button></div>
+        <p id="out-replies" class="ai-text"></p>
+      </article>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>("#ai-form");
+  const message = document.querySelector<HTMLElement>("#ai-message");
+  const empty = document.querySelector<HTMLElement>("#ai-empty");
+  const result = document.querySelector<HTMLElement>("#ai-result");
+  const step1 = document.querySelector<HTMLElement>('[data-step="1"]');
+  const step2 = document.querySelector<HTMLElement>('[data-step="2"]');
+  const set = (id: string, value: string) => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = value || "—";
+  };
+  const val = (name: string) =>
+    (form?.elements.namedItem(name) as HTMLInputElement | null)?.value.trim() ?? "";
+
+  let token = ""; // OTP session token from step 1
+
+  // Live input filtering (UX only; server allowlists are authoritative).
+  form?.querySelectorAll<HTMLInputElement>("[data-letters]").forEach((el) =>
+    el.addEventListener("input", () => (el.value = el.value.replace(/[^A-Za-z ]+/g, ""))),
+  );
+  form?.querySelectorAll<HTMLInputElement>("[data-digits]").forEach((el) =>
+    el.addEventListener("input", () => (el.value = el.value.replace(/\D+/g, "").slice(0, 10))),
+  );
+  form?.querySelectorAll<HTMLInputElement>("[data-digits6]").forEach((el) =>
+    el.addEventListener("input", () => (el.value = el.value.replace(/\D+/g, "").slice(0, 6))),
+  );
+
+  const setStep = (n: 1 | 2) => {
+    if (step1) step1.hidden = n !== 1;
+    if (step2) step2.hidden = n !== 2;
+  };
+
+  document.querySelector("[data-restart]")?.addEventListener("click", () => {
+    token = "";
+    setStep(1);
+    if (message) message.textContent = "";
+    (window as any).turnstile?.reset?.();
+  });
+
+  form?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const isStep1 = !step1?.hidden;
+    const btn = form.querySelector<HTMLButtonElement>(
+      isStep1 ? "[data-step1]" : "[data-step2]",
+    );
+    if (btn) btn.disabled = true;
+
+    try {
+      if (isStep1) {
+        // Step 1 → send the verification code.
+        if (message) message.textContent = "Sending your code…";
+        const fd = new FormData();
+        for (const k of ["name", "email", "phone", "company", "cf-turnstile-response"]) {
+          fd.set(k, val(k) || (form.querySelector<HTMLInputElement>(`[name="${k}"]`)?.value ?? ""));
+        }
+        const res = await fetch("/api/ai-verify", {
+          method: "POST",
+          headers: { Accept: "application/json" },
+          body: fd,
+        });
+        const data = await res.json();
+        if (!res.ok || !data.ok) throw new Error(data.message || "Couldn't send the code.");
+        token = data.token;
+        set("ai-code-email", val("email"));
+        setStep(2);
+        if (message) message.textContent = "Code sent — check your email.";
+      } else {
+        // Step 2 → verify code + generate.
+        if (message) message.textContent = "Verifying and writing…";
+        const fd = new FormData();
+        fd.set("token", token);
+        fd.set("code", val("code"));
+        fd.set("business", val("business"));
+        fd.set("type", (form.elements.namedItem("type") as HTMLSelectElement).value);
+        fd.set("detail", val("detail"));
+        const res = await fetch("/api/ai-draft", {
+          method: "POST",
+          headers: { Accept: "application/json" },
+          body: fd,
+        });
+        const data = await res.json();
+        if (!res.ok || !data.ok) throw new Error(data.message || "Could not generate copy.");
+        set("out-seo", data.drafts.seo);
+        set("out-post", data.drafts.post);
+        set("out-replies", data.drafts.replies);
+        if (empty) empty.hidden = true;
+        if (result) result.hidden = false;
+        if (message) message.textContent = `Drafted for ${data.business}.`;
+      }
+    } catch (err) {
+      if (message) message.textContent = err instanceof Error ? err.message : "Something went wrong.";
+    } finally {
+      if (btn) btn.disabled = false;
+    }
+  });
+
+  document.querySelectorAll<HTMLButtonElement>("[data-copy]").forEach((b) => {
+    b.addEventListener("click", async () => {
+      const el = document.getElementById(b.dataset.copy!);
+      if (!el?.textContent) return;
+      try {
+        await navigator.clipboard.writeText(el.textContent);
+        const prev = b.textContent;
+        b.textContent = "Copied";
+        setTimeout(() => (b.textContent = prev), 1200);
+      } catch {}
+    });
+  });
+</script>
+
+<style>
+  .ai-shell {
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(320px, 0.72fr);
+    gap: clamp(1.5rem, 4vw, 3rem);
+    align-items: end;
+    padding-block: clamp(4rem, 8vw, 7rem) var(--space-lg);
+  }
+  .ai-copy h1 { max-width: 760px; margin-top: 0.45rem; letter-spacing: 0; }
+  .ai-copy .lede { color: var(--cream-muted); }
+
+  .ai-form {
+    display: grid;
+    gap: 0.85rem;
+    padding: 1rem;
+    border: 1px solid var(--line-strong);
+    border-radius: 18px;
+    background: rgba(6, 27, 20, 0.68);
+    box-shadow: var(--shadow-md);
+  }
+  .ai-fieldset { display: grid; gap: 0.85rem; }
+  .ai-code-note { margin: 0; color: var(--cream-muted); font-size: 0.9rem; }
+  .ai-code-note b { color: var(--cream); }
+  .ai-form label { display: grid; gap: 0.35rem; }
+  .ai-form label span {
+    color: var(--cream-muted);
+    font-family: var(--mono);
+    font-size: 0.76rem;
+    font-weight: 850;
+    text-transform: uppercase;
+  }
+  .ai-form label em { font-style: normal; color: var(--cream-dim); text-transform: none; }
+  .ai-form input,
+  .ai-form select {
+    min-height: 3.15rem;
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+    padding-inline: 1rem;
+    background: var(--cream);
+    color: var(--forest-950);
+    font: 850 1rem/1 var(--sans);
+  }
+  .ai-form button { justify-content: center; border: 0; }
+  .form-note { min-height: 1.4rem; margin: 0; color: var(--cream-muted); font-size: 0.9rem; }
+
+  .ai-out { padding-top: 0; display: grid; gap: var(--space-md); }
+  #ai-result { display: grid; gap: var(--space-md); }
+
+  .ai-card {
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: clamp(1.1rem, 3vw, 1.8rem);
+    background: rgba(6, 27, 20, 0.52);
+  }
+  .ai-empty { display: grid; grid-template-columns: auto 1fr; gap: 1rem; align-items: start; }
+  .ai-empty svg { color: var(--rust-light); }
+  .ai-empty p, .ai-text { color: var(--cream-muted); margin: 0; }
+  .ai-head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 0.5rem; }
+  .ai-head h2 { margin: 0; font-size: var(--step-1); letter-spacing: 0; }
+  .ai-text { white-space: pre-wrap; color: var(--cream); }
+
+  .copy {
+    flex: 0 0 auto;
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+    padding: 0.3rem 0.7rem;
+    background: rgba(244, 238, 220, 0.05);
+    color: var(--cream);
+    font: 800 0.72rem/1 var(--mono);
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  .copy:hover { background: rgba(244, 238, 220, 0.12); }
+
+  @media (max-width: 820px) {
+    .ai-shell, .ai-empty { grid-template-columns: 1fr; }
+  }
+</style>

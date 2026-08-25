@@ -104,19 +104,71 @@ const showText = variant !== "footer";
   .capture-sub { color: var(--cream-muted); margin: 0; font-size: var(--step-0); }
 
   .capture-row {
+    position: relative;
     display: flex;
     flex-wrap: wrap;
-    gap: 0.6rem;
+    align-items: center;
+    gap: 0.35rem;
   }
-  .capture-row .field { flex: 1 1 220px; }
-  .capture-row .btn { flex: 0 0 auto; }
+  .capture-row::before {
+    content: "";
+    position: absolute;
+    left: 0.9rem;
+    right: 0.9rem;
+    top: 50%;
+    height: 2px;
+    pointer-events: none;
+    background: linear-gradient(90deg, transparent, rgba(219, 110, 66, 0.72), transparent);
+    opacity: 0.58;
+  }
+  .capture-row .field {
+    position: relative;
+    z-index: 1;
+    flex: 1 1 205px;
+    min-height: 3.45rem;
+    border-radius: 999px;
+    background: rgba(6, 27, 20, 0.68);
+    box-shadow: 0 10px 22px rgba(2, 15, 10, 0.16);
+  }
+  .capture-row .btn {
+    position: relative;
+    z-index: 1;
+    flex: 0 0 auto;
+    min-height: 3.45rem;
+    border-radius: 999px;
+    padding-inline: 1.45rem 1.25rem;
+  }
 
-  .capture--hero { max-width: 560px; }
-  .capture--hero .capture-row { background: rgba(6, 27, 20, 0.4); padding: 0.4rem; border-radius: var(--radius-md); border: 1px solid var(--line); }
+  .capture--hero { max-width: 620px; }
+  .capture--hero .capture-row {
+    padding: 0;
+    border: 0;
+    background: transparent;
+  }
 
   .capture--footer .capture-row { max-width: 460px; }
 
   .capture-status { margin: 0; font-size: var(--step--1); font-weight: 700; }
   .capture-status.is-ok { color: #7fd6a6; }
   .capture-status.is-err { color: var(--rust-light); }
+  @media (max-width: 620px) {
+    .capture-row {
+      display: grid;
+      gap: 0.55rem;
+    }
+    .capture-row::before {
+      left: 1.2rem;
+      right: auto;
+      top: 1.2rem;
+      bottom: 1.2rem;
+      width: 2px;
+      height: auto;
+      background: linear-gradient(180deg, transparent, rgba(219, 110, 66, 0.72), transparent);
+    }
+    .capture-row .field,
+    .capture-row .btn {
+      width: 100%;
+      justify-content: center;
+    }
+  }
 </style>

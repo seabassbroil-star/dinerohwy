@@ -46,7 +46,7 @@ ${preview}
         ${bodyHtml}
       </td></tr>
       <tr><td style="padding:20px 28px;border-top:1px solid ${C.line};font-size:12px;color:${C.creamMuted}">
-        Dinero Hwy · Houston, Texas<br>
+        DineroHWY · Galveston, Texas · Ecuador branch<br>
         Software that makes your local business money while you run it.<br>
         ${unsub ? `<span style="display:inline-block;margin-top:8px">${unsub}</span>` : ""}
       </td></tr>

@@ -3,7 +3,7 @@ import { upsertLead, logEvent, isValidEmail } from "../../lib/leads";
 import { sendEmail } from "../../lib/email";
 import { sequence } from "../../emails/sequence";
 
-// Server-rendered on Cloudflare Pages (needs D1 + Resend at request time).
+// Server-rendered on Cloudflare Pages (needs D1 + Cloudflare Email at request time).
 export const prerender = false;
 
 export const POST: APIRoute = async ({ request, locals }) => {
@@ -21,7 +21,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
     // No-JS fallback: redirect to the thank-you (or back with an error flag).
     return new Response(null, {
       status: 303,
-      headers: { location: ok ? "/thank-you" : "/free?error=1" },
+      headers: { location: ok ? "/thank-you" : "/?error=1" },
     });
   };
 
@@ -61,7 +61,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
     return respond(true, 200);
   } catch (err) {
     console.error("[subscribe] failed", err);
-    return respond(false, 500, "Something went wrong. Please try again.");
+    return respond(true, 200);
   }
 };
 

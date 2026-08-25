@@ -1,24 +1,40 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 590 270" role="img" aria-labelledby="title desc">
-  <title id="title">Dinero Highway</title>
-  <desc id="desc">A compact, scrunched realistic dark-green street-sign logo reading Dinero with HWY and a large H over a five-point star.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 210" role="img" aria-labelledby="t d">
+  <title id="t">DineroHWY</title>
+  <desc id="d">A raised green highway sign reading DINERO HWY.</desc>
   <defs>
-    <linearGradient id="green" x1="0" y1="0" x2="0.9" y2="1"><stop offset="0" stop-color="#285440"/><stop offset=".48" stop-color="#1b4635"/><stop offset="1" stop-color="#103326"/></linearGradient>
-    <linearGradient id="rim" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9aab9d"/><stop offset=".42" stop-color="#445d52"/><stop offset="1" stop-color="#142b23"/></linearGradient>
-    <linearGradient id="cream" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fffdf3"/><stop offset=".58" stop-color="#f4eedc"/><stop offset="1" stop-color="#d8d0bc"/></linearGradient>
-    <linearGradient id="star" x1="0" y1="0" x2="0.8" y2="1"><stop offset="0" stop-color="#dd7445"/><stop offset=".52" stop-color="#c75a31"/><stop offset="1" stop-color="#9e3d21"/></linearGradient>
-    <radialGradient id="rivet" cx="35%" cy="28%" r="70%"><stop offset="0" stop-color="#e6e6da"/><stop offset=".32" stop-color="#8e9d93"/><stop offset="1" stop-color="#1c3028"/></radialGradient>
-    <clipPath id="face"><rect x="25" y="35" width="540" height="200" rx="20"/></clipPath>
-    <filter id="shadow" x="-8%" y="-20%" width="116%" height="145%"><feDropShadow dx="0" dy="9" stdDeviation="5" flood-color="#04130e" flood-opacity=".38"/></filter>
-    <filter id="raised" x="-20%" y="-25%" width="140%" height="155%"><feDropShadow dx="0" dy="4" stdDeviation="2" flood-color="#061c14" flood-opacity=".65"/></filter>
-    <filter id="surface" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".72" numOctaves="2" seed="11" result="noise"/><feColorMatrix in="noise" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 .07 0" result="grain"/><feBlend in="SourceGraphic" in2="grain" mode="soft-light"/></filter>
+    <linearGradient id="face" x1="42" y1="24" x2="478" y2="186" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1f6048"/>
+      <stop offset="0.5" stop-color="#164936"/>
+      <stop offset="1" stop-color="#0b2d22"/>
+    </linearGradient>
+    <linearGradient id="edge" x1="38" y1="22" x2="482" y2="188" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff7e3"/>
+      <stop offset="0.42" stop-color="#f4eedc"/>
+      <stop offset="1" stop-color="#bfb8a5"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-20%" width="120%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="10" flood-color="#02120d" flood-opacity="0.42"/>
+    </filter>
   </defs>
   <g filter="url(#shadow)">
-    <rect x="15" y="25" width="560" height="220" rx="27" fill="url(#rim)" stroke="#071e16" stroke-width="5"/>
-    <rect x="25" y="35" width="540" height="200" rx="20" fill="url(#green)" stroke="#071f17" stroke-width="3"/>
-    <g clip-path="url(#face)" filter="url(#surface)"><rect x="25" y="35" width="540" height="200" fill="url(#green)"/><path d="M38 50h514" stroke="#ffffff" stroke-opacity=".15" stroke-width="4" stroke-linecap="round"/><path d="M40 219h510" stroke="#061e16" stroke-opacity=".38" stroke-width="3" stroke-linecap="round"/></g>
-    <rect x="37" y="47" width="516" height="176" rx="14" fill="none" stroke="url(#cream)" stroke-width="5"/>
+    <rect x="18" y="24" width="484" height="162" rx="22" fill="#061b14"/>
+    <rect x="27" y="31" width="466" height="148" rx="17" fill="url(#face)" stroke="url(#edge)" stroke-width="8"/>
+    <rect x="43" y="47" width="434" height="116" rx="10" fill="none" stroke="#f4eedc" stroke-width="2.6" opacity="0.32"/>
+    <path d="M61 50H459" fill="none" stroke="#fff7e3" stroke-width="2" stroke-linecap="round" opacity="0.24"/>
+    <path d="M61 160H459" fill="none" stroke="#02120d" stroke-width="2" stroke-linecap="round" opacity="0.25"/>
+    <circle cx="54" cy="61" r="5" fill="#d6ccb5" opacity="0.58"/>
+    <circle cx="466" cy="61" r="5" fill="#d6ccb5" opacity="0.58"/>
+    <circle cx="54" cy="149" r="5" fill="#d6ccb5" opacity="0.42"/>
+    <circle cx="466" cy="149" r="5" fill="#d6ccb5" opacity="0.42"/>
   </g>
-  <g filter="url(#raised)"><polygon points="96,58 114,112 171,112 125,145 143,199 96,166 49,199 67,145 21,112 78,112" fill="url(#star)" stroke="#f4eedc" stroke-width="4" stroke-linejoin="round"/><text x="96" y="171" text-anchor="middle" fill="url(#cream)" stroke="#103326" stroke-width="6" paint-order="stroke fill" font-family="Arial Narrow, Helvetica Neue, Arial, sans-serif" font-size="104" font-weight="900">H</text></g>
-  <g filter="url(#raised)"><text x="176" y="191" textLength="296" lengthAdjust="spacingAndGlyphs" fill="url(#cream)" font-family="Arial Narrow, Helvetica Neue, Arial, sans-serif" font-size="112" font-weight="700">Dinero</text><text x="444" y="98" textLength="80" lengthAdjust="spacingAndGlyphs" fill="url(#cream)" font-family="Arial Narrow, Helvetica Neue, Arial, sans-serif" font-size="40" font-weight="850">HWY</text></g>
-  <g fill="url(#rivet)" stroke="#0a2119" stroke-width="2"><circle cx="43" cy="65" r="6"/><circle cx="547" cy="65" r="6"/><circle cx="43" cy="205" r="6"/><circle cx="547" cy="205" r="6"/></g>
+  <text
+    x="260"
+    y="119"
+    fill="#f4eedc"
+    font-family="Arial Narrow, HelveticaNeue-CondensedBold, Impact, sans-serif"
+    font-size="62"
+    font-weight="900"
+    text-anchor="middle"
+    letter-spacing="0"
+  >DINERO HWY</text>
 </svg>

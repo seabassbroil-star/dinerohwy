@@ -1,6 +1,6 @@
 # Provisioning — one-time setup
 
-The code is done; these are the manual Cloudflare/Resend steps that wire it to
+The code is done; these are the manual Cloudflare steps that wire it to
 real infrastructure. Run everything from `site/` unless noted.
 
 ## 1. Create the leads database (D1)
@@ -27,24 +27,44 @@ npx wrangler d1 execute dinerohwy-leads --remote --file=./schema.sql
 npx wrangler r2 bucket create dinerohwy-uploads
 ```
 
-## 3. Email sending (Resend)
+## 3. Email sending (Cloudflare Email Sending REST API)
 
-1. Create a Resend account, add and **verify the sending domain** (`dinerohwy.com`)
-   — this is the DNS step that sets SPF/DKIM/DMARC so mail actually lands.
-2. Confirm the `RESEND_FROM` in `site/wrangler.jsonc` and `workers/mailer/wrangler.jsonc`
-   uses that verified domain.
-3. Set the API key as a secret in **both** deploy units:
+The site sends via the Cloudflare Email Sending REST API. Pages Functions **cannot**
+use the tokenless `send_email` binding, so `site/src/lib/email.ts` calls the REST
+endpoint (`POST /accounts/{id}/email/sending/send`) with a scoped API token.
+
+1. **Onboard the sending domain.** Dashboard → **Email Service** → **Email Sending**
+   → **Onboard Domain** → `dinerohwy.com` → *Add records and onboard*. Since DNS is
+   on Cloudflare, this auto-adds SPF + DKIM (the records that make mail land). The
+   Email Sending product must be enabled on the account first (it's open beta).
+2. **Confirm the sender.** `MAIL_FROM` in `site/wrangler.jsonc` must use that
+   onboarded domain (`Dinero Hwy <hello@dinerohwy.com>`). `CLOUDFLARE_ACCOUNT_ID`
+   is also a `var` there (not secret).
+3. **Create an API token.** My Profile → API Tokens → Create → permission
+   **Account → Email Sending → Edit**.
+4. **Set the secrets.** The token is a secret; `LEAD_INBOX` is where "text me"
+   submissions are forwarded:
 
 ```bash
-# from site/
-npx wrangler pages secret put RESEND_API_KEY --project-name dinerohwy
-# from workers/mailer/
-cd ../workers/mailer && npx wrangler secret put RESEND_API_KEY
+# from site/  (Pages)
+npx wrangler pages secret put CLOUDFLARE_API_TOKEN --project-name dinerohwy
+npx wrangler pages secret put LEAD_INBOX          --project-name dinerohwy   # e.g. you@example.com
 ```
 
-Until the key is set, sends are logged (not delivered) so flows still work in dev.
+For the **mailer** (Day 2/5/9 follow-ups — separate deploy unit) to send too, set
+the same three on that worker and add `MAIL_FROM` + `CLOUDFLARE_ACCOUNT_ID` to
+`workers/mailer/wrangler.jsonc`:
 
-> Swapping to Cloudflare Email later only touches `site/src/lib/email.ts`.
+```bash
+cd ../workers/mailer
+npx wrangler secret put CLOUDFLARE_API_TOKEN
+```
+
+Until the token is set, sends are logged (not delivered) — so **in production a
+form will report success but no email goes out**. Deploy only after the token is set.
+
+> Local real-send test: put `CLOUDFLARE_API_TOKEN` in `site/.dev.vars` (gitignored)
+> and run `npm run dev`. Without it, dev just logs `[email:dev] would send …`.
 
 ## 4. Deploy
 
@@ -81,5 +101,6 @@ npm run preview    # build + wrangler pages dev ./dist (exercises the real worke
 | Placeholder | File | Replace with |
 |---|---|---|
 | `PLACEHOLDER-run-wrangler-d1-create` | `site/wrangler.jsonc`, `workers/mailer/wrangler.jsonc` | real D1 `database_id` |
-| `RESEND_API_KEY` (secret) | both deploy units | Resend key |
+| `CLOUDFLARE_API_TOKEN` (secret) | both deploy units | token with Email Sending: Edit |
+| `LEAD_INBOX` (secret) | site (Pages) | inbox for "text me" leads (set ✓) |
 | GitHub remote | repo | your `git remote add origin …` |

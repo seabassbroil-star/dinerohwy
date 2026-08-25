@@ -1,0 +1,15 @@
+{
+  "$schema": "../../site/node_modules/wrangler/config-schema.json",
+  "name": "dinerohwy-email",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-08-14",
+
+  // Cloudflare Email Sending binding — tokenless. The sending domain
+  // (dinerohwy.com) is onboarded on this account.
+  "send_email": [{ "name": "EMAIL" }],
+
+  // No public URL: this Worker is reachable ONLY via service bindings from our
+  // own projects (the Pages site binds it as EMAIL_SENDER). Never add a route.
+  "workers_dev": false,
+  "observability": { "enabled": true }
+}

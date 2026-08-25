@@ -11,22 +11,41 @@
     {
       "binding": "DB",
       "database_name": "dinerohwy-leads",
-      "database_id": "PLACEHOLDER-run-wrangler-d1-create"
+      "database_id": "f1de8e22-29f3-43a9-83c9-47c1f7243893"
     }
   ],
 
-  // Image-quote photo uploads. Run `wrangler r2 bucket create dinerohwy-uploads`.
-  "r2_buckets": [
-    {
-      "binding": "UPLOADS",
-      "bucket_name": "dinerohwy-uploads"
-    }
-  ],
+  // Workers AI — powers the AI Copy Assistant (/tools/ai-copy → /api/ai-draft).
+  "ai": { "binding": "AI" },
 
+  // KV for the AI lead-gate: OTP sessions, rate-limit counters, daily budget cap.
+  "kv_namespaces": [{ "binding": "AIGATE", "id": "72fba8d2bf2c48d9ba48be410566c7bb" }],
+
+  // Private service binding to the internal email Worker (workers/email-sender).
+  // Tokenless email: the Worker holds the send_email binding Pages can't.
+  "services": [{ "binding": "EMAIL_SENDER", "service": "dinerohwy-email" }],
+
+  // Image-quote photo uploads. DISABLED until R2 is enabled in the Cloudflare
+  // dashboard (Account → R2 → enable). Then re-add this block + run
+  // `wrangler r2 bucket create dinerohwy-uploads`. The quote demo works without
+  // it (it just won't store the photo).
+  // "r2_buckets": [
+  //   { "binding": "UPLOADS", "bucket_name": "dinerohwy-uploads" }
+  // ],
+
+  // Email is sent via the Cloudflare Email Sending REST API (Pages Functions
+  // can't use the tokenless send_email binding). MAIL_FROM's domain must be
+  // onboarded: Dashboard → Email Service → Email Sending → onboard dinerohwy.com.
   "vars": {
     "SITE_URL": "https://dinerohwy.com",
-    "RESEND_FROM": "Dinero Hwy <hello@dinerohwy.com>"
+    "MAIL_FROM": "Dinero Hwy <contact@dinerohwy.com>",
+    // Email Sending lives in the Codingsavage account (where dinerohwy.com's
+    // DNS zone is onboarded). The Pages Function calls that account's REST API.
+    "CLOUDFLARE_ACCOUNT_ID": "8b01460b2f34f38394390c132bf49b99",
+    "TURNSTILE_SITEKEY": "0x4AAAAAAEawGmmRMkt49lED"
   }
-  // Secret (do NOT put here): RESEND_API_KEY
-  // Set with: wrangler pages secret put RESEND_API_KEY --project-name dinerohwy
+  // Secrets (do NOT put here) — set with `wrangler pages secret put <NAME> --project-name dinerohwy`:
+  //   CLOUDFLARE_API_TOKEN   (Email Sending: Edit)
+  //   TURNSTILE_SECRET       (set ✓)
+  //   LEAD_INBOX             (already set)
 }
