@@ -23,7 +23,10 @@
 
   // Private service binding to the internal email Worker (workers/email-sender).
   // Tokenless email: the Worker holds the send_email binding Pages can't.
-  "services": [{ "binding": "EMAIL_SENDER", "service": "dinerohwy-email" }],
+  "services": [
+    { "binding": "EMAIL_SENDER", "service": "dinerohwy-email" },
+    { "binding": "RENDER", "service": "dinerohwy-render" }
+  ],
 
   // Image-quote photo uploads. DISABLED until R2 is enabled in the Cloudflare
   // dashboard (Account → R2 → enable). Then re-add this block + run

@@ -7,6 +7,7 @@ interface Env {
   AI: Ai;
   AIGATE: KVNamespace; // OTP sessions + rate-limit + budget counters for the AI gate
   EMAIL_SENDER: Fetcher; // service binding → workers/email-sender (tokenless email)
+  RENDER: Fetcher; // service binding → workers/render (Browser Rendering)
   TURNSTILE_SITEKEY: string; // public — embedded in the widget
   TURNSTILE_SECRET: string; // secret — server-side siteverify
   CLOUDFLARE_ACCOUNT_ID: string; // var — for the Email Sending REST API

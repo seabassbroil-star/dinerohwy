@@ -57,9 +57,15 @@ const initialUrl = Astro.url.searchParams.get("url") ?? "";
         <span class="eyebrow">Audit Result</span>
         <h2 id="headline"></h2>
         <p id="summary"></p>
+        <p id="ai-summary" class="ai-summary" hidden></p>
         <div id="fixes" class="fixes"></div>
       </div>
     </article>
+
+    <figure id="shot-wrap" class="shot" hidden>
+      <img id="shot" alt="Screenshot of the graded site on a phone" />
+      <figcaption>How your site loads on a phone right now.</figcaption>
+    </figure>
 
     <div id="checks" class="checks" hidden></div>
   </section>
@@ -107,6 +113,23 @@ const initialUrl = Astro.url.searchParams.get("url") ?? "";
       if (score) score.textContent = `${report.score}/100`;
       if (headline) headline.textContent = report.headline;
       if (summary) summary.textContent = report.summary;
+
+      const aiEl = document.querySelector("#ai-summary");
+      if (aiEl) {
+        if (payload.aiSummary) { aiEl.textContent = payload.aiSummary; aiEl.hidden = false; }
+        else aiEl.hidden = true;
+      }
+
+      const shotWrap = document.querySelector("#shot-wrap");
+      const shot = document.querySelector("#shot");
+      if (shotWrap && shot) {
+        if (payload.screenshot) {
+          shot.setAttribute("src", `data:image/png;base64,${payload.screenshot}`);
+          shotWrap.hidden = false;
+        } else {
+          shotWrap.hidden = true;
+        }
+      }
 
       if (fixes) {
         fixes.innerHTML = report.fixes.map((fix) => `
@@ -202,6 +225,45 @@ const initialUrl = Astro.url.searchParams.get("url") ?? "";
 
   .result-wrap {
     padding-top: 0;
+  }
+
+  .ai-summary {
+    margin: 0.75rem 0 0;
+    padding: 0.85rem 1rem;
+    border-left: 3px solid var(--rust-light);
+    border-radius: 8px;
+    background: rgba(219, 110, 66, 0.08);
+    color: var(--cream);
+    font-size: var(--step-0);
+  }
+  .ai-summary::before {
+    content: "AI take";
+    display: block;
+    margin-bottom: 0.25rem;
+    color: var(--rust-light);
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .shot {
+    margin: var(--space-md) 0 0;
+    display: grid;
+    justify-items: center;
+    gap: 0.5rem;
+  }
+  .shot img {
+    width: min(320px, 100%);
+    border: 1px solid var(--line-strong);
+    border-radius: 14px;
+    box-shadow: var(--shadow-raised);
+    background: var(--cream);
+  }
+  .shot figcaption {
+    color: var(--cream-muted);
+    font-size: var(--step--1);
   }
 
   .empty-state,
