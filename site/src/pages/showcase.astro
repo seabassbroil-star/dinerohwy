@@ -1,0 +1,107 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Icon from "../components/Icon.astro";
+
+const REPO = "https://github.com/seabassbroil-star/dinerohwy/tree/main";
+
+const items = [
+  {
+    title: "Website Report Card",
+    body: "Real headless-Chrome screenshot, live load metrics, 11 trust/SEO signals, and an AI-written next-step summary. Rate-limited so the browser render can't be abused.",
+    demo: "/report-card",
+    stack: ["Browser Rendering", "Workers AI", "KV rate limit"],
+    src: `${REPO}/workers/render`,
+  },
+  {
+    title: "AI Copy Assistant",
+    body: "Drafts SEO copy, a Google Business post, and review replies — gated behind email-verified contact capture (6-digit OTP), Turnstile, rate limits, and a daily AI budget cap.",
+    demo: "/tools/ai-copy",
+    stack: ["Workers AI", "Email OTP", "Turnstile"],
+    src: `${REPO}/site/src/pages/api/ai-verify.ts`,
+  },
+  {
+    title: "Contact + lead capture",
+    body: "Hardened, allowlist-sanitized form (phone-or-email, country-code aware). Every lead is emailed to the owner via a tokenless internal Worker.",
+    demo: "/services",
+    stack: ["Pages Functions", "Email Sending"],
+    src: `${REPO}/site/src/pages/api/text-me.ts`,
+  },
+  {
+    title: "Email engine",
+    body: "Capture → welcome → cron-driven Day 2/5/9 follow-up. Outbound is tokenless Cloudflare Email Sending; replies to contact@ route back to the inbox.",
+    demo: null,
+    stack: ["D1", "Email Sending", "Email Routing", "Cron"],
+    src: `${REPO}/workers/mailer`,
+  },
+] as const;
+---
+
+<BaseLayout
+  title="Showcase - DineroHWY"
+  description="Every DineroHWY tool runs live on this site — and the source is public. Try it here, read the code there."
+>
+  <section class="sc-hero container">
+    <span class="eyebrow">Showcase</span>
+    <h1>Try it here. Read the code there.</h1>
+    <p class="lede">
+      Every tool below runs live on this site, and its source is public on GitHub —
+      proof the work is real, not slideware.
+    </p>
+    <a class="btn btn-ghost" href={REPO} target="_blank" rel="noopener">
+      <Icon name="github" size={18} /> Browse the repository
+    </a>
+  </section>
+
+  <section class="section container sc-grid">
+    {items.map((it) => (
+      <article class="sc-card">
+        <h2>{it.title}</h2>
+        <p>{it.body}</p>
+        <div class="sc-stack">{it.stack.map((s) => <span>{s}</span>)}</div>
+        <div class="sc-links">
+          {it.demo && <a class="btn btn-primary" href={it.demo}>Try it live <Icon name="arrow-right" size={16} /></a>}
+          <a class="btn btn-ghost" href={it.src} target="_blank" rel="noopener">
+            <Icon name="code" size={16} /> View source
+          </a>
+        </div>
+      </article>
+    ))}
+  </section>
+</BaseLayout>
+
+<style>
+  .sc-hero { padding-block: clamp(4rem, 8vw, 7rem) var(--space-lg); }
+  .sc-hero h1 { max-width: 780px; margin-top: 0.45rem; letter-spacing: 0; }
+  .sc-hero .lede { max-width: 680px; color: var(--cream-muted); }
+  .sc-hero .btn { margin-top: 1rem; }
+
+  .sc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: var(--space-md);
+    padding-top: 0;
+  }
+  .sc-card {
+    display: grid;
+    align-content: start;
+    gap: 0.7rem;
+    padding: clamp(1.1rem, 3vw, 1.6rem);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: rgba(6, 27, 20, 0.6);
+  }
+  .sc-card h2 { margin: 0; font-size: var(--step-1); letter-spacing: 0; }
+  .sc-card p { margin: 0; color: var(--cream-muted); }
+  .sc-stack { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .sc-stack span {
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 0.24rem 0.55rem;
+    color: var(--rust-light);
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    font-weight: 850;
+  }
+  .sc-links { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.25rem; }
+  .sc-links .btn { padding: 0.6rem 1rem; }
+</style>

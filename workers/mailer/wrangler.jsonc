@@ -21,9 +21,11 @@
 
   "vars": {
     "SITE_URL": "https://dinerohwy.com",
-    "MAIL_FROM": "Dinero Hwy <contact@dinerohwy.com>",
-    "CLOUDFLARE_ACCOUNT_ID": "8b01460b2f34f38394390c132bf49b99"
+    "MAIL_FROM": "Dinero Hwy <contact@dinerohwy.com>"
   },
+
+  // Tokenless email via the shared internal Worker (same as the Pages site).
+  "services": [{ "binding": "EMAIL_SENDER", "service": "dinerohwy-email" }],
   "observability": { "enabled": true }
   // Secret: wrangler secret put CLOUDFLARE_API_TOKEN   (run inside workers/mailer)
 }
