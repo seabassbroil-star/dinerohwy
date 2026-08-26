@@ -1,0 +1,16 @@
+{
+  "$schema": "../../site/node_modules/wrangler/config-schema.json",
+  "name": "dinerohwy-booking",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-08-14",
+
+  // One Durable Object holds the demo business's live slot state.
+  "durable_objects": {
+    "bindings": [{ "name": "ROOM", "class_name": "BookingRoom" }]
+  },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["BookingRoom"] }],
+
+  // Private: reached only via the Pages site's BOOKING service binding.
+  "workers_dev": false,
+  "observability": { "enabled": true }
+}

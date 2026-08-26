@@ -1,0 +1,159 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Icon from "../components/Icon.astro";
+---
+
+<BaseLayout
+  title="Booking Demo - DineroHWY"
+  description="A live real-time booking demo — pick a slot and watch availability update everywhere at once."
+>
+  <section class="bk-shell container">
+    <div class="bk-copy">
+      <span class="eyebrow">Live Demo · Booking</span>
+      <h1>Real-time appointment booking.</h1>
+      <p class="lede">
+        Pick a slot below. It updates for <em>everyone</em> instantly — open this page in a
+        second tab and watch. Booking sends a confirmation + alerts the owner. The kind of
+        system a salon, shop, or trade can run on their own site.
+      </p>
+      <button id="bk-reset" class="btn btn-ghost" type="button">Reset demo</button>
+    </div>
+
+    <form id="bk-form" class="bk-form">
+      <label>
+        <span>Your name</span>
+        <input name="name" type="text" maxlength="50" pattern="[A-Za-z ]+" placeholder="Your name" required data-letters />
+      </label>
+      <label>
+        <span>Email <em>(optional — for a confirmation)</em></span>
+        <input name="email" type="email" maxlength="120" placeholder="you@example.com" />
+      </label>
+      <p class="bk-hint">Choose a time:</p>
+      <div id="bk-slots" class="bk-slots" role="radiogroup" aria-label="Available times">
+        <p class="bk-loading">Loading times…</p>
+      </div>
+      <button class="btn btn-primary" type="submit" disabled>Book selected time <Icon name="arrow-right" size={16} /></button>
+      <p id="bk-msg" class="form-note" role="status" aria-live="polite"></p>
+    </form>
+  </section>
+</BaseLayout>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>("#bk-form");
+  const slotsEl = document.querySelector<HTMLElement>("#bk-slots");
+  const msg = document.querySelector<HTMLElement>("#bk-msg");
+  const submit = form?.querySelector<HTMLButtonElement>("button[type=submit]");
+  let selected = "";
+
+  form?.querySelectorAll<HTMLInputElement>("[data-letters]").forEach((el) =>
+    el.addEventListener("input", () => (el.value = el.value.replace(/[^A-Za-z ]+/g, ""))),
+  );
+
+  function render(slots: Array<{ id: string; label: string; taken: boolean }>) {
+    if (!slotsEl) return;
+    slotsEl.innerHTML = slots
+      .map(
+        (s) =>
+          `<button type="button" class="bk-slot${s.taken ? " taken" : ""}${s.id === selected ? " sel" : ""}" data-slot="${s.id}" ${s.taken ? "disabled" : ""}>${s.label}${s.taken ? " · booked" : ""}</button>`,
+      )
+      .join("");
+    slotsEl.querySelectorAll<HTMLButtonElement>(".bk-slot:not(.taken)").forEach((b) =>
+      b.addEventListener("click", () => {
+        selected = b.dataset.slot!;
+        slotsEl.querySelectorAll(".bk-slot").forEach((x) => x.classList.remove("sel"));
+        b.classList.add("sel");
+        if (submit) submit.disabled = false;
+      }),
+    );
+  }
+
+  async function load() {
+    try {
+      const res = await fetch("/api/booking", { headers: { Accept: "application/json" } });
+      const data = await res.json();
+      if (data.ok && data.slots) render(data.slots);
+    } catch {}
+  }
+  load();
+  const poll = setInterval(load, 3000); // keep every tab in sync
+
+  form?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (!selected) return;
+    if (submit) submit.disabled = true;
+    if (msg) msg.textContent = "Booking…";
+    const fd = new FormData(form);
+    fd.set("slot", selected);
+    fd.set("action", "book");
+    try {
+      const res = await fetch("/api/booking", { method: "POST", headers: { Accept: "application/json" }, body: fd });
+      const data = await res.json();
+      if (!res.ok || !data.ok) throw new Error(data.message || "Couldn't book that.");
+      if (msg) msg.textContent = `Booked ${data.confirmed}. ${data.confirmed && (form.elements.namedItem("email") as HTMLInputElement).value ? "Check your email." : ""}`;
+      selected = "";
+      if (data.slots) render(data.slots);
+    } catch (err) {
+      if (msg) msg.textContent = err instanceof Error ? err.message : "Something went wrong.";
+      load();
+    }
+  });
+
+  document.querySelector("#bk-reset")?.addEventListener("click", async () => {
+    const fd = new FormData();
+    fd.set("action", "reset");
+    await fetch("/api/booking", { method: "POST", body: fd });
+    selected = "";
+    if (submit) submit.disabled = true;
+    if (msg) msg.textContent = "Demo reset.";
+    load();
+  });
+
+  window.addEventListener("beforeunload", () => clearInterval(poll));
+</script>
+
+<style>
+  .bk-shell {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 0.8fr);
+    gap: clamp(1.5rem, 4vw, 3rem);
+    align-items: start;
+    padding-block: clamp(4rem, 8vw, 7rem) var(--space-lg);
+  }
+  .bk-copy h1 { max-width: 640px; margin-top: 0.45rem; letter-spacing: 0; }
+  .bk-copy .lede { color: var(--cream-muted); }
+  .bk-copy .btn { margin-top: 0.5rem; }
+
+  .bk-form {
+    display: grid;
+    gap: 0.85rem;
+    padding: 1rem;
+    border: 1px solid var(--line-strong);
+    border-radius: 18px;
+    background: rgba(6, 27, 20, 0.68);
+    box-shadow: var(--shadow-md);
+  }
+  .bk-form label { display: grid; gap: 0.35rem; }
+  .bk-form label span { color: var(--cream-muted); font-family: var(--mono); font-size: 0.74rem; font-weight: 850; text-transform: uppercase; }
+  .bk-form label em { font-style: normal; color: var(--cream-dim); text-transform: none; }
+  .bk-form input { min-height: 3.1rem; border: 1px solid var(--line-strong); border-radius: 999px; padding-inline: 1rem; background: var(--cream); color: var(--forest-950); font: 850 1rem/1 var(--sans); }
+  .bk-form .btn { justify-content: center; }
+  .bk-hint { margin: 0.2rem 0 0; color: var(--cream-muted); font-size: var(--step--1); }
+
+  .bk-slots { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 0.5rem; }
+  .bk-loading { grid-column: 1/-1; color: var(--cream-muted); margin: 0; }
+  .bk-slot {
+    border: 1px solid var(--line-strong);
+    border-radius: 12px;
+    padding: 0.6rem 0.5rem;
+    background: rgba(244, 238, 220, 0.05);
+    color: var(--cream);
+    font: 800 0.82rem/1.2 var(--sans);
+    cursor: pointer;
+  }
+  .bk-slot:hover:not(.taken) { border-color: var(--rust-light); }
+  .bk-slot.sel { background: linear-gradient(145deg, var(--rust-light), var(--rust-deep)); border-color: transparent; }
+  .bk-slot.taken { opacity: 0.4; cursor: not-allowed; text-decoration: line-through; }
+  .form-note { min-height: 1.3rem; margin: 0; color: var(--cream-muted); font-size: 0.9rem; }
+
+  @media (max-width: 820px) { .bk-shell { grid-template-columns: 1fr; } }
+</style>
