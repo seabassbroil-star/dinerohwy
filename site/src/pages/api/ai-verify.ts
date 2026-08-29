@@ -48,7 +48,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
     return json(false, 429, { message: "That email has been sent too many codes. Try again later." });
   }
 
-  const code = makeCode(Math.random());
+  const code = makeCode();
   const token = makeToken();
 
   if (env?.AIGATE) {

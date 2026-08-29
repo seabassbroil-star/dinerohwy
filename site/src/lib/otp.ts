@@ -100,9 +100,11 @@ export interface OtpSession {
 const OTP_TTL_SEC = 600; // 10 minutes
 export const OTP_MAX_ATTEMPTS = 5;
 
-/** 6-digit numeric code as a zero-padded string. `rand` is a [0,1) value. */
-export function makeCode(rand: number): string {
-  return String(Math.floor(rand * 1_000_000)).padStart(6, "0");
+/** Cryptographically random 6-digit numeric verification code. */
+export function makeCode(): string {
+  const values = new Uint32Array(1);
+  crypto.getRandomValues(values);
+  return String(values[0] % 1_000_000).padStart(6, "0");
 }
 
 export async function sha256Hex(input: string): Promise<string> {
