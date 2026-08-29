@@ -26,11 +26,8 @@
   "services": [
     { "binding": "EMAIL_SENDER", "service": "dinerohwy-email" },
     { "binding": "RENDER", "service": "dinerohwy-render" },
-    { "binding": "BOOKING", "service": "dinerohwy-booking" }
-    // MENU_IMPORT disabled: the `dinerohwy-menu-import` Worker has no source in
-    // this repo and was never deployed. /api/menu-import returns a graceful 503
-    // ("not configured yet") without it. Re-add once the Worker is built+deployed.
-    // { "binding": "MENU_IMPORT", "service": "dinerohwy-menu-import" }
+    { "binding": "BOOKING", "service": "dinerohwy-booking" },
+    { "binding": "MENU_IMPORT", "service": "dinerohwy-menu-import" }
   ],
 
   // Image-quote photo uploads. DISABLED until R2 is enabled in the Cloudflare
