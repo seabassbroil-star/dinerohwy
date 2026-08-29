@@ -39,7 +39,7 @@ const featured = [
 <BaseLayout
   title="DineroHWY - Websites, tools, and optimization"
   description="DineroHWY is a Galveston-based developer portfolio for websites, optimization tools, and software built for local businesses."
-  image="/assets/concepts/coast-texas-seawall-dinero-exit-clean.png"
+  image="/assets/concepts/coast-texas-seawall-dinero-rooster-right.png"
 >
   <section class="hero" aria-labelledby="hero-title">
     <div class="hero-art" aria-hidden="true"></div>
@@ -55,13 +55,10 @@ const featured = [
           the right version around your business.
         </p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="/portfolio">View Portfolio <Icon name="arrow-right" size={17} /></a>
-          <a class="btn btn-ghost" href="https://github.com/seabassbroil-star" target="_blank" rel="noopener">
-            <Icon name="github" size={18} /> GitHub
-          </a>
-          <button type="button" class="btn btn-ghost" data-textme-open aria-haspopup="dialog">
-            <Icon name="arrow-right" size={17} /> Text me
+          <button type="button" class="btn btn-primary" data-textme-open aria-haspopup="dialog">
+            <Icon name="arrow-right" size={17} /> Contact me
           </button>
+          <a class="btn btn-ghost" href="/booking-demo">Schedule a call <Icon name="arrow-right" size={17} /></a>
         </div>
       </div>
     </div>
@@ -79,7 +76,6 @@ const featured = [
     <form class="grade-teaser" action="/report-card" method="get">
       <div class="cta-sign-stack" aria-hidden="true">
         <img class="cta-logo" src="/assets/dinerohwy-logo-primary.svg?v=11" alt="" width="520" height="210" />
-        <div class="next-exit-sign">NEXT EXIT</div>
       </div>
       <label for="home-url">Run a quick site grade</label>
       <div class="teaser-row">
@@ -147,7 +143,7 @@ const featured = [
 
   .hero-art {
     z-index: -3;
-    background-image: url("/assets/concepts/coast-texas-seawall-dinero-exit-clean.png?v=1");
+    background-image: url("/assets/concepts/coast-texas-seawall-dinero-rooster-right.png?v=1");
     background-position: center center;
     background-size: cover;
     transform: scale(1.01);
@@ -278,23 +274,6 @@ const featured = [
     filter: drop-shadow(0 16px 30px rgba(2, 15, 10, 0.32));
   }
 
-  .next-exit-sign {
-    position: absolute;
-    right: 8.2%;
-    bottom: -0.7rem;
-    width: min(42%, 145px);
-    border: 2px solid rgba(244, 238, 220, 0.86);
-    border-radius: 9px;
-    padding: 0.38rem 0.6rem;
-    background: var(--rust-deep);
-    color: var(--cream);
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    font-weight: 900;
-    letter-spacing: 0.08em;
-    text-align: center;
-  }
-
   .grade-teaser label {
     color: var(--cream);
     font-size: var(--step-1);
@@ -345,15 +324,18 @@ const featured = [
   }
 
   .featured-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: var(--space-md);
   }
 
   .work-card {
     min-height: 260px;
-    display: grid;
-    align-content: end;
+    flex: 1 1 230px;
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
     gap: 0.55rem;
     padding: 1.25rem;
     border: 1px solid var(--line);
@@ -381,7 +363,8 @@ const featured = [
     display: inline-flex;
     align-items: center;
     gap: 0.35rem;
-    margin-top: 0.3rem;
+    margin-top: auto;
+    padding-top: 0.4rem;
     color: var(--cream);
   }
 
@@ -391,6 +374,14 @@ const featured = [
     .featured-grid,
     .grader-widget {
       grid-template-columns: 1fr;
+    }
+
+    .featured-grid {
+      flex-direction: column;
+    }
+
+    .work-card {
+      max-width: none;
     }
 
     .hero {
@@ -444,14 +435,6 @@ const featured = [
       width: min(100%, 272px);
       margin-inline: auto;
       margin-bottom: 1.2rem;
-    }
-
-    .next-exit-sign {
-      right: 4%;
-      bottom: -0.62rem;
-      width: min(43%, 128px);
-      padding: 0.32rem 0.5rem;
-      font-size: 0.64rem;
     }
 
     .grade-teaser label,
