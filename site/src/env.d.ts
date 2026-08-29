@@ -9,6 +9,8 @@ interface Env {
   EMAIL_SENDER: Fetcher; // service binding → workers/email-sender (tokenless email)
   RENDER: Fetcher; // service binding → workers/render (Browser Rendering)
   BOOKING: Fetcher; // service binding → workers/booking (Durable Object)
+  MENU_IMPORT: Fetcher; // service binding → workers/menu-import (no public route)
+  MENU_SESSION_SECRET: string; // secret — HMAC signs short-lived anonymous menu sessions
   TURNSTILE_SITEKEY: string; // public — embedded in the widget
   TURNSTILE_SECRET: string; // secret — server-side siteverify
   CLOUDFLARE_ACCOUNT_ID: string; // var — for the Email Sending REST API
