@@ -2,13 +2,11 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Icon from "../../components/Icon.astro";
 
-// Static preview page only. Markup is a local-first tool that runs on the
-// operator's machine, not on this site — so there are deliberately NO inputs,
-// NO file upload, and NO wired actions here. Everything below is a mockup.
+const MARKUP_ORIGIN = import.meta.env.PUBLIC_MARKUP_ORIGIN || "https://markup.dinerohwy.com";
 const steps = [
   { n: "01", title: "Drop it in", body: "Start with any screenshot or image — it never leaves the browser." },
   { n: "02", title: "Mark the spot", body: "Circle, underline, or point to exactly what you mean, right on the image." },
-  { n: "03", title: "Add your note", body: "Write the feedback while the context is still right there, then export or share a link." },
+  { n: "03", title: "Add your note", body: "Write the feedback while the context is still right there, then download one annotated PNG." },
 ] as const;
 ---
 
@@ -26,19 +24,19 @@ const steps = [
       </p>
 
       <div class="mk-actions">
-        <span class="btn btn-primary is-disabled" role="button" aria-disabled="true">
-          Open Markup <Icon name="arrow-right" size={17} />
-        </span>
+        <button class="btn btn-primary" type="button" data-open-markup>
+          Open secure Markup <Icon name="arrow-right" size={17} />
+        </button>
         <span class="mk-status">
           <span class="mk-dot" aria-hidden="true"></span>
-          Preview — this feature isn't wired up yet
+          Preview first · verify before use
         </span>
       </div>
 
       <p class="mk-note">
-        Markup is a local-first tool: it runs on the machine doing the review so images
-        never leave the browser. This page is a static preview of the interface — nothing
-        here uploads, saves, or connects to anything.
+        The preview is public. To annotate and export your own image, verify your email.
+        Your image, strokes, notes, and final PNG stay in browser memory and disappear
+        when the page is refreshed or closed.
       </p>
     </div>
 
@@ -85,6 +83,15 @@ const steps = [
     </div>
   </section>
 
+  <section class="section container mk-app" data-markup-shell hidden aria-labelledby="markup-app-title">
+    <div class="mk-app-head">
+      <div><span class="eyebrow">Secure workspace</span><h2 id="markup-app-title">Verify once, then review privately.</h2><p>The embedded application accepts identity and access data only. It has no image-upload or saved-review endpoint.</p></div>
+      <a class="btn btn-ghost" href={MARKUP_ORIGIN} target="_blank" rel="noopener">Open in a new tab <Icon name="arrow-up-right" size={16} /></a>
+    </div>
+    <iframe title="Dinero Hwy Markup visual review application" data-markup-frame data-src={MARKUP_ORIGIN} loading="lazy" referrerpolicy="no-referrer" sandbox="allow-scripts allow-forms allow-same-origin allow-downloads allow-popups"></iframe>
+    <noscript><p>JavaScript is required for Markup. <a href={MARKUP_ORIGIN}>Open the secure application</a>.</p></noscript>
+  </section>
+
   <section class="section container mk-steps" aria-label="How Markup works">
     <div class="mk-steps-head">
       <span class="eyebrow">How it works</span>
@@ -104,14 +111,26 @@ const steps = [
   <section class="section container mk-cta-band">
     <div class="mk-cta-inner">
       <div>
-        <h2>Coming to the toolkit.</h2>
-        <p>Markup ships as part of the DineroHWY build workflow. This preview shows the
-        interface; the live tool runs locally during a review.</p>
+        <h2>Built by Dinero Hwy. Private by design.</h2>
+        <p>Markup is part of the Dinero Hwy review workflow. Access is verified, but the
+        work itself stays on the reviewer's device.</p>
       </div>
       <a class="mk-back" href="/tools">Back to tools <Icon name="arrow-right" size={16} /></a>
     </div>
   </section>
 </BaseLayout>
+
+<script>
+  const opener = document.querySelector("[data-open-markup]");
+  const shell = document.querySelector("[data-markup-shell]");
+  const frame = document.querySelector("[data-markup-frame]");
+  opener?.addEventListener("click", () => {
+    if (!(shell instanceof HTMLElement) || !(frame instanceof HTMLIFrameElement)) return;
+    shell.hidden = false;
+    if (!frame.src) frame.src = frame.dataset.src || "";
+    shell.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+</script>
 
 <style>
   /* Hero ------------------------------------------------------------------ */
@@ -131,14 +150,6 @@ const steps = [
     align-items: center;
     gap: 0.85rem 1.15rem;
     margin-top: var(--space-md);
-  }
-  /* A deliberately inert CTA — looks like the button, does nothing. */
-  .btn.is-disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-    filter: grayscale(0.15);
-    pointer-events: none;
-    user-select: none;
   }
   .mk-status {
     display: inline-flex;
@@ -162,6 +173,12 @@ const steps = [
     font-size: 0.92rem;
     line-height: 1.6;
   }
+
+  .mk-app { padding-top: var(--space-md); }
+  .mk-app-head { display: flex; align-items: end; justify-content: space-between; gap: var(--space-md); margin-bottom: 1rem; }
+  .mk-app-head h2 { margin-top: 0.35rem; letter-spacing: 0; }
+  .mk-app-head p { max-width: 660px; margin: 0; color: var(--cream-muted); }
+  .mk-app iframe { width: 100%; min-height: 860px; border: 1px solid var(--line-strong); border-radius: var(--radius-lg); background: var(--cream); box-shadow: var(--shadow-md); }
 
   /* Mockup window --------------------------------------------------------- */
   .mk-window {
@@ -296,5 +313,7 @@ const steps = [
   @media (max-width: 900px) {
     .mk-hero { grid-template-columns: 1fr; }
     .mk-steps-grid { grid-template-columns: 1fr; }
+    .mk-app-head { display: grid; align-items: start; }
+    .mk-app iframe { min-height: 780px; }
   }
 </style>
