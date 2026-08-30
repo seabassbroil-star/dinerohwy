@@ -28,6 +28,10 @@ import Icon from "./Icon.astro";
       <button type="button" class="textme-close" data-textme-close aria-label="Close">×</button>
     </div>
 
+    {/* Intent — set by the trigger (e.g. the hero "Quote" button) so the emailed
+        subject reflects whether it's a general contact or a quote request. */}
+    <input type="hidden" name="intent" id="textme-intent" value="" />
+
     {/* Honeypot — hidden from humans; bots that fill it are silently dropped. */}
     <div class="visually-hidden" aria-hidden="true">
       <label>Company<input type="text" name="company" tabindex="-1" autocomplete="off" /></label>
@@ -101,9 +105,28 @@ import Icon from "./Icon.astro";
   const form = dialog?.querySelector<HTMLFormElement>("[data-textme-form]");
   const status = dialog?.querySelector<HTMLElement>(".textme-status");
 
+  // Adapt the dialog to the trigger's intent (e.g. the hero "Quote" button).
+  const intentInput = dialog?.querySelector<HTMLInputElement>("#textme-intent");
+  const titleEl = dialog?.querySelector<HTMLElement>("#textme-title");
+  const subEl = dialog?.querySelector<HTMLElement>(".textme-sub");
+  const COPY = {
+    contact: {
+      title: "Contact me",
+      sub: "Leave a number or an email — whichever you prefer — and I’ll follow up.",
+    },
+    quote: {
+      title: "Request a quote",
+      sub: "Tell me about the project and I’ll send a quote — leave a phone or email.",
+    },
+  } as const;
+
   // Open from any trigger (floating button, hero button, etc.).
   document.querySelectorAll("[data-textme-open]").forEach((el) => {
     el.addEventListener("click", () => {
+      const intent = el.getAttribute("data-intent") === "quote" ? "quote" : "contact";
+      if (intentInput) intentInput.value = intent === "quote" ? "quote" : "";
+      if (titleEl) titleEl.textContent = COPY[intent].title;
+      if (subEl) subEl.textContent = COPY[intent].sub;
       if (dialog && typeof dialog.showModal === "function") dialog.showModal();
     });
   });

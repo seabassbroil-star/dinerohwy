@@ -8,17 +8,25 @@ import Icon from "./Icon.astro";
       <img src="/assets/dinerohwy-logo-primary.svg?v=11" alt="DineroHWY" width="520" height="210" />
     </a>
 
-    <nav class="nav" aria-label="Primary">
-      <a href="/portfolio">Portfolio</a>
-      <a href="/services">Services</a>
-      <a href="/tools">Tools</a>
-      <a href="/showcase">Showcase</a>
-      <a href="/about">About</a>
-      <button type="button" class="nav-contact" data-textme-open aria-haspopup="dialog">Contact</button>
+    <button
+      type="button"
+      class="nav-toggle"
+      aria-expanded="false"
+      aria-controls="primary-nav"
+      aria-label="Menu"
+    >
+      <span class="icon-open"><Icon name="menu" size={24} /></span>
+      <span class="icon-close"><Icon name="close" size={24} /></span>
+    </button>
+
+    <nav class="nav" id="primary-nav" aria-label="Primary">
+      <a href="/services/websites">Websites</a>
+      <a href="/tools">Software</a>
       <a class="github-link" href="https://github.com/seabassbroil-star" target="_blank" rel="noopener">
         <Icon name="github" size={17} />
         <span>GitHub</span>
       </a>
+      <button type="button" class="nav-contact" data-textme-open aria-haspopup="dialog">Contact</button>
     </nav>
   </div>
 </header>
@@ -83,18 +91,87 @@ import Icon from "./Icon.astro";
     color: var(--rust-light);
   }
 
+  .nav-toggle {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: 0;
+    border: 1px solid var(--line-strong);
+    border-radius: 12px;
+    background: rgba(244, 238, 220, 0.04);
+    color: var(--cream);
+    cursor: pointer;
+  }
+
+  .nav-toggle .icon-close {
+    display: none;
+  }
+
   @media (max-width: 700px) {
     .bar {
-      display: grid;
-      gap: 0.7rem;
-      justify-items: start;
+      position: relative;
+      justify-content: center;
     }
 
+    .nav-toggle {
+      display: inline-flex;
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .nav-toggle[aria-expanded="true"] .icon-open {
+      display: none;
+    }
+    .nav-toggle[aria-expanded="true"] .icon-close {
+      display: inline-flex;
+    }
+
+    /* dropdown menu — hidden until the toggle is expanded */
     .nav {
-      width: 100%;
-      overflow-x: auto;
-      padding-bottom: 0.1rem;
-      white-space: nowrap;
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.15rem;
+      padding: 1.4rem;
+      background: rgba(6, 27, 20, 0.98);
+      border-bottom: 1px solid var(--line);
+      box-shadow: var(--shadow-md);
+      font-size: var(--step-0);
+    }
+
+    .nav-toggle[aria-expanded="true"] ~ .nav {
+      display: flex;
+    }
+
+    .github-link {
+      min-height: 2.75rem;
     }
   }
 </style>
+
+<script>
+  const btn = document.querySelector(".nav-toggle");
+  const nav = document.getElementById("primary-nav");
+  if (btn && nav) {
+    btn.addEventListener("click", () => {
+      const open = btn.getAttribute("aria-expanded") === "true";
+      btn.setAttribute("aria-expanded", String(!open));
+    });
+    // close the menu after choosing a destination or opening the contact dialog
+    nav.querySelectorAll("a, button").forEach((el) =>
+      el.addEventListener("click", () => btn.setAttribute("aria-expanded", "false"))
+    );
+    // close on Escape
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") btn.setAttribute("aria-expanded", "false");
+    });
+  }
+</script>

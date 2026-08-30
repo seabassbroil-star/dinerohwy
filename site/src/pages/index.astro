@@ -56,9 +56,11 @@ const featured = [
         </p>
         <div class="hero-actions">
           <button type="button" class="btn btn-primary" data-textme-open aria-haspopup="dialog">
-            <Icon name="arrow-right" size={17} /> Contact me
+            <Icon name="email" size={18} /> Email
           </button>
-          <a class="btn btn-ghost" href="/booking-demo">Schedule a call <Icon name="arrow-right" size={17} /></a>
+          <button type="button" class="btn btn-ghost" data-textme-open data-intent="quote" aria-haspopup="dialog">
+            <Icon name="quote" size={18} /> Quote
+          </button>
         </div>
       </div>
     </div>
@@ -380,8 +382,36 @@ const featured = [
       flex-direction: column;
     }
 
+    /* mobile: center everything */
+    .hero-copy {
+      text-align: center;
+      margin-inline: auto;
+    }
+
+    .hero h1,
+    .hero .lede {
+      margin-inline: auto;
+    }
+
+    .hero-actions {
+      justify-content: center;
+    }
+
+    .section-head,
+    .section-head h2,
+    .grader-copy {
+      text-align: center;
+      margin-inline: auto;
+    }
+
+    .proof-strip > div {
+      text-align: center;
+    }
+
     .work-card {
       max-width: none;
+      text-align: center;
+      align-items: center;
     }
 
     .hero {

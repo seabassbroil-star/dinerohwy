@@ -48,6 +48,11 @@ export const POST: APIRoute = async ({ request, locals }) => {
     return respond(true, 200);
   }
 
+  // Intent is a fixed allowlist compared to a literal — no user text reaches the
+  // subject/body, so no injection surface. Defaults to a general contact lead.
+  const isQuote = String(form.get("intent") ?? "").trim() === "quote";
+  const leadKind = isQuote ? "quote" : "contact";
+
   const { ok, errors, clean } = validateContactLead({
     name: form.get("name"),
     phone: form.get("phone"),
@@ -78,7 +83,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
     .join("\n      ");
   const html = `
     <div style="font-family:Arial,Helvetica,sans-serif;font-size:15px;color:#0b2d22;">
-      <h2 style="margin:0 0 12px;">New contact lead</h2>
+      <h2 style="margin:0 0 12px;">New ${leadKind} lead</h2>
       <p style="margin:0 0 6px;"><strong>Name:</strong> ${escapeHtml(clean.name)}</p>
       ${contactRows}
       <p style="margin:0 0 6px;"><strong>Their situation:</strong></p>
@@ -89,7 +94,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
   try {
     const sent = await sendEmail(env ?? {}, {
       to,
-      subject: `New contact lead — ${clean.name}`,
+      subject: `New ${leadKind} lead — ${clean.name}`,
       html,
       // Reply-to their address when given. Safe: the value passed a strict email
       // regex (no whitespace/CRLF possible), and never touches To/From.
