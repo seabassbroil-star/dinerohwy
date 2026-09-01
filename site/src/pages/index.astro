@@ -342,12 +342,15 @@ const featured = [
     padding: 1.25rem;
     border: 1px solid var(--line);
     border-radius: 16px;
+    /* Title + description + Open are centered; only the type tag stays left. */
+    text-align: center;
     background:
       linear-gradient(180deg, rgba(244, 238, 220, 0.06), rgba(6, 27, 20, 0.78)),
       rgba(11, 45, 34, 0.72);
   }
 
   .work-card span {
+    text-align: left;
     color: var(--cream-muted);
     font-family: var(--mono);
     font-size: 0.72rem;
@@ -367,6 +370,7 @@ const featured = [
     gap: 0.35rem;
     margin-top: auto;
     padding-top: 0.4rem;
+    align-self: center;
     color: var(--cream);
   }
 
@@ -410,8 +414,6 @@ const featured = [
 
     .work-card {
       max-width: none;
-      text-align: left;
-      align-items: stretch;
     }
 
     .hero {
